@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using IgnisMercado;
-using IgnisMercado.Data;
+using IgnisMercado.Models;
 
 namespace IgnisMercado.Pages.Tecnicos
 {
     public class CreateModel : PageModel
     {
-        private readonly IgnisMercado.Data.ApplicationDbContext _context;
+        private readonly IgnisMercado.Models.ApplicationContext _context;
 
-        public CreateModel(IgnisMercado.Data.ApplicationDbContext context)
+        public CreateModel(IgnisMercado.Models.ApplicationContext context)
         {
             _context = context;
         }

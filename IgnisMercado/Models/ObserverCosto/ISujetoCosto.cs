@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace IgnisMercado 
+namespace IgnisMercado.Models
 {
     public abstract class ISujetoCosto 
     {

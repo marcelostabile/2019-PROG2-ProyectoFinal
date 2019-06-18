@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using IgnisMercado;
-using IgnisMercado.Data;
+using IgnisMercado.Models;
 
 namespace IgnisMercado.Pages.Administradores
 {
     public class DeleteModel : PageModel
     {
-        private readonly IgnisMercado.Data.ApplicationDbContext _context;
+        private readonly IgnisMercado.Models.ApplicationContext _context;
 
-        public DeleteModel(IgnisMercado.Data.ApplicationDbContext context)
+        public DeleteModel(IgnisMercado.Models.ApplicationContext context)
         {
             _context = context;
         }

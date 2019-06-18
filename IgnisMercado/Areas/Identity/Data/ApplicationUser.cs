@@ -2,6 +2,8 @@ using System;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
+using IgnisMercado.Models;
+
 namespace IgnisMercado.Areas.Identity.Data
 {
     // Add profile data for application users by adding properties to the ApplicationUser class

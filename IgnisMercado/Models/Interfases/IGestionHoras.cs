@@ -1,4 +1,4 @@
-namespace IgnisMercado 
+namespace IgnisMercado.Models 
 {
     /// <summary>
     /// Implementada por la clase Solicitud.

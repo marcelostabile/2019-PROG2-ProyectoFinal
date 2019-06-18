@@ -6,16 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using IgnisMercado;
-using IgnisMercado.Data;
+using IgnisMercado.Models;
 
 namespace IgnisMercado.Pages.Proyectos
 {
     public class EditModel : PageModel
     {
-        private readonly IgnisMercado.Data.ApplicationDbContext _context;
+        private readonly IgnisMercado.Models.ApplicationContext _context;
 
-        public EditModel(IgnisMercado.Data.ApplicationDbContext context)
+        public EditModel(IgnisMercado.Models.ApplicationContext context)
         {
             _context = context;
         }

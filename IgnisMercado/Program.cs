@@ -5,8 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-using IgnisMercado.Data;
 using IgnisMercado.Areas.Identity.Data;
+using IgnisMercado.Models;
 
 namespace IgnisMercado
 {
@@ -25,7 +25,7 @@ namespace IgnisMercado
                 try
                 {
                     var context=services.
-                        GetRequiredService<ApplicationDbContext>();
+                        GetRequiredService<ApplicationContext>();
 
                     context.Database.Migrate();
 
@@ -42,13 +42,6 @@ namespace IgnisMercado
 
             host.Run();
         }
-
-
-
-
-
-
-
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using IgnisMercado.Data;
+using IgnisMercado.Models;
 
 namespace IgnisMercado
 {
@@ -31,13 +31,13 @@ namespace IgnisMercado
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("IgnisConn")));
 
             // services.AddDefaultIdentity<IdentityUser>()
             //     .AddDefaultUI(UIFramework.Bootstrap4)
-            //     .AddEntityFrameworkStores<ApplicationDbContext>();
+            //     .AddEntityFrameworkStores<ApplicationContext>();
 
             services.AddMvc(config =>
             {

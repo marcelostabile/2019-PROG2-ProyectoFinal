@@ -3,9 +3,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-using IgnisMercado.Models; 
-
-namespace IgnisMercado 
+namespace IgnisMercado.Models 
 {
     /// <summary>
     /// Esta clase nos permite inicializar la base de datos luego de creada, 
@@ -16,30 +14,30 @@ namespace IgnisMercado
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new IgnisContext(
+            using (var context = new ApplicationContext(
                 serviceProvider.GetRequiredService<
-                    DbContextOptions<IgnisContext>>()))
+                    DbContextOptions<ApplicationContext>>()))
             {
                 SeedAdministradores(context);
                 SeedClientes(context);
                 SeedTecnicos(context);
                 SeedSolicitudes(context);
                 SeedProyectos(context);
-                SeedRoles(context);
+                //SeedRoles(context);
             }
         }
 
         /// <summary>
         /// Seeding Administrador.
         /// </summary>
-        private static void SeedAdministradores(IgnisContext context)
+        private static void SeedAdministradores(ApplicationContext context)
         {
-            if (context.Administradores.Any()) 
+            if (context.Administrador.Any()) 
             {
                 return;
             }
 
-            context.Administradores.AddRange(
+            context.Administrador.AddRange(
                 new Administrador 
                 {
                     nombre = "Marcelo",
@@ -60,14 +58,14 @@ namespace IgnisMercado
         /// <summary>
         /// Seeding Cliente.
         /// </summary>
-        private static void SeedClientes(IgnisContext context)
+        private static void SeedClientes(ApplicationContext context)
         {
-            if (context.Clientes.Any()) 
+            if (context.Cliente.Any()) 
             {
                 return;
             }
 
-            context.Clientes.AddRange(
+            context.Cliente.AddRange(
                 new Cliente 
                 {
                     nombre = "Micaela",
@@ -88,14 +86,14 @@ namespace IgnisMercado
         /// <summary>
         /// Seeding Técnico.
         /// </summary>
-        private static void SeedTecnicos(IgnisContext context)
+        private static void SeedTecnicos(ApplicationContext context)
         {
-            if (context.Tecnicos.Any()) 
+            if (context.Tecnico.Any()) 
             {
                 return;
             }
 
-            context.Tecnicos.AddRange(
+            context.Tecnico.AddRange(
                 new Tecnico 
                 {
                     nombre = "Marcelo",
@@ -132,14 +130,14 @@ namespace IgnisMercado
         /// <summary>
         /// Seeding Solicitud.
         /// </summary>
-        private static void SeedSolicitudes(IgnisContext context)
+        private static void SeedSolicitudes(ApplicationContext context)
         {
-            if (context.Solicitudes.Any()) 
+            if (context.Solicitud.Any()) 
             {
                 return;
             }
 
-            context.Solicitudes.AddRange(
+            context.Solicitud.AddRange(
                 new Solicitud 
                 {
                     modoDeContrato = 1, 
@@ -173,7 +171,7 @@ namespace IgnisMercado
         // /// <summary>
         // /// Seeding TecnicoSolicitud.
         // /// </summary>
-        // private static void SeedTecnicoSolicitudes(IgnisContext context)
+        // private static void SeedTecnicoSolicitudes(ApplicationContext context)
         // {
         //     if (context.tecnicoSolicitudes.Any()) 
         //     {
@@ -212,14 +210,14 @@ namespace IgnisMercado
         /// <summary>
         /// Seeding Proyecto.
         /// </summary>
-        private static void SeedProyectos(IgnisContext context)
+        private static void SeedProyectos(ApplicationContext context)
         {
-            if (context.Proyectos.Any()) 
+            if (context.Proyecto.Any()) 
             {
                 return;
             }
 
-            context.Proyectos.AddRange(
+            context.Proyecto.AddRange(
                 new Proyecto 
                 {
                     nombre = "Hulk Aplasta!!!", 
@@ -235,36 +233,38 @@ namespace IgnisMercado
             context.SaveChanges();
         }
 
-        /// <summary>
-        /// Seeding Rol.
-        /// </summary>
-        private static void SeedRoles(IgnisContext context)
-        {
-            if (context.Roles.Any()) 
-            {
-                return;
-            }
+        // /// <summary>
+        // /// Seeding Rol.
+        // /// </summary>
+        // private static void SeedRoles(ApplicationContext context)
+        // {
+        //     if (context.Roles.Any()) 
+        //     {
+        //         return;
+        //     }
 
-            context.Roles.AddRange(
-                new Rol 
-                {
-                    nombre = "Cámara", 
-                    descripcion = "."
-                },
+        //     context.Roles.AddRange(
+        //         new Rol 
+        //         {
+        //             nombre = "Cámara", 
+        //             descripcion = "."
+        //         },
 
-                new Rol 
-                {
-                    nombre = "Luces", 
-                    descripcion = ".."
-                },
+        //         new Rol 
+        //         {
+        //             nombre = "Luces", 
+        //             descripcion = ".."
+        //         },
 
-                new Rol 
-                {
-                    nombre = "Director",
-                    descripcion = "..." 
-                }
-            );
-            context.SaveChanges();
-        }
+        //         new Rol 
+        //         {
+        //             nombre = "Director",
+        //             descripcion = "..." 
+        //         }
+        //     );
+
+    
+        //context.SaveChanges();
+        //}
     }
 }

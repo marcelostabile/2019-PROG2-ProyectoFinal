@@ -1,7 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace IgnisMercado 
+namespace IgnisMercado.Models 
 {   
     public class ValidarEmail : IValidarEmail
     { 

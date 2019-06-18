@@ -1,4 +1,4 @@
-namespace IgnisMercado 
+namespace IgnisMercado.Models 
 { 
     public class Administrador : Persona 
     { 

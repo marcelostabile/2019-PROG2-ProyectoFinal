@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace IgnisMercado
+namespace IgnisMercado.Models
 {   
     public class Cliente : Persona 
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace IgnisMercado 
+namespace IgnisMercado.Models 
 {
     public class Solicitud : IGestionHoras, IObserverCosto
     {
