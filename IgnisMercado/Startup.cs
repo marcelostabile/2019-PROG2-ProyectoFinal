@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using IgnisMercado.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IgnisMercado
 {
@@ -43,8 +45,21 @@ namespace IgnisMercado
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(config =>
+            {
+                // Debe haber un usuario logueado.
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            })
+                .AddRazorPagesOptions(options =>
+                {
+                    // Páginas permitidas sin loguearse.
+                    options.Conventions.AllowAnonymousToPage("/Index");
+                    options.Conventions.AllowAnonymousToPage("/Privacy");
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
