@@ -1,0 +1,65 @@
+@page
+@model IgnisMercado.Pages.Tecnicos.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Tecnico</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Tecnico.Id" />
+            <div class="form-group">
+                <label asp-for="Tecnico.edad" class="control-label"></label>
+                <input asp-for="Tecnico.edad" class="form-control" />
+                <span asp-validation-for="Tecnico.edad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.presentacion" class="control-label"></label>
+                <input asp-for="Tecnico.presentacion" class="form-control" />
+                <span asp-validation-for="Tecnico.presentacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.nivelExperiencia" class="control-label"></label>
+                <input asp-for="Tecnico.nivelExperiencia" class="form-control" />
+                <span asp-validation-for="Tecnico.nivelExperiencia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.nombre" class="control-label"></label>
+                <input asp-for="Tecnico.nombre" class="form-control" />
+                <span asp-validation-for="Tecnico.nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.correo" class="control-label"></label>
+                <input asp-for="Tecnico.correo" class="form-control" />
+                <span asp-validation-for="Tecnico.correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnico.contrasena" class="control-label"></label>
+                <input asp-for="Tecnico.contrasena" class="form-control" />
+                <span asp-validation-for="Tecnico.contrasena" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Tecnico.status" /> @Html.DisplayNameFor(model => model.Tecnico.status)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
