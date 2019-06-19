@@ -22,7 +22,7 @@ namespace IgnisMercado.Pages.Solicitudes
 
         public async Task OnGetAsync()
         {
-            Solicitud = await _context.Solicitud.ToListAsync();
+            Solicitud = await _context.Solicitudes.ToListAsync();
         }
     }
 }

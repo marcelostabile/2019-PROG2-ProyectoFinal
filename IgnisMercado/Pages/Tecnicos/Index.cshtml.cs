@@ -22,7 +22,7 @@ namespace IgnisMercado.Pages.Tecnicos
 
         public async Task OnGetAsync()
         {
-            Tecnico = await _context.Tecnico.ToListAsync();
+            Tecnico = await _context.Tecnicos.ToListAsync();
         }
     }
 }

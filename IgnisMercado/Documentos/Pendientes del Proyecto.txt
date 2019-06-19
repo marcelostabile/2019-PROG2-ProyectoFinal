@@ -1,0 +1,21 @@
+ADMINISTRADOR
+- Ve todas las opciones.
+- Ve los costos por proyecto y por solicitudes.
+
+CLIENTE
+- Solo accede a sus datos.
+- Solo accede a sus proyectos.
+- Solo accede a sus solicitudes.
+- Accede a información de costo de cada solicitud y de cada proyecto.
+
+TÉCNICO
+- Solo accede a sus datos.
+- Solo accede a sus proyectos.
+- Solo accede a sus solicitudes.
+- Accede a la lista de roles.
+
+CALIFICICACIÓN
+- Calificación Ignis (un solo valor).
+- Calificación Cliente (promedio de todas las calificaciones recibidas).
+- Se sugiere considerar solo los últimos 3 o 5 proyectos.
+

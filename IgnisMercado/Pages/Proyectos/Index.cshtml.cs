@@ -22,7 +22,7 @@ namespace IgnisMercado.Pages.Proyectos
 
         public async Task OnGetAsync()
         {
-            Proyecto = await _context.Proyecto.ToListAsync();
+            Proyecto = await _context.Proyectos.ToListAsync();
         }
     }
 }

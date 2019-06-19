@@ -22,7 +22,7 @@ namespace IgnisMercado.Pages.Roles
 
         public async Task OnGetAsync()
         {
-            Rol = await _context.Rol.ToListAsync();
+            Rol = await _context.Roles.ToListAsync();
         }
     }
 }

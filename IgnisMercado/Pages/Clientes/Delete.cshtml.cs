@@ -28,7 +28,7 @@ namespace IgnisMercado.Pages.Clientes
                 return NotFound();
             }
 
-            Cliente = await _context.Cliente.FirstOrDefaultAsync(m => m.Id == id);
+            Cliente = await _context.Clientes.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Cliente == null)
             {
@@ -44,11 +44,11 @@ namespace IgnisMercado.Pages.Clientes
                 return NotFound();
             }
 
-            Cliente = await _context.Cliente.FindAsync(id);
+            Cliente = await _context.Clientes.FindAsync(id);
 
             if (Cliente != null)
             {
-                _context.Cliente.Remove(Cliente);
+                _context.Clientes.Remove(Cliente);
                 await _context.SaveChangesAsync();
             }
 

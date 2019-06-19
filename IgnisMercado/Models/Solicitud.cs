@@ -71,14 +71,6 @@ namespace IgnisMercado.Models
             set => this.Observaciones = value;
         }
 
-        /// La solicitud conoce el técnico cuando se le asigna.
-        private Tecnico TecnicoAsignado;
-        public Tecnico tecnicoAsignado 
-        {
-            get => this.TecnicoAsignado;
-            protected set {}
-        }
-
         /// Costo de la solicitud.
         private int CostoSolicitud;
         public int costoSolicitud 
@@ -98,14 +90,24 @@ namespace IgnisMercado.Models
         }
 
         /// <summary>
-        /// Método para asignar un técnico a esta solicitud.
+        /// Relación Proyecto:Solicitudes (uno-a-muchos)
         /// </summary>
-        public void AsignarTecnico(Tecnico Tecnico) 
-        {
-            Check.Precondicion(!string.IsNullOrEmpty(Tecnico.ToString()), "El técnico no puede ser null o vacío.");
+        public Proyecto Proyecto { get; set; }
 
-            this.TecnicoAsignado = Tecnico;
-        }
+        /// <summary>
+        /// Relación Tecnico:Solicitud (uno-a-uno)
+        /// </summary>
+        public Tecnico Tecnico { get; set; }
+
+        // /// <summary>
+        // /// Método para asignar un técnico a esta solicitud.
+        // /// </summary>
+        // public void AsignarTecnico(Tecnico Tecnico) 
+        // {
+        //     Check.Precondicion(!string.IsNullOrEmpty(Tecnico.ToString()), "El técnico no puede ser null o vacío.");
+
+        //     this.TecnicoId = Tecnico;
+        // }
 
         /// <summary>
         /// Método para agregar horas de contratación.

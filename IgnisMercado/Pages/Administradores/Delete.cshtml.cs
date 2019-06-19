@@ -28,7 +28,7 @@ namespace IgnisMercado.Pages.Administradores
                 return NotFound();
             }
 
-            Administrador = await _context.Administrador.FirstOrDefaultAsync(m => m.Id == id);
+            Administrador = await _context.Administradores.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Administrador == null)
             {
@@ -44,11 +44,11 @@ namespace IgnisMercado.Pages.Administradores
                 return NotFound();
             }
 
-            Administrador = await _context.Administrador.FindAsync(id);
+            Administrador = await _context.Administradores.FindAsync(id);
 
             if (Administrador != null)
             {
-                _context.Administrador.Remove(Administrador);
+                _context.Administradores.Remove(Administrador);
                 await _context.SaveChangesAsync();
             }
 

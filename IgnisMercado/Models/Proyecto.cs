@@ -66,7 +66,14 @@ namespace IgnisMercado.Models
         }
 
         /// <summary>
+        /// Relación Cliente:Proyectos (uno-a-muchos)
+        /// </summary>
+        public Cliente Cliente { get; set; }
+
+        /// <summary>
         /// Lista de Solicitudes del proyecto.
+        /// 
+        /// Relación Proyecto:Solicitudes (uno-a-muchos)
         /// </summary>
         private List<Solicitud> ListaSolicitudes;
         public List<Solicitud> listaSolicitudes 

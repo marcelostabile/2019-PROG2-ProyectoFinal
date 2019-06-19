@@ -15,8 +15,6 @@ namespace IgnisMercado
         public static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();
-            
-            CreateWebHostBuilder(args).Build().Run();
 
             using (var scope = host.Services.CreateScope())
             {
@@ -27,11 +25,11 @@ namespace IgnisMercado
                     var context=services.
                         GetRequiredService<ApplicationContext>();
 
-                    context.Database.Migrate();
+                    //context.Database.Migrate();
 
                     // Seeding de datos.
-                    SeedData.Initialize(services);
                     SeedIdentityData.Initialize(services);
+                    SeedData.Initialize(services);
                 }
                 catch (Exception ex)
                 {

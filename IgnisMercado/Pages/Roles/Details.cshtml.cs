@@ -27,7 +27,7 @@ namespace IgnisMercado.Pages.Roles
                 return NotFound();
             }
 
-            Rol = await _context.Rol.FirstOrDefaultAsync(m => m.Id == id);
+            Rol = await _context.Roles.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Rol == null)
             {

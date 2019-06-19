@@ -10,7 +10,7 @@ namespace IgnisMercado.Models
     /// agregando valores por defecto. En todos los casos solo se agregan valores 
     /// si no hay registros previos en la tabla.
     /// </summary>
-    public static class SeedData 
+    public static class SeedData
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
@@ -23,7 +23,7 @@ namespace IgnisMercado.Models
                 SeedTecnicos(context);
                 SeedSolicitudes(context);
                 SeedProyectos(context);
-                //SeedRoles(context);
+                SeedRoles(context);
             }
         }
 
@@ -32,12 +32,12 @@ namespace IgnisMercado.Models
         /// </summary>
         private static void SeedAdministradores(ApplicationContext context)
         {
-            if (context.Administrador.Any()) 
+            if (context.Administradores.Any()) 
             {
                 return;
             }
 
-            context.Administrador.AddRange(
+            context.Administradores.AddRange(
                 new Administrador 
                 {
                     nombre = "Marcelo",
@@ -52,6 +52,8 @@ namespace IgnisMercado.Models
                     contrasena = "********"
                 }
             );
+
+            // guarda los cambios.
             context.SaveChanges();
         }
 
@@ -60,12 +62,12 @@ namespace IgnisMercado.Models
         /// </summary>
         private static void SeedClientes(ApplicationContext context)
         {
-            if (context.Cliente.Any()) 
+            if (context.Clientes.Any()) 
             {
                 return;
             }
 
-            context.Cliente.AddRange(
+            context.Clientes.AddRange(
                 new Cliente 
                 {
                     nombre = "Micaela",
@@ -80,6 +82,8 @@ namespace IgnisMercado.Models
                     contrasena = "********"
                 }
             );
+
+            // guarda los cambios.
             context.SaveChanges();
         }
 
@@ -88,12 +92,12 @@ namespace IgnisMercado.Models
         /// </summary>
         private static void SeedTecnicos(ApplicationContext context)
         {
-            if (context.Tecnico.Any()) 
+            if (context.Tecnicos.Any()) 
             {
                 return;
             }
 
-            context.Tecnico.AddRange(
+            context.Tecnicos.AddRange(
                 new Tecnico 
                 {
                     nombre = "Marcelo",
@@ -124,6 +128,8 @@ namespace IgnisMercado.Models
                     nivelExperiencia = "Básico"
                 }
             );
+
+            // guarda los cambios.
             context.SaveChanges();
         }
 
@@ -132,12 +138,12 @@ namespace IgnisMercado.Models
         /// </summary>
         private static void SeedSolicitudes(ApplicationContext context)
         {
-            if (context.Solicitud.Any()) 
+            if (context.Solicitudes.Any()) 
             {
                 return;
             }
 
-            context.Solicitud.AddRange(
+            context.Solicitudes.AddRange(
                 new Solicitud 
                 {
                     modoDeContrato = 1, 
@@ -165,59 +171,22 @@ namespace IgnisMercado.Models
                     observaciones = "no."
                 }
             );
+    
+            // guarda los cambios.
             context.SaveChanges();
         }
-
-        // /// <summary>
-        // /// Seeding TecnicoSolicitud.
-        // /// </summary>
-        // private static void SeedTecnicoSolicitudes(ApplicationContext context)
-        // {
-        //     if (context.tecnicoSolicitudes.Any()) 
-        //     {
-        //         return;
-        //     }
-
-        //     var tecnicoSolictudes = new TecnicoSolicitud[]
-        //     {
-        //         new TecnicoSolicitud 
-        //         {
-        //             tecnicoID = context.Tecnicos.Single(t => t.Nombre == "Marcelo").ID, 
-        //             solicitudID = context.Solicitudes.Single(s => s.ID == 1).ID 
-        //         },
-
-        //         new TecnicoSolicitud 
-        //         {
-        //             tecnicoID = context.Tecnicos.Single(t => t.Nombre == "Marcelo").ID, 
-        //             solicitudID = context.Solicitudes.Single(s => s.ID == 3).ID 
-        //         },
-
-        //         new TecnicoSolicitud 
-        //         {
-        //             tecnicoID = context.Tecnicos.Single(t => t.Nombre == "Laura").ID, 
-        //             solicitudID = context.Solicitudes.Single(s => s.ID == 2).ID 
-        //         }
-        //     };
-
-        //     foreach (TecnicoSolicitud ts in tecnicoSolictudes)
-        //     {
-        //         context.TecnicoSolicitudes.Add(ts);
-        //     }
-
-        //     context.SaveChanges();
-        // }
 
         /// <summary>
         /// Seeding Proyecto.
         /// </summary>
         private static void SeedProyectos(ApplicationContext context)
         {
-            if (context.Proyecto.Any()) 
+            if (context.Proyectos.Any()) 
             {
                 return;
             }
 
-            context.Proyecto.AddRange(
+            context.Proyectos.AddRange(
                 new Proyecto 
                 {
                     nombre = "Hulk Aplasta!!!", 
@@ -233,38 +202,36 @@ namespace IgnisMercado.Models
             context.SaveChanges();
         }
 
-        // /// <summary>
-        // /// Seeding Rol.
-        // /// </summary>
-        // private static void SeedRoles(ApplicationContext context)
-        // {
-        //     if (context.Roles.Any()) 
-        //     {
-        //         return;
-        //     }
+        /// <summary>
+        /// Seeding Rol.
+        /// </summary>
+        private static void SeedRoles(ApplicationContext context)
+        {
+            if (context.Roles.Any()) 
+            {
+                return;
+            }
 
-        //     context.Roles.AddRange(
-        //         new Rol 
-        //         {
-        //             nombre = "Cámara", 
-        //             descripcion = "."
-        //         },
+            context.Roles.AddRange(
+                new Rol 
+                {
+                    nombre = "Cámara", 
+                    descripcion = "."
+                },
 
-        //         new Rol 
-        //         {
-        //             nombre = "Luces", 
-        //             descripcion = ".."
-        //         },
+                new Rol 
+                {
+                    nombre = "Luces", 
+                    descripcion = ".."
+                },
 
-        //         new Rol 
-        //         {
-        //             nombre = "Director",
-        //             descripcion = "..." 
-        //         }
-        //     );
-
-    
-        //context.SaveChanges();
-        //}
-    }
+                new Rol 
+                {
+                    nombre = "Director",
+                    descripcion = "..." 
+                }
+            );
+            context.SaveChanges();
+        }
+    } 
 }

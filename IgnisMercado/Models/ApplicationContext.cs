@@ -24,16 +24,16 @@ namespace IgnisMercado.Models
 
         }
 
-        public DbSet<IgnisMercado.Models.Administrador> Administrador { get; set; }
+        public DbSet<IgnisMercado.Models.Administrador> Administradores { get; set; }
 
-        public DbSet<IgnisMercado.Models.Cliente> Cliente { get; set; }
+        public DbSet<IgnisMercado.Models.Cliente> Clientes { get; set; }
 
-        public DbSet<IgnisMercado.Models.Tecnico> Tecnico { get; set; }
+        public DbSet<IgnisMercado.Models.Tecnico> Tecnicos { get; set; }
 
-        public DbSet<IgnisMercado.Models.Solicitud> Solicitud { get; set; }
+        public DbSet<IgnisMercado.Models.Solicitud> Solicitudes { get; set; }
 
-        public DbSet<IgnisMercado.Models.Proyecto> Proyecto { get; set; }
+        public DbSet<IgnisMercado.Models.Proyecto> Proyectos { get; set; }
 
-        public DbSet<IgnisMercado.Models.Rol> Rol { get; set; }
+        public new DbSet<IgnisMercado.Models.Rol> Roles { get; set; }
     }
 }

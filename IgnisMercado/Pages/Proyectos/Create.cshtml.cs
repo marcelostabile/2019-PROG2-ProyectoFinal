@@ -33,7 +33,7 @@ namespace IgnisMercado.Pages.Proyectos
                 return Page();
             }
 
-            _context.Proyecto.Add(Proyecto);
+            _context.Proyectos.Add(Proyecto);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -29,7 +29,7 @@ namespace IgnisMercado.Pages.Proyectos
                 return NotFound();
             }
 
-            Proyecto = await _context.Proyecto.FirstOrDefaultAsync(m => m.Id == id);
+            Proyecto = await _context.Proyectos.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Proyecto == null)
             {
@@ -68,7 +68,7 @@ namespace IgnisMercado.Pages.Proyectos
 
         private bool ProyectoExists(int id)
         {
-            return _context.Proyecto.Any(e => e.Id == id);
+            return _context.Proyectos.Any(e => e.Id == id);
         }
     }
 }

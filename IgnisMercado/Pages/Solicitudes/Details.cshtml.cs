@@ -27,7 +27,7 @@ namespace IgnisMercado.Pages.Solicitudes
                 return NotFound();
             }
 
-            Solicitud = await _context.Solicitud.FirstOrDefaultAsync(m => m.Id == id);
+            Solicitud = await _context.Solicitudes.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Solicitud == null)
             {

@@ -29,7 +29,7 @@ namespace IgnisMercado.Pages.Clientes
                 return NotFound();
             }
 
-            Cliente = await _context.Cliente.FirstOrDefaultAsync(m => m.Id == id);
+            Cliente = await _context.Clientes.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Cliente == null)
             {
@@ -68,7 +68,7 @@ namespace IgnisMercado.Pages.Clientes
 
         private bool ClienteExists(int id)
         {
-            return _context.Cliente.Any(e => e.Id == id);
+            return _context.Clientes.Any(e => e.Id == id);
         }
     }
 }

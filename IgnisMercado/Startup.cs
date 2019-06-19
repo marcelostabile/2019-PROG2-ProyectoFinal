@@ -35,10 +35,6 @@ namespace IgnisMercado
                 options.UseSqlite(
                     Configuration.GetConnectionString("IgnisConn")));
 
-            // services.AddDefaultIdentity<IdentityUser>()
-            //     .AddDefaultUI(UIFramework.Bootstrap4)
-            //     .AddEntityFrameworkStores<ApplicationContext>();
-
             services.AddMvc(config =>
             {
                 // Usuario logueado.

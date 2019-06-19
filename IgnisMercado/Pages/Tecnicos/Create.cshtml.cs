@@ -33,7 +33,7 @@ namespace IgnisMercado.Pages.Tecnicos
                 return Page();
             }
 
-            _context.Tecnico.Add(Tecnico);
+            _context.Tecnicos.Add(Tecnico);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

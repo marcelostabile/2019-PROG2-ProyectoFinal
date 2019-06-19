@@ -28,7 +28,7 @@ namespace IgnisMercado.Pages.Tecnicos
                 return NotFound();
             }
 
-            Tecnico = await _context.Tecnico.FirstOrDefaultAsync(m => m.Id == id);
+            Tecnico = await _context.Tecnicos.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Tecnico == null)
             {
@@ -44,11 +44,11 @@ namespace IgnisMercado.Pages.Tecnicos
                 return NotFound();
             }
 
-            Tecnico = await _context.Tecnico.FindAsync(id);
+            Tecnico = await _context.Tecnicos.FindAsync(id);
 
             if (Tecnico != null)
             {
-                _context.Tecnico.Remove(Tecnico);
+                _context.Tecnicos.Remove(Tecnico);
                 await _context.SaveChangesAsync();
             }
 

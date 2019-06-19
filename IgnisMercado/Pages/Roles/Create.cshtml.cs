@@ -33,7 +33,7 @@ namespace IgnisMercado.Pages.Roles
                 return Page();
             }
 
-            _context.Rol.Add(Rol);
+            _context.Roles.Add(Rol);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

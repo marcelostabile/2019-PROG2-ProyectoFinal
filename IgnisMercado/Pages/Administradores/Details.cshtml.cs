@@ -27,7 +27,7 @@ namespace IgnisMercado.Pages.Administradores
                 return NotFound();
             }
 
-            Administrador = await _context.Administrador.FirstOrDefaultAsync(m => m.Id == id);
+            Administrador = await _context.Administradores.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Administrador == null)
             {

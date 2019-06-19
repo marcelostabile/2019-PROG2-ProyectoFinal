@@ -29,7 +29,7 @@ namespace IgnisMercado.Pages.Administradores
                 return NotFound();
             }
 
-            Administrador = await _context.Administrador.FirstOrDefaultAsync(m => m.Id == id);
+            Administrador = await _context.Administradores.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Administrador == null)
             {
@@ -68,7 +68,7 @@ namespace IgnisMercado.Pages.Administradores
 
         private bool AdministradorExists(int id)
         {
-            return _context.Administrador.Any(e => e.Id == id);
+            return _context.Administradores.Any(e => e.Id == id);
         }
     }
 }
