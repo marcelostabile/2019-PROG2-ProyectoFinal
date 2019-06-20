@@ -21,8 +21,8 @@ namespace IgnisMercado.Models
                 SeedAdministradores(context);
                 SeedClientes(context);
                 SeedTecnicos(context);
-                SeedSolicitudes(context);
                 SeedProyectos(context);
+                SeedSolicitudes(context);
                 SeedRoles(context);
             }
         }
@@ -134,6 +134,32 @@ namespace IgnisMercado.Models
         }
 
         /// <summary>
+        /// Seeding Proyecto.
+        /// </summary>
+        private static void SeedProyectos(ApplicationContext context)
+        {
+            if (context.Proyectos.Any()) 
+            {
+                return;
+            }
+
+            context.Proyectos.AddRange(
+                new Proyecto 
+                {
+                    nombre = "Hulk Aplasta!!!", 
+                    descripcion = "El héroe verde regresa... más enojado que nunca!"
+                },
+
+                new Proyecto 
+                {
+                    nombre = "Docu-mental",
+                    descripcion = "Investigación." 
+                }
+            );
+            context.SaveChanges();
+        }
+
+        /// <summary>
         /// Seeding Solicitud.
         /// </summary>
         private static void SeedSolicitudes(ApplicationContext context)
@@ -173,32 +199,6 @@ namespace IgnisMercado.Models
             );
     
             // guarda los cambios.
-            context.SaveChanges();
-        }
-
-        /// <summary>
-        /// Seeding Proyecto.
-        /// </summary>
-        private static void SeedProyectos(ApplicationContext context)
-        {
-            if (context.Proyectos.Any()) 
-            {
-                return;
-            }
-
-            context.Proyectos.AddRange(
-                new Proyecto 
-                {
-                    nombre = "Hulk Aplasta!!!", 
-                    descripcion = "El héroe verde regresa... más enojado que nunca!"
-                },
-
-                new Proyecto 
-                {
-                    nombre = "Docu-mental",
-                    descripcion = "Investigación." 
-                }
-            );
             context.SaveChanges();
         }
 
