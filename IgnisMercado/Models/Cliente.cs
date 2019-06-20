@@ -37,7 +37,7 @@ namespace IgnisMercado.Models
         /// 
         /// Relación Cliente:Proyectos (uno-a-muchos)
         /// </summary>
-        private List<Proyecto> ListaProyectos;
+        public List<Proyecto> ListaProyectos { get; private set; }
 
         /// <summary>
         /// Este método agrega un nuevo proyecto a la lista de proyectos del cliente.

@@ -10,11 +10,12 @@ namespace IgnisMercado.Areas.Identity.Data
     public class ApplicationUser : IdentityUser
     {
         [PersonalData]
+        [Display(Name = "Nombre")]
         public string Name { get; set; }
 
-        [Display(Name = "Date of Birth")]
-        [DataType(DataType.Date)]
         [PersonalData]
+        [DataType(DataType.Date)]
+        [Display(Name = "Date of Birth")]
         public DateTime DOB { get; set; }
 
         // Es necesario tener acceso a IdentityManager para poder buscar el rol de este usuario; esta propiedad se asigna cada vez que se

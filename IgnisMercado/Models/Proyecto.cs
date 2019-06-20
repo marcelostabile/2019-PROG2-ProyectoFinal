@@ -68,6 +68,7 @@ namespace IgnisMercado.Models
         /// <summary>
         /// Relación Cliente:Proyectos (uno-a-muchos)
         /// </summary>
+        public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
 
         /// <summary>
@@ -75,12 +76,7 @@ namespace IgnisMercado.Models
         /// 
         /// Relación Proyecto:Solicitudes (uno-a-muchos)
         /// </summary>
-        private List<Solicitud> ListaSolicitudes;
-        public List<Solicitud> listaSolicitudes 
-        {
-            get => this.ListaSolicitudes;
-            protected set {}
-        }
+        public IList<Solicitud> ListaSolicitudes { get; private set; }
 
         /// <summary>
         /// Este método agrega una nueva solicitud a la lista de solicitudes del proyecto.
@@ -88,7 +84,7 @@ namespace IgnisMercado.Models
         /// <param name="SolicitudNueva">Nueva solicitud que se agrega a la lista.</param>
         public void AgregarSolicitud(Solicitud SolicitudNueva) 
         {
-            ListaSolicitudes.Add(SolicitudNueva);
+            this.ListaSolicitudes.Add(SolicitudNueva);
         }
 
         /// <summary>
@@ -97,7 +93,7 @@ namespace IgnisMercado.Models
         /// <param name="EliminarSolicitud">Solicitud que desea eliminar.</param>
         public void EliminarSolicitud(Solicitud EliminarSolicitud) 
         {
-            ListaSolicitudes.Remove(EliminarSolicitud);
+            this.ListaSolicitudes.Remove(EliminarSolicitud);
         }
 
         /// <summary>

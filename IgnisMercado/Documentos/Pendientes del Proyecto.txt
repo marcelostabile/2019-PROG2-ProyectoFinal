@@ -3,6 +3,8 @@ OK > PAGINA DE REGISTRO
 OK > LOGIN
 OK > FILTRADO DE MENUS DE ACUERDO A ROLE
 
+[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+
 ACCESO CLIENTE
 ---------------
 PÁGINA CLIENTE: ELIMINAR MENÚ.
