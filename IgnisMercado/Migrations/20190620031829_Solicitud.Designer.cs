@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IgnisMercado.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190619005715_Solicitud")]
+    [Migration("20190620031829_Solicitud")]
     partial class Solicitud
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,8 +40,6 @@ namespace IgnisMercado.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
                     b.Property<string>("Name");
-
-                    b.Property<string>("Nivel_experiencia");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
