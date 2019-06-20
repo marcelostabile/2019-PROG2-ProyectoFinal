@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IgnisMercado.Models
@@ -19,12 +20,6 @@ namespace IgnisMercado.Models
         public new int Id { get; set; } 
 
         /// <summary>
-        /// Relación Tecnico:Solicitud (uno-a-uno)
-        /// </summary>
-        public int SolicitudId { get; set; }
-        public Solicitud Solicitud { get; set; }
-
-        /// <summary>
         /// El Técnico es la persona que se registra en la aplicación para ser contratado.
         /// Puede anotarse hasta en 3 roles (especialidades) y los Administradores lo asignan a Proyectos.
         /// 
@@ -41,8 +36,15 @@ namespace IgnisMercado.Models
             this.Edad = edad;
             this.Presentacion = presentacion;
             this.NivelExperiencia = nivelExperiencia;   // 'Básico', 'Avanzado'.
-        }
 
+            this.ListaSolicitudes = new List<Solicitud>();
+        }   
+
+        /// <summary>
+        /// Relación Tecnico:Solicitud (uno-a-uno)
+        /// </summary>
+        public List<Solicitud> ListaSolicitudes { get; private set; }
+        
         /// <summary>
         /// Edad. 
         /// 

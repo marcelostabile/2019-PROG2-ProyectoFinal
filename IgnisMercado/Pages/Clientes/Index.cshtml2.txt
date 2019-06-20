@@ -1,0 +1,61 @@
+@page "{id:int?}"
+@model IgnisMercado.Pages.Clientes.IndexModel
+
+@using Microsoft.AspNetCore.Identity
+@using IgnisMercado.Models.ClienteViewModels
+@using IgnisMercado.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Cliente";
+}
+
+<h1>Cliente</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente.nombre)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente.correo)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model.Cliente.Clientes) 
+        {
+            <tr>
+                <td>
+                    <a asp-page="./Select" asp-route-id="@item.Id">Select</a>
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.correo)
+                </td>
+
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+
+                    @if (User.IsInRole("Administrador")) 
+                    {
+                        <a asp-page="./Details" asp-route-id="@item.Id">| Details</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,55 +1,54 @@
-@page "{id:int?"
-
-@using Microsoft.AspNetCore.Identity
-@using IgnisMercado.Areas.Identity.Data
-
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
-
+@page
 @model IgnisMercado.Pages.Clientes.IndexModel
 
 @{
-    ViewData["Title"] = "Cliente";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Cliente</h1>
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
 
 <table class="table">
+
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente[0].nombre)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente[0].correo)
-            </th>
-
+            <th>Nombre</th>
+            <th>Correo Electrónico</th>
             <th></th>
         </tr>
     </thead>
-    
+
     <tbody>
-        @foreach (var item in Model.Cliente.Clientes) 
+    @foreach (var item in Model.Cliente.Clientes) 
+    {
+        string SelectedRow = "";
+
+        if (item.Id == Model.ClienteId)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nombre)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.correo)
-                </td>
-
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
-
-                    @if (User.IsInRole("Administrador")) 
-                    {
-                        <a asp-page="./Details" asp-route-id="@item.Id">| Details</a>
-                    }
-                </td>
-            </tr>
+            SelectedRow = "table-success";
         }
+
+        <tr class="@SelectedRow">
+
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.correo)
+            </td>
+
+            <td>
+                <a asp-page="./Index" asp-route-id="@item.Id">Select</a> |
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+
+        </tr>
+    }
     </tbody>
 </table>

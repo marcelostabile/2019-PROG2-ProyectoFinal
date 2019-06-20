@@ -230,7 +230,7 @@ namespace IgnisMercado.Migrations
                     nombre = table.Column<string>(nullable: true),
                     descripcion = table.Column<string>(nullable: true),
                     status = table.Column<bool>(nullable: false),
-                    ClienteId = table.Column<int>(nullable: true)
+                    ClienteId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -240,7 +240,7 @@ namespace IgnisMercado.Migrations
                         column: x => x.ClienteId,
                         principalTable: "Clientes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -256,8 +256,8 @@ namespace IgnisMercado.Migrations
                     observaciones = table.Column<string>(nullable: true),
                     costoSolicitud = table.Column<int>(nullable: false),
                     status = table.Column<bool>(nullable: false),
-                    ProyectoId = table.Column<int>(nullable: true),
-                    TecnicoId = table.Column<int>(nullable: true)
+                    ProyectoId = table.Column<int>(nullable: false),
+                    TecnicoId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -267,13 +267,13 @@ namespace IgnisMercado.Migrations
                         column: x => x.ProyectoId,
                         principalTable: "Proyectos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Solicitudes_Tecnicos_TecnicoId",
                         column: x => x.TecnicoId,
                         principalTable: "Tecnicos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
