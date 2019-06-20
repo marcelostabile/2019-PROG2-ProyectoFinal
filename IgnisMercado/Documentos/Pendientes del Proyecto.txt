@@ -1,21 +1,30 @@
-ADMINISTRADOR
-- Ve todas las opciones.
-- Ve los costos por proyecto y por solicitudes.
+OK > PAGINA INICIO
+OK > PAGINA DE REGISTRO
+OK > LOGIN
+OK > FILTRADO DE MENUS DE ACUERDO A ROLE
 
-CLIENTE
-- Solo accede a sus datos.
-- Solo accede a sus proyectos.
-- Solo accede a sus solicitudes.
-- Accede a informaciÛn de costo de cada solicitud y de cada proyecto.
+ACCESO CLIENTE
+---------------
+P√ÅGINA CLIENTE: ELIMINAR MEN√ö.
+P√ÅGINA SOLICITUDES: ELIMINAR MEN√ö.
 
-T…CNICO
-- Solo accede a sus datos.
-- Solo accede a sus proyectos.
-- Solo accede a sus solicitudes.
-- Accede a la lista de roles.
+MOSTRAR ROLES, PARA EL CLIENTE DEBE ESTAR DESHABILITADO LAS OPCIONES DE CAMBIOS.
 
-CALIFICICACI”N
-- CalificaciÛn Ignis (un solo valor).
-- CalificaciÛn Cliente (promedio de todas las calificaciones recibidas).
-- Se sugiere considerar solo los ˙ltimos 3 o 5 proyectos.
+P√ÅGINA PROYECTOS:
+- Mostrar los proyectos exclusivamente del cliente.
+- Eliminar la opcion "delete".
+- Modificar el nombre detalles por "ver solicitudes"
+- Presionando detalle en un proyecto, mostrar las solicitudes asociadas a ese proyecto.
+
+- Agregar hoja "estimado de costo" listado proyectos del cliente, costo por solicitud y por proyecto
+
+ACCESO T√âCNICO
+---------------
+P√ÅGINA T√âCNICO: mostrar solo sus datos.
+
+Presionando "detalles" se puede ver el historial del tecnico.
+
+Agregar p√°gina proyectos, solo puede ver aquello en los que participo.
+
+
 
