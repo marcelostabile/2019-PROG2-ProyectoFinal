@@ -10,13 +10,13 @@
 
 ## **PANTALLA PRINCIPAL DEL SITIO**
 
-![Pantalla Principal](/Images/01-SiteIndex.png)
+![Pantalla Principal](./Images/01-SiteIndex.png)
 
 ## **REGISTRAR UN NUEVO USUARIO**
 
 #### En la pantalla principal del sitio, presionar la opción "Registrarse".
 
-![Ingresar](/Images/02-Register.png)
+![Ingresar](./Images/02-Register.png)
 
 #### Deberá ingresar sus datos personales, correo electrónico (este será su nombre de usuario) y una contraseña.
 
@@ -26,7 +26,7 @@
 
 #### En la pantalla principal del sitio, presionar la opción "Registrarse".
 
-![Ingresar](/Images/03-LogIn.png)
+![Ingresar](./Images/03-LogIn.png)
 
 #### Para ingresar a la aplicación debe ingresar su usuario (correo electrónico) y su contraseña.
 
@@ -36,7 +36,7 @@
 
 #### Las opciones disponibles en el menú superior varian de acuerdo al perfil de usuario.
 
-![Ingresar](/Images/04-MenuOptions.png)
+![Ingresar](./Images/04-MenuOptions.png)
 
 #### Los administradores pueden ver todas las opciones.
 
