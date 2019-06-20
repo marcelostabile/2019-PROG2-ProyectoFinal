@@ -39,8 +39,6 @@ namespace IgnisMercado.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("Nivel_experiencia");
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
 

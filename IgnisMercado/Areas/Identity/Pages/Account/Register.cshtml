@@ -1,7 +1,7 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Registrarse";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -9,24 +9,49 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
+            <h4>Crear nueva cuenta de usuario.</h4>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
+
             <div class="form-group">
-                <label asp-for="Input.Email"></label>
+                <label asp-for="Input.Name">Nombre</label>
+                <input asp-for="Input.Name" class="form-control" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.DOB">Fecha de Nacimiento</label>
+                <input asp-for="Input.DOB" class="form-control" />
+                <span asp-validation-for="Input.DOB" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Email">Correo Electónico</label>
                 <input asp-for="Input.Email" class="form-control" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Input.Password"></label>
+                <label asp-for="Input.Password">Contraseña</label>
                 <input asp-for="Input.Password" class="form-control" />
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
+                <label asp-for="Input.ConfirmPassword">Confirmar contraseña</label>
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Role">Seleccione su perfil:</label>
+                <select asp-for="Input.Role">
+                    <option value="Administrador">Administrador</option>
+                    <option value="Cliente">Cliente</option>
+                    <option value="Técnico">Técnico</option>
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>

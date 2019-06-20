@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
 using IgnisMercado.Areas.Identity.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Linq;
 
 namespace IgnisMercado.Areas.Identity.Pages.Account
 {
@@ -42,36 +44,70 @@ namespace IgnisMercado.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Full name")]
+            public string Name { get; set; }
+
+            [Required]
+            [Display(Name = "Birth Date")]
+            [DataType(DataType.Date)]
+            public DateTime DOB { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "La {0} debe tener un mínimo de {2} y un máximo de {1} carácteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "La contraseña y su confirmación no coinciden.")]
             public string ConfirmPassword { get; set; }
+            
+            [Required]
+            [Display(Name = "Role")]
+            public string Role { get; set; }
+            
         }
 
         public void OnGet(string returnUrl = null)
         {
-            ReturnUrl = returnUrl;
+             ReturnUrl = returnUrl;
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync(string returnUrl = null) 
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new IgnisMercado.Areas.Identity.Data.ApplicationUser
+                {
+                    Name = Input.Name,
+                    DOB = Input.DOB,
+                    UserName = Input.Email,
+                    Email = Input.Email
+                };
+
+                user.AssignRole(this._userManager, Input.Role);
+                user.Activar();
+            
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
                 if (result.Succeeded)
                 {
+                    IdentityResult addRoleResult = this._userManager.AddToRoleAsync(user, Input.Role).Result;
+
+                    if (!addRoleResult.Succeeded)
+                    {
+                        throw new InvalidOperationException(
+                            $"Error intentando agregar el rol '{Input.Role}' al usuario '{user}'.");
+                    }
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
