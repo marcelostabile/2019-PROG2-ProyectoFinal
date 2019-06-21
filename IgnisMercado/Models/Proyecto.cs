@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace IgnisMercado.Models 
 {   
@@ -68,6 +69,7 @@ namespace IgnisMercado.Models
         /// <summary>
         /// Relación Cliente:Proyectos (uno-a-muchos)
         /// </summary>
+        [Key]
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
 

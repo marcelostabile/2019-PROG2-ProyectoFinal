@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace IgnisMercado.Models 
 {
@@ -14,6 +15,7 @@ namespace IgnisMercado.Models
         /// <summary>
         /// Para RazorPages: atributo PrimaryKey de la tabla.
         /// </summary>
+        [Key]
         public int Id { get; set; } 
 
         public Solicitud(int modoDeContrato, string rolRequerido, int horasContratadas, string nivelExperiencia, string observaciones) 
@@ -92,12 +94,14 @@ namespace IgnisMercado.Models
         /// <summary>
         /// Relación Proyecto:Solicitudes (uno-a-muchos)
         /// </summary>
+        [Key]
         public int ProyectoId { get; set; }
         public Proyecto Proyecto { get; set; }
 
         /// <summary>
         /// Relación Tecnico:Solicitud (uno-a-uno)
         /// </summary>
+        [Key]
         public int TecnicoId { get; set; }
         public Tecnico Tecnico { get; set; }
 

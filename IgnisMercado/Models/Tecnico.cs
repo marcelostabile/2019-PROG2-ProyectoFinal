@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IgnisMercado.Models
@@ -17,6 +18,7 @@ namespace IgnisMercado.Models
         /// Para RazorPages: atributo PrimaryKey de la tabla.
         /// Se agrega el parámetro 'new' debido a recomendación del compilador.
         /// </summary>
+        [Key]
         public new int Id { get; set; } 
 
         /// <summary>
