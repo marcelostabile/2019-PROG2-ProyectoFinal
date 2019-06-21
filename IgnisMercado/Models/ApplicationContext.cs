@@ -23,15 +23,10 @@ namespace IgnisMercado.Models
                     .HasKey(c => new { c.Id });
 
             builder.Entity<Proyecto>()
-            .HasOne(p => p.Cliente)
-            .WithMany(c => c.ListaProyectos)
-            .HasForeignKey(p => p.ClienteId);
-
-//            builder.Entity<Proyecto>()
-//                    .HasKey(c => new { c.Id, c.ClienteId });
+                    .HasKey(c => new { c.Id, c.ClienteId});
 
             builder.Entity<Solicitud>()
-                    .HasKey(c => new { c.Id, c.ProyectoId });
+                    .HasKey(c => new { c.Id, c.ProyectoId, c.TecnicoId });            
 
         }
 

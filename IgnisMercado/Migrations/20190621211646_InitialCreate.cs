@@ -225,15 +225,15 @@ namespace IgnisMercado.Migrations
                 name: "Proyectos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
                     ClienteId = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false),
                     nombre = table.Column<string>(nullable: true),
                     descripcion = table.Column<string>(nullable: true),
                     status = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Proyectos", x => new { x.Id, x.ClienteId });
+                    table.PrimaryKey("PK_Proyectos", x => x.ClienteId);
                     table.ForeignKey(
                         name: "FK_Proyectos_Clientes_ClienteId",
                         column: x => x.ClienteId,
@@ -248,8 +248,6 @@ namespace IgnisMercado.Migrations
                 {
                     Id = table.Column<int>(nullable: false),
                     ProyectoId = table.Column<int>(nullable: false),
-                    ProyectoId1 = table.Column<int>(nullable: true),
-                    ProyectoClienteId = table.Column<int>(nullable: true),
                     TecnicoId = table.Column<int>(nullable: false),
                     modoDeContrato = table.Column<int>(nullable: false),
                     rolRequerido = table.Column<string>(nullable: true),
@@ -263,17 +261,17 @@ namespace IgnisMercado.Migrations
                 {
                     table.PrimaryKey("PK_Solicitudes", x => new { x.Id, x.ProyectoId });
                     table.ForeignKey(
+                        name: "FK_Solicitudes_Proyectos_ProyectoId",
+                        column: x => x.ProyectoId,
+                        principalTable: "Proyectos",
+                        principalColumn: "ClienteId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Solicitudes_Tecnicos_TecnicoId",
                         column: x => x.TecnicoId,
                         principalTable: "Tecnicos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Solicitudes_Proyectos_ProyectoId1_ProyectoClienteId",
-                        columns: x => new { x.ProyectoId1, x.ProyectoClienteId },
-                        principalTable: "Proyectos",
-                        principalColumns: new[] { "Id", "ClienteId" },
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -314,19 +312,14 @@ namespace IgnisMercado.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Proyectos_ClienteId",
-                table: "Proyectos",
-                column: "ClienteId");
+                name: "IX_Solicitudes_ProyectoId",
+                table: "Solicitudes",
+                column: "ProyectoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Solicitudes_TecnicoId",
                 table: "Solicitudes",
                 column: "TecnicoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Solicitudes_ProyectoId1_ProyectoClienteId",
-                table: "Solicitudes",
-                columns: new[] { "ProyectoId1", "ProyectoClienteId" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -362,10 +355,10 @@ namespace IgnisMercado.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Tecnicos");
+                name: "Proyectos");
 
             migrationBuilder.DropTable(
-                name: "Proyectos");
+                name: "Tecnicos");
 
             migrationBuilder.DropTable(
                 name: "Clientes");
