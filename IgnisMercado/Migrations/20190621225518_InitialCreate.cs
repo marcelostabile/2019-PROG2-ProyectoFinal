@@ -227,7 +227,7 @@ namespace IgnisMercado.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ClienteId = table.Column<int>(nullable: false),
+                    ClienteId = table.Column<int>(nullable: true),
                     nombre = table.Column<string>(nullable: true),
                     descripcion = table.Column<string>(nullable: true),
                     status = table.Column<bool>(nullable: false)
@@ -240,7 +240,7 @@ namespace IgnisMercado.Migrations
                         column: x => x.ClienteId,
                         principalTable: "Clientes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

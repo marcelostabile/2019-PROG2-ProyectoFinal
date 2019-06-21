@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IgnisMercado.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190621214408_Tecnico")]
+    [Migration("20190621225543_Tecnico")]
     partial class Tecnico
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -117,7 +117,7 @@ namespace IgnisMercado.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ClienteId");
+                    b.Property<int?>("ClienteId");
 
                     b.Property<string>("descripcion");
 
@@ -317,8 +317,7 @@ namespace IgnisMercado.Migrations
                 {
                     b.HasOne("IgnisMercado.Models.Cliente", "Cliente")
                         .WithMany("ListaProyectos")
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ClienteId");
                 });
 
             modelBuilder.Entity("IgnisMercado.Models.Solicitud", b =>
