@@ -16,6 +16,7 @@ namespace IgnisMercado.Models
         /// Para RazorPages: atributo PrimaryKey de la tabla.
         /// Se agrega el parámetro 'new' debido a recomendación del compilador.
         /// </summary>
+        [Key]
         public new int Id { get; set; } 
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace IgnisMercado.Models
         /// 
         /// Relación Cliente:Proyectos (uno-a-muchos)
         /// </summary>
-        public List<Proyecto> ListaProyectos { get; private set; }
+        public IList<Proyecto> ListaProyectos { get; private set; }
 
         /// <summary>
         /// Este método agrega un nuevo proyecto a la lista de proyectos del cliente.

@@ -18,7 +18,7 @@ namespace IgnisMercado.Models
         /// Para RazorPages: atributo PrimaryKey de la tabla.
         /// Se agrega el parámetro 'new' debido a recomendación del compilador.
         /// </summary>
-        [Key]
+        /// [Key]
         public new int Id { get; set; } 
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace IgnisMercado.Models
         /// <summary>
         /// Relación Tecnico:Solicitud (uno-a-uno)
         /// </summary>
-        public List<Solicitud> ListaSolicitudes { get; private set; }
+        public IList<Solicitud> ListaSolicitudes { get; private set; }
         
         /// <summary>
         /// Edad. 

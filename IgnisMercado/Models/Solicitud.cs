@@ -15,7 +15,6 @@ namespace IgnisMercado.Models
         /// <summary>
         /// Para RazorPages: atributo PrimaryKey de la tabla.
         /// </summary>
-        [Key]
         public int Id { get; set; } 
 
         public Solicitud(int modoDeContrato, string rolRequerido, int horasContratadas, string nivelExperiencia, string observaciones) 
@@ -31,6 +30,18 @@ namespace IgnisMercado.Models
             ICosto Costo = new Costo();
             this.CostoSolicitud = Costo.CalcularCostoSolicitud(modoDeContrato, horasContratadas, nivelExperiencia);
         }
+
+        /// <summary>
+        /// Relación Proyecto:Solicitudes (uno-a-muchos)
+        /// </summary>
+        public int ProyectoId { get; set; }
+        public Proyecto Proyecto { get; set; }
+
+        /// <summary>
+        /// Relación Tecnico:Solicitud (uno-a-uno)
+        /// </summary>
+        public int TecnicoId { get; set; }
+        public Tecnico Tecnico { get; set; }
 
         /// Modo de Contratación
         /// 1: horas y 2: Jornada.
@@ -90,30 +101,6 @@ namespace IgnisMercado.Models
             get => this.Status;
             protected set {}
         }
-
-        /// <summary>
-        /// Relación Proyecto:Solicitudes (uno-a-muchos)
-        /// </summary>
-        [Key]
-        public int ProyectoId { get; set; }
-        public Proyecto Proyecto { get; set; }
-
-        /// <summary>
-        /// Relación Tecnico:Solicitud (uno-a-uno)
-        /// </summary>
-        [Key]
-        public int TecnicoId { get; set; }
-        public Tecnico Tecnico { get; set; }
-
-        // /// <summary>
-        // /// Método para asignar un técnico a esta solicitud.
-        // /// </summary>
-        // public void AsignarTecnico(Tecnico Tecnico) 
-        // {
-        //     Check.Precondicion(!string.IsNullOrEmpty(Tecnico.ToString()), "El técnico no puede ser null o vacío.");
-
-        //     this.TecnicoId = Tecnico;
-        // }
 
         /// <summary>
         /// Método para agregar horas de contratación.

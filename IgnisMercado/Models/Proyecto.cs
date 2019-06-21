@@ -31,9 +31,23 @@ namespace IgnisMercado.Models
             this.Descripcion = descripcion;
             this.Status = true;
 
-            this.ClienteId = 0;
             this.ListaSolicitudes = new List<Solicitud>();
         }
+
+        /// <summary>
+        /// Relación Cliente:Proyectos (uno-a-muchos)
+        /// </summary>
+        [Key]
+        [Required]
+        public int ClienteId { get; set; }
+        public virtual Cliente Cliente { get; set; }
+
+        /// <summary>
+        /// Lista de Solicitudes del proyecto.
+        /// 
+        /// Relación Proyecto:Solicitudes (uno-a-muchos)
+        /// </summary>
+        public IList<Solicitud> ListaSolicitudes { get; private set; }
 
         /// <summary>
         /// Nombre del proyecto.
@@ -66,22 +80,6 @@ namespace IgnisMercado.Models
             get => this.Status;
             protected set {}
         }
-
-        /// <summary>
-        /// Relación Cliente:Proyectos (uno-a-muchos)
-        /// </summary>
-        [Key]
-        public int ClienteId { get; set; }
-        
-        [Required]
-        public Cliente Cliente { get; set; }
-
-        /// <summary>
-        /// Lista de Solicitudes del proyecto.
-        /// 
-        /// Relación Proyecto:Solicitudes (uno-a-muchos)
-        /// </summary>
-        public IList<Solicitud> ListaSolicitudes { get; private set; }
 
         /// <summary>
         /// Este método agrega una nueva solicitud a la lista de solicitudes del proyecto.

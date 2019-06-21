@@ -37,25 +37,6 @@ namespace IgnisMercado.Areas.Identity.Data
             this.Role = role;
         }
 
-        // /// <summary>
-        // /// Nivel de Experiencia
-        // /// 
-        // /// Nivel que el técnico se adjudica de experiencia.
-        // /// </summary>
-        // /// <value>"Básico", "Avanzado"</value>
-        // private string NivelExperiencia;
-        // public string nivelExperiencia
-        // {
-        //     get { return this.NivelExperiencia; }
-        //     set { 
-        //         Check.Precondicion((value == "Básico" || value == "Avanzado"), "Nivel de experiencia no admitido.");
-
-        //         this.NivelExperiencia = value;
-
-        //         Check.Postcondicion((value == "Básico" || value == "Avanzado"), "Nivel de experiencia no fue actualizado.");
-        //         }
-        // }
-
         /// <summary>
         /// El Status de un usuario permite al Administrador de Ignis habilitar/deshabilitar 
         /// las operaciones en la aplicación. Por ejemplo, un técnico con Status = Inactivo 
