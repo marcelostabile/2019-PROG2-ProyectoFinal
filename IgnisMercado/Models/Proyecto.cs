@@ -37,9 +37,6 @@ namespace IgnisMercado.Models
         /// <summary>
         /// Relación Cliente:Proyectos (uno-a-muchos)
         /// </summary>
-        [Key]
-        [Required]
-        public int ClienteId { get; set; }
         public virtual Cliente Cliente { get; set; }
 
         /// <summary>

@@ -19,14 +19,26 @@ namespace IgnisMercado.Models
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
 
-            builder.Entity<Cliente>() 
-                    .HasKey(c => new { c.Id });
+            // builder.Entity<Cliente>() 
+            //         .HasKey(c => new { c.Id });
+
+            // builder.Entity<Proyecto>()
+            //         .HasKey(c => new { c.Id, c.ClienteId});
+
+            // builder.Entity<Solicitud>()
+            //         .HasKey(c => new { c.Id, c.ProyectoId, c.TecnicoId });            
 
             builder.Entity<Proyecto>()
-                    .HasKey(c => new { c.Id, c.ClienteId});
+                .HasOne(p => p.Cliente)
+                .WithMany(c => c.ListaProyectos);
 
             builder.Entity<Solicitud>()
-                    .HasKey(c => new { c.Id, c.ProyectoId, c.TecnicoId });            
+                .HasOne(s => s.Proyecto)
+                .WithMany(p => p.ListaSolicitudes);
+
+            builder.Entity<Solicitud>()
+                .HasOne(s => s.Tecnico)
+                .WithMany(t => t.ListaSolicitudes);
 
         }
 

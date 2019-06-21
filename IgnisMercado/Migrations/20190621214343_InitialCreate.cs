@@ -225,15 +225,16 @@ namespace IgnisMercado.Migrations
                 name: "Proyectos",
                 columns: table => new
                 {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     ClienteId = table.Column<int>(nullable: false),
-                    Id = table.Column<int>(nullable: false),
                     nombre = table.Column<string>(nullable: true),
                     descripcion = table.Column<string>(nullable: true),
                     status = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Proyectos", x => x.ClienteId);
+                    table.PrimaryKey("PK_Proyectos", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Proyectos_Clientes_ClienteId",
                         column: x => x.ClienteId,
@@ -246,9 +247,10 @@ namespace IgnisMercado.Migrations
                 name: "Solicitudes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
-                    ProyectoId = table.Column<int>(nullable: false),
-                    TecnicoId = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProyectoId = table.Column<int>(nullable: true),
+                    TecnicoId = table.Column<int>(nullable: true),
                     modoDeContrato = table.Column<int>(nullable: false),
                     rolRequerido = table.Column<string>(nullable: true),
                     horasContratadas = table.Column<int>(nullable: false),
@@ -259,19 +261,19 @@ namespace IgnisMercado.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Solicitudes", x => new { x.Id, x.ProyectoId });
+                    table.PrimaryKey("PK_Solicitudes", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Solicitudes_Proyectos_ProyectoId",
                         column: x => x.ProyectoId,
                         principalTable: "Proyectos",
-                        principalColumn: "ClienteId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Solicitudes_Tecnicos_TecnicoId",
                         column: x => x.TecnicoId,
                         principalTable: "Tecnicos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -310,6 +312,11 @@ namespace IgnisMercado.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Proyectos_ClienteId",
+                table: "Proyectos",
+                column: "ClienteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Solicitudes_ProyectoId",

@@ -34,13 +34,11 @@ namespace IgnisMercado.Models
         /// <summary>
         /// Relación Proyecto:Solicitudes (uno-a-muchos)
         /// </summary>
-        public int ProyectoId { get; set; }
         public Proyecto Proyecto { get; set; }
 
         /// <summary>
         /// Relación Tecnico:Solicitud (uno-a-uno)
         /// </summary>
-        public int TecnicoId { get; set; }
         public Tecnico Tecnico { get; set; }
 
         /// Modo de Contratación
