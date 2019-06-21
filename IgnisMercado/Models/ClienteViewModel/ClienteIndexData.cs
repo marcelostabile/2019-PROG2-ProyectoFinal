@@ -14,6 +14,5 @@ namespace IgnisMercado.Models.ClienteViewModels
 
         public IEnumerable<Solicitud> Solicitudes { get; set; }
 
-        public IEnumerable<Tecnico> Tecnicos { get; set; }
     }
 }

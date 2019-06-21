@@ -31,6 +31,7 @@ namespace IgnisMercado.Models
             this.Descripcion = descripcion;
             this.Status = true;
 
+            this.ClienteId = 0;
             this.ListaSolicitudes = new List<Solicitud>();
         }
 
@@ -71,6 +72,8 @@ namespace IgnisMercado.Models
         /// </summary>
         [Key]
         public int ClienteId { get; set; }
+        
+        [Required]
         public Cliente Cliente { get; set; }
 
         /// <summary>

@@ -30,7 +30,6 @@ namespace IgnisMercado.Models
 
             builder.Entity<Tecnico>()
                     .HasKey(c => new { c.Id });
-
         }
 
         public DbSet<IgnisMercado.Models.Administrador> Administradores { get; set; }
