@@ -61,12 +61,12 @@ namespace IgnisMercado.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "La {0} debe tener un mínimo de {2} y un máximo de {1} carácteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Contraseña")]
+            [Display(Name = "Password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirmar contraseña")]
-            [Compare("Contraseña", ErrorMessage = "La contraseña y su confirmación no coinciden.")]
+            [Display(Name = "Confirm password")]
+            [Compare("Password", ErrorMessage = "La contraseña y su confirmación no coinciden.")]
             public string ConfirmPassword { get; set; }
             
             [Required]
