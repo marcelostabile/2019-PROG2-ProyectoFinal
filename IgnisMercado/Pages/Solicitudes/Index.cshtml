@@ -1,0 +1,72 @@
+@page
+@model IgnisMercado.Pages.Solicitudes.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Solicitud[0].ModoDeContrato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solicitud[0].RolRequerido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solicitud[0].HorasContratadas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solicitud[0].NivelExperiencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solicitud[0].Observaciones)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solicitud[0].CostoSolicitud)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solicitud[0].Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Solicitud) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModoDeContrato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RolRequerido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HorasContratadas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NivelExperiencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observaciones)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CostoSolicitud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

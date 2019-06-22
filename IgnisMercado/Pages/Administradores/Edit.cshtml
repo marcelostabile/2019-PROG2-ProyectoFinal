@@ -1,0 +1,120 @@
+@page
+@model IgnisMercado.Pages.Administradores.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Administrador</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Administrador.Name" class="control-label"></label>
+                <input asp-for="Administrador.Name" class="form-control" />
+                <span asp-validation-for="Administrador.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Administrador.DOB" class="control-label"></label>
+                <input asp-for="Administrador.DOB" class="form-control" />
+                <span asp-validation-for="Administrador.DOB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Administrador.Role" class="control-label"></label>
+                <input asp-for="Administrador.Role" class="form-control" />
+                <span asp-validation-for="Administrador.Role" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Administrador.Status" /> @Html.DisplayNameFor(model => model.Administrador.Status)
+                </label>
+            </div>
+            <input type="hidden" asp-for="Administrador.Id" />
+            <div class="form-group">
+                <label asp-for="Administrador.UserName" class="control-label"></label>
+                <input asp-for="Administrador.UserName" class="form-control" />
+                <span asp-validation-for="Administrador.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Administrador.NormalizedUserName" class="control-label"></label>
+                <input asp-for="Administrador.NormalizedUserName" class="form-control" />
+                <span asp-validation-for="Administrador.NormalizedUserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Administrador.Email" class="control-label"></label>
+                <input asp-for="Administrador.Email" class="form-control" />
+                <span asp-validation-for="Administrador.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Administrador.NormalizedEmail" class="control-label"></label>
+                <input asp-for="Administrador.NormalizedEmail" class="form-control" />
+                <span asp-validation-for="Administrador.NormalizedEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Administrador.EmailConfirmed" /> @Html.DisplayNameFor(model => model.Administrador.EmailConfirmed)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Administrador.PasswordHash" class="control-label"></label>
+                <input asp-for="Administrador.PasswordHash" class="form-control" />
+                <span asp-validation-for="Administrador.PasswordHash" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Administrador.SecurityStamp" class="control-label"></label>
+                <input asp-for="Administrador.SecurityStamp" class="form-control" />
+                <span asp-validation-for="Administrador.SecurityStamp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Administrador.ConcurrencyStamp" class="control-label"></label>
+                <input asp-for="Administrador.ConcurrencyStamp" class="form-control" />
+                <span asp-validation-for="Administrador.ConcurrencyStamp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Administrador.PhoneNumber" class="control-label"></label>
+                <input asp-for="Administrador.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Administrador.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Administrador.PhoneNumberConfirmed" /> @Html.DisplayNameFor(model => model.Administrador.PhoneNumberConfirmed)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Administrador.TwoFactorEnabled" /> @Html.DisplayNameFor(model => model.Administrador.TwoFactorEnabled)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Administrador.LockoutEnd" class="control-label"></label>
+                <input asp-for="Administrador.LockoutEnd" class="form-control" />
+                <span asp-validation-for="Administrador.LockoutEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Administrador.LockoutEnabled" /> @Html.DisplayNameFor(model => model.Administrador.LockoutEnabled)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Administrador.AccessFailedCount" class="control-label"></label>
+                <input asp-for="Administrador.AccessFailedCount" class="form-control" />
+                <span asp-validation-for="Administrador.AccessFailedCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
