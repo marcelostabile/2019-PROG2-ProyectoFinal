@@ -16,14 +16,6 @@ namespace IgnisMercado.Areas.Identity
                 services.AddDefaultIdentity<ApplicationUser>()
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationContext>();
-
-                // services.AddDbContext<IgnisIdentityContext>(options =>
-                //     options.UseSqlite(
-                //         context.Configuration.GetConnectionString("IgnisContext")));
-
-                // services.AddDefaultIdentity<ApplicationUser>()
-                //     .AddEntityFrameworkStores<IgnisIdentityContext>();
-
             });
         }
     }

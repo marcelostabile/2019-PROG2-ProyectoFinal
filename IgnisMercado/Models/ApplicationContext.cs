@@ -17,10 +17,19 @@ namespace IgnisMercado.Models
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
+            // Add your customizations after calling base.OnModelCreating(builder);        
 
-            // builder.Entity<Rol>().ToTable("Rol")
-            //      .HasKey(a => new { a.Id1, a.Id2 });
+            builder.Entity<Proyecto>()
+                .HasOne(p => p.Cliente)
+                .WithMany(c => c.ListaProyectos);
+
+            builder.Entity<Solicitud>()
+                .HasOne(s => s.Proyecto)
+                .WithMany(p => p.ListaSolicitudes);
+
+            builder.Entity<Solicitud>()
+                .HasOne(s => s.Tecnico)
+                .WithMany(t => t.ListaSolicitudes);
 
         }
 

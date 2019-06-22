@@ -1,10 +1,10 @@
-namespace IgnisMercado.Models 
-{
-    /// <summary>
-    /// Implementada por la clase ValidarContrasena.
-    /// </summary>
-    public interface IValidarContrasena 
-    {
-        bool EsUnaContrasenaValida(string valor);
-    }
-}
+// namespace IgnisMercado.Models 
+// {
+//     /// <summary>
+//     /// Implementada por la clase ValidarContrasena.
+//     /// </summary>
+//     public interface IValidarContrasena 
+//     {
+//         bool EsUnaContrasenaValida(string valor);
+//     }
+// }

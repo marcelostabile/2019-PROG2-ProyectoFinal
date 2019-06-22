@@ -1,0 +1,42 @@
+        // /// <summary>
+        // /// Nivel de Experiencia
+        // /// 
+        // /// Nivel que el técnico se adjudica de experiencia.
+        // /// </summary>
+        // /// <value>"Básico", "Avanzado"</value>
+        // private string NivelExperiencia;
+        // public string nivelExperiencia
+        // {
+        //     get { return this.NivelExperiencia; }
+        //     set { 
+        //         Check.Precondicion((value == "Básico" || value == "Avanzado"), "Nivel de experiencia no admitido.");
+
+        //         this.NivelExperiencia = value;
+
+        //         Check.Postcondicion((value == "Básico" || value == "Avanzado"), "Nivel de experiencia no fue actualizado.");
+        //         }
+        // }
+
+
+
+IdentityHostingStartup.cs
+
+                // services.AddDbContext<IgnisIdentityContext>(options =>
+                //     options.UseSqlite(
+                //         context.Configuration.GetConnectionString("IgnisContext")));
+
+                // services.AddDefaultIdentity<ApplicationUser>()
+                //     .AddEntityFrameworkStores<IgnisIdentityContext>();
+
+Solicitud.cs
+
+        // /// <summary>
+        // /// Método para asignar un técnico a esta solicitud.
+        // /// </summary>
+        // public void AsignarTecnico(Tecnico Tecnico) 
+        // {
+        //     Check.Precondicion(!string.IsNullOrEmpty(Tecnico.ToString()), "El técnico no puede ser null o vacío.");
+
+        //     this.TecnicoId = Tecnico;
+        // }
+

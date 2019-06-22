@@ -29,7 +29,7 @@ namespace IgnisMercado
 
                     // Seeding de datos.
                     SeedIdentityData.Initialize(services);
-                    SeedData.Initialize(services);
+                    //SeedData.Initialize(services);
                 }
                 catch (Exception ex)
                 {

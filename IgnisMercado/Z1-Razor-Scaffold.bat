@@ -1,3 +1,4 @@
+
 dotnet aspnet-codegenerator razorpage -m Administrador -dc ApplicationContext -udl -outDir Pages\Administradores --referenceScriptLibraries
 
 dotnet aspnet-codegenerator razorpage -m Cliente -dc ApplicationContext -udl -outDir Pages\Clientes --referenceScriptLibraries
