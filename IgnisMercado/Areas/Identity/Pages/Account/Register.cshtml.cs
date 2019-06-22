@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -11,8 +10,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
 using IgnisMercado.Areas.Identity.Data;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Linq;
 
 namespace IgnisMercado.Areas.Identity.Pages.Account
 {
@@ -85,6 +82,7 @@ namespace IgnisMercado.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
+                // Asigno los valores ingresados en el formulario a las variables.
                 var user = new IgnisMercado.Areas.Identity.Data.ApplicationUser
                 {
                     Name = Input.Name,
@@ -93,7 +91,10 @@ namespace IgnisMercado.Areas.Identity.Pages.Account
                     Email = Input.Email
                 };
 
+                // Asigno role al usuario.
                 user.AssignRole(this._userManager, Input.Role);
+
+                // Asigno al usuario el status activo.
                 user.StatusHabilitar();
                 
                 var result = await _userManager.CreateAsync(user, Input.Password);
