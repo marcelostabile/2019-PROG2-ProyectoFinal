@@ -1,13 +1,13 @@
-namespace IgnisMercado.Models 
-{
-    /// <summary>
-    /// Implementada por la clase ListaRol.
-    /// </summary>
-    public interface IListaRol 
-    { 
-        void AgregarRol(Rol nuevoRol);
+// namespace IgnisMercado.Models 
+// {
+//     /// <summary>
+//     /// Implementada por la clase ListaRol.
+//     /// </summary>
+//     public interface IListaRol 
+//     { 
+//         void AgregarRol(Rol nuevoRol);
 
-        void EliminarRol(Rol eliminarRol);
-    }
+//         void EliminarRol(Rol eliminarRol);
+//     }
 
-}
+// }

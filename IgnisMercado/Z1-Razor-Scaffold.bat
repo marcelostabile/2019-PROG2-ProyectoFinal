@@ -1,4 +1,3 @@
-pause
 
 dotnet aspnet-codegenerator razorpage -m Administrador -dc ApplicationContext -udl -outDir Pages\Administradores --referenceScriptLibraries
 

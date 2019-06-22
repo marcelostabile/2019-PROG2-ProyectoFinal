@@ -34,7 +34,7 @@ namespace IgnisMercado.Areas.Identity.Data
                 user.UserName = IdentityData.AdminUserName;
                 user.Email = IdentityData.AdminMail;
                 user.DOB = IdentityData.AdminDOB;
-                user.Activar();
+                user.StatusHabilitar();
 
                 user.AssignRole(userManager, IdentityData.AdminRoleName);
 
@@ -52,7 +52,7 @@ namespace IgnisMercado.Areas.Identity.Data
                 userClient.UserName = IdentityData.ClientUserName;
                 userClient.Email = IdentityData.ClientMail;
                 userClient.DOB = IdentityData.ClientDOB;
-                userClient.Activar();
+                userClient.StatusHabilitar();
 
                 userClient.AssignRole(userManager, IdentityData.NonAdminRoleNames[0]);
 
@@ -70,7 +70,7 @@ namespace IgnisMercado.Areas.Identity.Data
                 userTechnician.UserName = IdentityData.TechUserName;
                 userTechnician.Email = IdentityData.TechMail;
                 userTechnician.DOB = IdentityData.TechDOB;
-                userTechnician.Activar();
+                userTechnician.StatusHabilitar();
 
                 userTechnician.AssignRole(userManager, IdentityData.NonAdminRoleNames[1]);
 

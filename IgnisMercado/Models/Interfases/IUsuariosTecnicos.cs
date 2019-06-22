@@ -1,12 +1,12 @@
-namespace IgnisMercado.Models 
-{
-    /// <summary>
-    /// Implementada por la clase Usuarios.
-    /// </summary>
-    public interface IUsuariosTecnicos
-    {
-        void AgregarTecnico(Tecnico TecnicoNuevo);
+// namespace IgnisMercado.Models 
+// {
+//     /// <summary>
+//     /// Implementada por la clase Usuarios.
+//     /// </summary>
+//     public interface IUsuariosTecnicos
+//     {
+//         void AgregarTecnico(Tecnico TecnicoNuevo);
 
-        void EliminarTecnico(Tecnico TecnicoEliminado);
-    }
-}
+//         void EliminarTecnico(Tecnico TecnicoEliminado);
+//     }
+// }

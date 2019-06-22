@@ -16,7 +16,6 @@ namespace IgnisMercado.Areas.Identity
                 services.AddDefaultIdentity<ApplicationUser>()
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationContext>();
-
             });
         }
     }

@@ -45,32 +45,32 @@ namespace IgnisMercado.Areas.Identity.Pages.Account
         {
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Full name")]
+            [Display(Name = "Nombre Completo")]
             public string Name { get; set; }
 
             [Required]
-            [Display(Name = "Birth Date")]
+            [Display(Name = "Fecha de Nacimiento")]
             [DataType(DataType.Date)]
             public DateTime DOB { get; set; }
 
             [Required]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = "Correo Electrónico")]
             public string Email { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "La {0} debe tener un mínimo de {2} y un máximo de {1} carácteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Contraseña")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "La contraseña y su confirmación no coinciden.")]
+            [Display(Name = "Confirmar contraseña")]
+            [Compare("Contraseña", ErrorMessage = "La contraseña y su confirmación no coinciden.")]
             public string ConfirmPassword { get; set; }
             
             [Required]
-            [Display(Name = "Role")]
+            [Display(Name = "Perfil")]
             public string Role { get; set; }
             
         }
@@ -94,8 +94,8 @@ namespace IgnisMercado.Areas.Identity.Pages.Account
                 };
 
                 user.AssignRole(this._userManager, Input.Role);
-                user.Activar();
-            
+                user.StatusHabilitar();
+                
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

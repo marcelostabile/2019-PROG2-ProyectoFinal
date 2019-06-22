@@ -1,7 +1,8 @@
+using IgnisMercado.Areas.Identity.Data;
 
 namespace IgnisMercado.Models 
 { 
-    public class Administrador : Persona 
+    public class Administrador : ApplicationUser
     { 
         /// <summary>
         /// Para RazorPages: constructor sin argumentos.
@@ -10,25 +11,10 @@ namespace IgnisMercado.Models
         {
         }
 
-        /// <summary>
-        /// Para RazorPages: atributo PrimaryKey de la tabla.
-        /// Se agrega el parámetro 'new' debido a recomendación del compilador.
-        /// </summary>
-        public new int Id { get; set; } 
-
-        /// <summary>
-        /// El Administrador trabaja en el Centro Ignis.
-        /// 
-        /// Esta es subclase de la clase Persona: hereda sus atributos y métodos.
-        /// La clase Persona realiza una validación de Nombre, Correo y Contraseña.
-        /// </summary>
-        /// <param name="nombre">Nombre del administrador</param>
-        /// <param name="correo">Correo electrónico</param>
-        /// <param name="contrasena">Contraseña</param>      
-        public Administrador(string Nombre, string Correo, string Contrasena) 
-                    : base(Nombre, Correo, Contrasena) 
-        { 
-        }
+        // /// <summary>
+        // /// Para RazorPages: atributo PrimaryKey de la tabla.
+        // /// </summary>
+        // public new int Id { get; set; } 
 
     }
 }

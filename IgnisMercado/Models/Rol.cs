@@ -14,31 +14,12 @@ namespace IgnisMercado.Models
         /// </summary>
         public int Id { get; set; } 
 
-        /// <summary>
-        /// Rol del técnica.
-        /// </summary>
-        public Rol(string nombre, string descripcion) 
-        {
-            this.Nombre = nombre;
-            this.Descripcion = descripcion;
-        }
-
         /// Nombre del rol.
-        private string Nombre;
-        public string nombre  
-        { 
-            get => this.Nombre; 
-            set => this.Nombre = value;
-        }
+        public string Nombre { get; protected set; }
 
-        /// Descripción del rol (opcional).
-        private string Descripcion;
-        public string descripcion  
-        { 
-            get => this.Descripcion; 
-            set => this.Descripcion = value;
-        }
-        
+        /// Descripción del rol.
+        public string Descripcion { get; protected set; }
+
         /// Modificar nombre del rol.
         public void ModificarNombre(string nombre) 
         {
