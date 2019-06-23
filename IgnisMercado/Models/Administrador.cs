@@ -11,10 +11,5 @@ namespace IgnisMercado.Models
         {
         }
 
-        // /// <summary>
-        // /// Para RazorPages: atributo PrimaryKey de la tabla.
-        // /// </summary>
-        // public new int Id { get; set; } 
-
     }
 }
