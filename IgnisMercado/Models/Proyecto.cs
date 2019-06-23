@@ -22,11 +22,11 @@ namespace IgnisMercado.Models
         /// Un proyecto puede tener 'ene' solicitudes.
         /// Cada solicitud corresponde a un rol técnico requerido por el cliente.
         /// </summary>
-        public Proyecto(string nombre, string descripcion) 
+        public Proyecto(string nombre, string descripcion, bool status) 
         {
             this.Nombre = nombre;
             this.Descripcion = descripcion;
-            this.Status = true;
+            this.Status = status;
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace IgnisMercado.Models
         /// Estado del proyecto.
         /// </summary>
         [Display(Name = "Status")]
-        public bool Status { get; protected set; }
+        public bool Status { get; set; }
 
         /// <summary>
         /// Métodos para cambiar el status.
@@ -103,7 +103,7 @@ namespace IgnisMercado.Models
             
             foreach (Solicitud solicitud in this.ListaSolicitudes) 
             {
-                CostoTotalProyecto += solicitud.CostoSolicitud;
+                CostoTotalProyecto += solicitud.costoSolicitud;
             }
             
             return CostoTotalProyecto;

@@ -109,7 +109,7 @@ namespace IgnisMercado.Migrations
 
                     b.Property<string>("Descripcion");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nivel");
 
                     b.HasKey("Id");
 
@@ -120,8 +120,6 @@ namespace IgnisMercado.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CostoSolicitud");
 
                     b.Property<int>("HorasContratadas");
 
@@ -138,6 +136,8 @@ namespace IgnisMercado.Migrations
                     b.Property<bool>("Status");
 
                     b.Property<string>("TecnicoId");
+
+                    b.Property<int>("costoSolicitud");
 
                     b.HasKey("Id");
 

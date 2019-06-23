@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IgnisMercado.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190622040052_Proyecto")]
-    partial class Proyecto
+    [Migration("20190623015240_Administrador")]
+    partial class Administrador
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -111,7 +111,7 @@ namespace IgnisMercado.Migrations
 
                     b.Property<string>("Descripcion");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nivel");
 
                     b.HasKey("Id");
 
@@ -122,8 +122,6 @@ namespace IgnisMercado.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CostoSolicitud");
 
                     b.Property<int>("HorasContratadas");
 
@@ -140,6 +138,8 @@ namespace IgnisMercado.Migrations
                     b.Property<bool>("Status");
 
                     b.Property<string>("TecnicoId");
+
+                    b.Property<int>("costoSolicitud");
 
                     b.HasKey("Id");
 

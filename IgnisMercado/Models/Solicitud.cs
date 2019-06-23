@@ -65,7 +65,12 @@ namespace IgnisMercado.Models
 
         /// Costo de la solicitud.
         [Display(Name = "Costo Solicitud")]
-        public int CostoSolicitud { get; private set; }
+        private int CostoSolicitud { get; set; }
+        public int costoSolicitud 
+        {
+            get => this.CostoSolicitud;
+            set => this.CostoSolicitud = value;
+        }
 
         /// <summary>
         /// Estado de la solicitud.

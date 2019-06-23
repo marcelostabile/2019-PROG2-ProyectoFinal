@@ -148,7 +148,7 @@ namespace IgnisMercado.Models
             }
             else// si modocontrato es 2 es por jornada
             {
-                if (NivelExperiencia == "Basico" )
+                if (NivelExperiencia == "Básico" )
                 {
                     modulo= HorasContratadas / this.horaJornada;
                     int resta = HorasContratadas - (modulo * this.horaJornada);

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 using IgnisMercado.Areas.Identity.Data;
 using IgnisMercado.Models;
+using IgnisMercado.Models.Seeding;
 
 namespace IgnisMercado
 {
@@ -25,11 +26,11 @@ namespace IgnisMercado
                     var context=services.
                         GetRequiredService<ApplicationContext>();
 
-                    //context.Database.Migrate();
+                    context.Database.Migrate();
 
                     // Seeding de datos.
-                    SeedIdentityData.Initialize(services);
-                    //SeedData.Initialize(services);
+                    Seeding.Initialize(services);
+
                 }
                 catch (Exception ex)
                 {
