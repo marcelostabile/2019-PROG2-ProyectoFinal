@@ -11,4 +11,6 @@ dotnet aspnet-codegenerator razorpage -m Proyecto -dc ApplicationContext -udl -o
 
 dotnet aspnet-codegenerator razorpage -m Rol -dc ApplicationContext -udl -outDir Pages\Roles --referenceScriptLibraries
 
+dotnet aspnet-codegenerator razorpage -m ApplicationUser -dc ApplicationContext -udl -outDir Pages\Usuarios --referenceScriptLibraries
+
 pause
