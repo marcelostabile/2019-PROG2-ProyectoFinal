@@ -166,19 +166,39 @@ namespace IgnisMercado.Models.Seeding
 
             // guarda los cambios.
             context.SaveChanges();
-            
+
             // Cuando se crea el proyecto, queda status inactivo por estar protegido.
+            // Se agrega relación cliente - proyecto.
+
+            var clientes = context.Clientes;
+
             var proyectos = context.Proyectos;
 
             foreach(var proy in proyectos)
             {
+                // Status de los proyectos activado.
                 proy.StatusActivo();
+
+                // if (proy.Nombre == "Proyecto 1" || proy.Nombre == "Proyecto 2") 
+                // {
+                //     proy.Cliente = clientes.Single(c => c.Name == "Cliente");
+                // }
+
+                // if (proy.Nombre == "Corto - Hulk Aplasta!!!" || proy.Nombre == "Docu-mental") 
+                // {
+                //     proy.Cliente = clientes.Single(c => c.Name == "Marcelo");
+                // }
+
+                // if (proy.Nombre == "Video Musical" || proy.Nombre == "Documental Parque de Juegos") 
+                // {
+                //     proy.Cliente = clientes.Single(c => c.Name == "Lucas");
+                // }
             }
 
             // guarda los cambios.
             context.SaveChanges();
         }
-
+    
         /// <summary>
         /// Seeding Solicitud.
         /// </summary>
@@ -320,6 +340,5 @@ namespace IgnisMercado.Models.Seeding
             // guarda los cambios.
             context.SaveChanges();
         }
-
-    } 
+    }
 }

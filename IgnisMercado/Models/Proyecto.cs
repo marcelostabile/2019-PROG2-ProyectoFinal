@@ -39,7 +39,7 @@ namespace IgnisMercado.Models
         /// 
         /// Relación Proyecto:Solicitudes (uno-a-muchos)
         /// </summary>
-        public IList<Solicitud> ListaSolicitudes { get; private set; }
+        public IList<Solicitud> ListaSolicitudes { get; set; }
 
         /// <summary>
         /// Nombre del proyecto.
