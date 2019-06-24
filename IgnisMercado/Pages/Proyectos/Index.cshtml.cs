@@ -20,9 +20,15 @@ namespace IgnisMercado.Pages.Proyectos
 
         public IList<Proyecto> Proyecto { get;set; }
 
+        public IList<Cliente> Cliente { get;set; }
+
         public async Task OnGetAsync()
         {
             Proyecto = await _context.Proyectos.ToListAsync();
+
+            Cliente = await _context.Clientes.ToListAsync();
+
+            var Cli = from c in Cliente select c; 
         }
     }
 }
