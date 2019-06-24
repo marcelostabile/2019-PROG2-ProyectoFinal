@@ -1,0 +1,13 @@
+
+ENTREGA FINAL
+
+La última entrega consiste en publicar en el repo de GitHub del equipo el programa terminado y sus casos de prueba unitarias, según la rúbrica oportunamente publicada y que ya revisamos en clase. Vamos a revisar en los commits de GitHub la participación del equipo en la construcción y revisión del código. 
+
+Incluir en la entrega en webasignatura un video de demo de dos minutos máximo (para ver cómo funciona la aplicación, no muestren código).
+
+La entrega es el jueves 4/7.
+
+El viernes 5/7 es la presentación a audiencia pública, las defensas y la evaluación final del proyecto, incluyendo la evaluación entre pares.
+
+
+

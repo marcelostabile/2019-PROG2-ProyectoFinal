@@ -1,0 +1,392 @@
+[
+  {
+    "name": "Persona",
+    "superclasses": "",
+    "subclasses": "Subclase: Cliente, Tecnico, Administrador",
+    "type": 1,
+    "responsibilities": [
+      "Nombre",
+      "Correo",
+      "Contraseña",
+      "Status (activo o inactivo)",
+      "",
+      "[ Comportamientos ] - - - - -",
+      "Activar el usuario / proyecto (true).",
+      "Inactivar el usuario / proyecto (false).",
+      "Cambiar contraseña."
+    ],
+    "collaborators": [
+      "Cliente",
+      "Tecnico",
+      "Administrador",
+      "Status",
+      "ValidarEmail",
+      "ValidarContraseña"
+    ]
+  },
+  {
+    "name": "Cliente",
+    "superclasses": "Superclase: Persona",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "[ Comportamientos ] - - - - -"
+    ],
+    "collaborators": [
+      "Persona",
+      "Proyecto",
+      "Usuarios"
+    ]
+  },
+  {
+    "name": "Tecnico",
+    "superclasses": "Superclase: Persona",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Presentación personal (texto)",
+      "Nivel de experiencia / dificultad (básico, avanzado)",
+      "Calificación Ignis (asignada por el administrador del Centro Ignis)",
+      "Calificación Clientes (promedio de todos los clientes)",
+      "[ Comportamientos ] - - - - -",
+      "Modificar Calificación Ignis",
+      "Modificar Calificación Clientes",
+      "Asignar tecnico a uno o mas proyectos (OJO-VER ESTO)."
+    ],
+    "collaborators": [
+      "Persona",
+      "Proyecto",
+      "Usuarios"
+    ]
+  },
+  {
+    "name": "Administrador",
+    "superclasses": "Superclase: Persona",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "[ Comportamientos ] - - - - -",
+      "Modificar el precio por hora de los proyectos (OJO-VER ESTO)",
+      "Modificar limites de roles o proyectos (OJO-VER ESTO)"
+    ],
+    "collaborators": [
+      "Persona",
+      "Usuarios"
+    ]
+  },
+  {
+    "name": "Usuarios",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Lista De Clientes",
+      "Lista De Técnicos",
+      "Lista De Administradores",
+      "[ Comportamientos ] - - - - -",
+      "Agregar un Cliente.",
+      "Eliminar un Cliente.",
+      "Agregar un Técnico.",
+      "Eliminar un Técnico.",
+      "Agregar un Administrador.",
+      "Eliminar un Administrador.",
+      ""
+    ],
+    "collaborators": [
+      "Administrador",
+      "Cliente",
+      "Técnico"
+    ]
+  },
+  {
+    "name": "Proyecto",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Nombre",
+      "Presentación (texto)",
+      "Status (activo, inactivo)",
+      "[ Comportamientos ] - - - - -",
+      "Agregar una Solicitud.",
+      "Reactivar un Proyecto.",
+      "Concluir un Proyecto.",
+      ""
+    ],
+    "collaborators": [
+      "Solicitud",
+      "ListaProyectos"
+    ]
+  },
+  {
+    "name": "ListaProyectos",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "ListaProyectos",
+      "[ Comportamientos ] - - - - -",
+      "Agregar un proyecto."
+    ],
+    "collaborators": [
+      "Proyecto"
+    ]
+  },
+  {
+    "name": "Solicitud",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Rol del técnico que se necesita.",
+      "Nivel de experiencia.",
+      "Observaciones.",
+      "",
+      "",
+      ""
+    ],
+    "collaborators": [
+      "Proyecto"
+    ]
+  },
+  {
+    "name": "Rol",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Rol del técnico (nombre).",
+      "Descripción (texto breve, actividad que desarrolla)."
+    ],
+    "collaborators": [
+      "Tecnico",
+      "Solicitud",
+      "ListaRoles"
+    ]
+  },
+  {
+    "name": "ListaRoles",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Lista de Roles.",
+      "[ Comportamientos ] - - - - -",
+      "Agregar un rol.",
+      "Eliminar un rol."
+    ],
+    "collaborators": [
+      "Rol"
+    ]
+  },
+  {
+    "name": "Costo",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Nombre de la Categoría.",
+      "Costo Por Hora.",
+      "[ Comportamientos ] - - - - -",
+      "Modificar el costo por hora.",
+      ""
+    ],
+    "collaborators": [
+      "ListaCostos"
+    ]
+  },
+  {
+    "name": "ListaCostos",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "ListaDeCostos.",
+      "[ Comportamientos ] - - - - -",
+      "Agregar un costo.",
+      "Eliminar un costo."
+    ],
+    "collaborators": [
+      "Costo"
+    ]
+  },
+  {
+    "name": "Login",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "[ Comportamientos ] - - - - -",
+      "Ingresar al sistema.",
+      "Salir del sistema.",
+      "Mensaje de error.",
+      "Chequear el formulario."
+    ],
+    "collaborators": [
+      "Cliente",
+      "Tecnico",
+      "Administrador"
+    ]
+  },
+  {
+    "name": "Config",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "limiteRolesPorTecnico",
+      "limiteProyectosPorTecnico",
+      "[ Comportamientos ] - - - - -",
+      "modificarRolesPorTecnico()",
+      "modificarProyectosPorTecnico()",
+      ""
+    ],
+    "collaborators": [
+      "Proyecto"
+    ]
+  },
+  {
+    "name": "dbFormato",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "CodificarLineaTxt()",
+      "DecodificarLineaTxt()"
+    ],
+    "collaborators": [
+      "dbArchivo"
+    ]
+  },
+  {
+    "name": "dbArchivo",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "GuardarLinea()",
+      "EliminarLinea()",
+      "LeerArchivo()",
+      ""
+    ],
+    "collaborators": [
+      "dbFormato"
+    ]
+  },
+  {
+    "name": "Mail",
+    "superclasses": "",
+    "subclasses": "Subclases: MailCliente, MailTecnico",
+    "type": 1,
+    "responsibilities": [
+      "Asunto",
+      "Remitente",
+      "Destinatario",
+      "Contenido",
+      "[ Comportamientos ] - - - - -",
+      "Enviar un mensaje de correo."
+    ],
+    "collaborators": [
+      "MailSenderAPI",
+      "MailCliente",
+      "MailTecnico"
+    ]
+  },
+  {
+    "name": "MailCliente",
+    "superclasses": "Superclase: Mail",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Cliente",
+      "[ Hereda de la clase Mail ] - - - - -",
+      "Asunto",
+      "Contenido",
+      "Cuerpo",
+      ""
+    ],
+    "collaborators": [
+      "Mail"
+    ]
+  },
+  {
+    "name": "MailTecnico",
+    "superclasses": "Superclase: Mail",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Cliente",
+      "[ Hereda de la clase Mail ] - - - - -",
+      "Asunto",
+      "Contenido",
+      "Cuerpo"
+    ],
+    "collaborators": [
+      "Mail"
+    ]
+  },
+  {
+    "name": "MailSenderAPI",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "adressFrom",
+      "nameForm",
+      "passwordForm",
+      "[ Comportamientos ] - - - - -",
+      "MailSender()",
+      "GetPassword()",
+      "SendMail()",
+      ""
+    ],
+    "collaborators": [
+      "Mail"
+    ]
+  },
+  {
+    "name": "Check",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Clase PrecondicionExcepcion : Exception",
+      "Precondicion(bool condicion, string mensaje)",
+      "",
+      "Clase PostcondicionExcepcion : Exception",
+      "Postcondicion(bool condicion, string mensaje)",
+      "",
+      "Clase InvarianteExcepcion : Exception",
+      "Invariante(bool condicion, string mensaje)"
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "ValidarEmail",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "[ Comportamiento ] - - - - - ",
+      "Validar dirección de email ingresado."
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "ValidarContrasena",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "[ Comportamientos ] - - - - -",
+      "Validar contraseña ingresada."
+    ],
+    "collaborators": [
+      ""
+    ]
+  }
+]

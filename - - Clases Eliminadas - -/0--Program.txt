@@ -1,0 +1,77 @@
+﻿using System;
+
+namespace RazorPagesIgnis
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Crear los usuarios.
+            Administrador eladmin = new Administrador("Marce", "marce@correo.com", "Abcd.123");
+
+            Cliente elcliente1 = new Cliente("Marco", "marco@correo.com", "Abcd.123");
+            Cliente elcliente2 = new Cliente("Natalia", "natalia@correo.com", "Abcd.123");
+
+            Tecnico eltecnico1 = new Tecnico("Juan", "juan@correo.com", "Abcd.123", 40, "", "Básico");
+            Tecnico eltecnico2 = new Tecnico("Pedro", "pedro@correo.com", "Abcd.123", 25, "", "Avanzado");
+
+            // Crear proyecto.
+            Proyecto proyecto1 = new Proyecto("Hulk Aplasta!", "Enojado y más furioso que nunca!!!");
+            Proyecto proyecto2 = new Proyecto("Spiderman 5", "Luchando contra octopus.");
+
+            // Crear roles.
+            Rol rolDirector = new Rol("Director", "no");
+            Rol rolLuces = new Rol("Luces", "no");
+            Rol rolSonido = new Rol("Sonido", "no");
+
+            // Agregar rol a la lista de roles.
+            ListaRol LRol = new ListaRol();
+            LRol.AgregarRol(rolDirector);
+            LRol.AgregarRol(rolLuces);
+            LRol.AgregarRol(rolSonido);
+
+            // Agregar relación para técnicos y roles.
+            RTecnicosRoles RelacionTecnicosRoles = new RTecnicosRoles();
+            // #1
+            RelacionTecnicosRoles.AgregarRTecnicoRol(eltecnico1, rolDirector);
+            RelacionTecnicosRoles.AgregarRTecnicoRol(eltecnico1, rolDirector);
+            RelacionTecnicosRoles.AgregarRTecnicoRol(eltecnico1, rolDirector);
+            // #2
+            RelacionTecnicosRoles.AgregarRTecnicoRol(eltecnico2, rolDirector);
+            RelacionTecnicosRoles.AgregarRTecnicoRol(eltecnico2, rolDirector);
+            RelacionTecnicosRoles.AgregarRTecnicoRol(eltecnico2, rolDirector);
+
+            // Agrego proyecto a las lista de los clientes.
+            elcliente1.AgregarProyecto(proyecto1);
+            elcliente2.AgregarProyecto(proyecto2);
+
+            // Crear solicitudes.
+            Solicitud solicita1 = new Solicitud(1, "Director", 30, "Básico", "no");
+            Solicitud solicita2 = new Solicitud(2, "Luces", 10, "Básico", "no");
+            Solicitud solicita3 = new Solicitud(1, "Sonido", 20, "Básico", "no");
+            Solicitud solicita4 = new Solicitud(1, "Director", 32, "Avanzado", "no");
+            Solicitud solicita5 = new Solicitud(2, "Luces", 26, "Avanzado", "no");
+            Solicitud solicita6 = new Solicitud(1, "Sonido", 20, "Avanzado", "no");
+
+            // Agrego solicitudes a los proyectos.
+            // #1
+            proyecto1.AgregarSolicitud(solicita1);
+            proyecto1.AgregarSolicitud(solicita2);
+            proyecto1.AgregarSolicitud(solicita3);
+            // #2
+            proyecto2.AgregarSolicitud(solicita4);
+            proyecto2.AgregarSolicitud(solicita5);
+            proyecto2.AgregarSolicitud(solicita6);
+
+            // Inprimir costo del proyecto.
+            IInforme Informar = new Informe();
+
+            Informar.InformeProyectoCostoTotalResumen(proyecto1);
+            Informar.InformeProyectoCostoTotalResumen(proyecto2);
+
+            Informar.InformeProyectoCostoTotalDetallado(proyecto1);
+            Informar.InformeProyectoCostoTotalDetallado(proyecto2);
+
+        }
+    }
+}
