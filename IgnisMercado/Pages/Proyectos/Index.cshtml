@@ -1,33 +1,65 @@
 @page
 @model IgnisMercado.Pages.Proyectos.IndexModel
 
-@{
-    ViewData["Title"] = "Index";
+@using Microsoft.AspNetCore.Identity
+@using IgnisMercado.Areas.Identity.Data
+@using IgnisMercado.Models
+@inject UserManager<ApplicationUser> UserManager
+
+@if (User.IsInRole("Administrador"))
+{
+    ViewData["Title"] = "Proyectos";
+
+<h1>Proyectos</h1>
 }
 
-<h1>Index</h1>
+@if (User.IsInRole("Cliente") || User.IsInRole("Técnico")) 
+{
+    ViewData["Title"] = "Mis Proyectos";
 
+<h1>Mis Proyectos</h1>
+}
+
+@if (User.IsInRole("Administrador") || User.IsInRole("Cliente")) 
+{
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Crear nuevo</a>
 </p>
+}
+
 <table class="table">
     <thead>
         <tr>
+
+        @if (User.IsInRole("Administrador")) 
+        {
             <th>
                 @Html.DisplayNameFor(model => model.Proyecto[0].Nombre)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Proyecto[0].Descripcion)
             </th>
+        }
+
+        @if (User.IsInRole("Cliente") || User.IsInRole("Técnico")) 
+        {
             <th>
-                @Html.DisplayNameFor(model => model.Proyecto[0].Status)
+                @Html.DisplayNameFor(model => model.Proyecto[0].Nombre)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proyecto[0].Descripcion)
+            </th>
+        }
             <th></th>
         </tr>
     </thead>
+    
     <tbody>
 @foreach (var item in Model.Proyecto) {
         <tr>
+
+        @if (User.IsInRole("Administrador")) 
+        {
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
@@ -35,13 +67,25 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
+                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a>
+            </td>
+        }
+
+        @if (User.IsInRole("Cliente") || User.IsInRole("Técnico")) 
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+            </td>
+        }
         </tr>
 }
     </tbody>

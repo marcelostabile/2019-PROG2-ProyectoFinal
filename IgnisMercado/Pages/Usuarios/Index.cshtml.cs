@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using IgnisMercado.Areas.Identity.Data;
 using IgnisMercado.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace IgnisMercado.Pages.Usuarios
 {
@@ -25,5 +26,6 @@ namespace IgnisMercado.Pages.Usuarios
         {
             ApplicationUser = await _context.Users.ToListAsync();
         }
+
     }
 }

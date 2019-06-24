@@ -2,14 +2,18 @@
 @model IgnisMercado.Pages.Roles.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Roles";
 }
 
-<h1>Index</h1>
+<h1>Roles</h1>
 
+@if (User.IsInRole("Administrador")) 
+{
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Crear nuevo</a>
 </p>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -31,11 +35,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
+
+        @if (User.IsInRole("Administrador")) 
+        {
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a>
             </td>
+        }
+
         </tr>
 }
     </tbody>

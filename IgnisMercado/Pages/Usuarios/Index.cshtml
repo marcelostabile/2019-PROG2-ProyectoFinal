@@ -1,137 +1,121 @@
 @page
 @model IgnisMercado.Pages.Usuarios.IndexModel
+@using Microsoft.AspNetCore.Identity
+@using IgnisMercado.Areas.Identity.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
-@{
-    ViewData["Title"] = "Index";
+@if (User.IsInRole("Administrador")) 
+{
+    ViewData["Title"] = "Usuarios";
+
+    <h1>Usuarios</h1>
+
+    <p>
+        <a asp-page="Create">Crear nuevo</a>
+    </p>
 }
 
-<h1>Index</h1>
+@if (User.IsInRole("Cliente") || User.IsInRole("Técnico")) 
+{
+    ViewData["Title"] = "Mis Datos";
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+    <h1>Mis Datos</h1>
+}
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].DOB)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].Role)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].NormalizedUserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].NormalizedEmail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].EmailConfirmed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].PasswordHash)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].SecurityStamp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].ConcurrencyStamp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].PhoneNumberConfirmed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].TwoFactorEnabled)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].LockoutEnd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].LockoutEnabled)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser[0].AccessFailedCount)
-            </th>
+
+            @if (User.IsInRole("Administrador")) 
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.ApplicationUser[0].Name)
+                </th>
+                <th>
+                    Nombre de Usuario
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApplicationUser[0].Role)
+                </th>
+                <th>
+                    Télefono
+                </th>
+            }
+
+            @if (User.IsInRole("Cliente") || User.IsInRole("Técnico")) 
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.ApplicationUser[0].Name)
+                </th>
+                <th>
+                    Nombre de Usuario
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApplicationUser[0].Role)
+                </th>
+                <th>
+                    Télefono
+                </th>
+            }
+
             <th></th>
         </tr>
     </thead>
+
     <tbody>
-@foreach (var item in Model.ApplicationUser) {
+@foreach (var item in Model.ApplicationUser) 
+{
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DOB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NormalizedUserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NormalizedEmail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmailConfirmed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PasswordHash)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SecurityStamp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ConcurrencyStamp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LockoutEnd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LockoutEnabled)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AccessFailedCount)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+
+            @if (User.IsInRole("Administrador")) 
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a>
+                </td>
+            }
+
+            @if (User.IsInRole("Cliente") || User.IsInRole("Técnico"))
+            {
+                // Determinar el usuario logueado, saber su Id.
+                var um = UserManager.GetUserId(User);
+
+                // Filtro los datos del usuario, solo ve sus datos, filtro por Id.
+                @if (um == item.Id)
+                {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+                </td>
+                }
+            }
+
         </tr>
 }
     </tbody>
