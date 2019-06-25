@@ -71,13 +71,13 @@
             @if (User.IsInRole("Administrador")) 
             {
                 <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Role)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PhoneNumber)
@@ -98,13 +98,13 @@
                 @if (um == item.Id)
                 {
                 <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Role)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PhoneNumber)
