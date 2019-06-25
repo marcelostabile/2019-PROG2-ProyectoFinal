@@ -16,6 +16,7 @@ namespace IgnisMercado.Models
         /// <summary>
         /// Para RazorPages: atributo PrimaryKey de la tabla.
         /// </summary>
+        [Key]
         public int Id { get; set; } 
 
         /// <summary>
@@ -45,12 +46,14 @@ namespace IgnisMercado.Models
         /// <summary>
         /// Nombre del proyecto.
         /// </summary>
+        [Required]
         [Display(Name = "Título")]
         public string Nombre { get; set; }
 
         /// <summary>
         /// Descripción del proyecto.
         /// </summary>
+        [Required]
         [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
 

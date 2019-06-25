@@ -15,6 +15,7 @@ namespace IgnisMercado.Models
         /// <summary>
         /// Para RazorPages: atributo PrimaryKey de la tabla.
         /// </summary>
+        [Key]
         public int Id { get; set; } 
 
         public Solicitud(int modoDeContrato, string rolRequerido, int horasContratadas, string nivelExperiencia, string observaciones) 

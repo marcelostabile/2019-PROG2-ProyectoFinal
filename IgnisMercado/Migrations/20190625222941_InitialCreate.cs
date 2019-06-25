@@ -198,8 +198,8 @@ namespace IgnisMercado.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ClienteId = table.Column<string>(nullable: true),
-                    Nombre = table.Column<string>(nullable: true),
-                    Descripcion = table.Column<string>(nullable: true),
+                    Nombre = table.Column<string>(nullable: false),
+                    Descripcion = table.Column<string>(nullable: false),
                     Status = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>

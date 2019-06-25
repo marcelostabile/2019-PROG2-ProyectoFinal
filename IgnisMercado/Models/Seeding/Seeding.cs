@@ -29,6 +29,9 @@ namespace IgnisMercado.Models.Seeding
                 serviceProvider.GetRequiredService<
                     DbContextOptions<ApplicationContext>>()))
             {
+                // Seeding costos.
+                SeedCostos(context);
+
                 // Seeding proyectos.
                 SeedProyectos(context);
 
@@ -37,10 +40,6 @@ namespace IgnisMercado.Models.Seeding
 
                 // Seeding roles.
                 SeedRol(context);
-
-                // Seeding costos.
-                SeedCostos(context);
-
             }
         }
 
@@ -187,6 +186,33 @@ namespace IgnisMercado.Models.Seeding
         }
     
         /// <summary>
+        /// Seeding Costos.
+        /// </summary>
+        private static void SeedCostos(ApplicationContext context)
+        {
+            if (context.Costos.Any()) 
+            {
+                return;
+            }
+
+            context.Costos.AddRange(
+                new Costo 
+                {
+                    CostoHoraBasico = 150,
+                    CostoHoraAvanzado = 280,
+                    PrimeraHoraBasico = 380,
+                    PrimeraHoraAvanzado = 520,
+                    JornadaAvanzado=2000,
+                    JornadaBasico=1200,
+                    HoraJornada=6
+                }
+            );
+
+            // guarda los cambios.
+            context.SaveChanges();
+        }
+
+        /// <summary>
         /// Seeding Solicitud.
         /// </summary>
         private static void SeedSolicitudes(ApplicationContext context)
@@ -204,7 +230,7 @@ namespace IgnisMercado.Models.Seeding
                     RolRequerido = "Operador de Cabina 03 y Estudio de Radio", 
                     HorasContratadas = 8, 
                     NivelExperiencia = "Básico", 
-                    Observaciones = "obs..."
+                    Observaciones = "s/obs."
                 },
                 new Solicitud 
                 {
@@ -213,7 +239,7 @@ namespace IgnisMercado.Models.Seeding
                     RolRequerido = "Sonidista", 
                     HorasContratadas = 10, 
                     NivelExperiencia = "Avanzado", 
-                    Observaciones = "no"
+                    Observaciones = "s/obs."
                 },
                 new Solicitud 
                 {
@@ -222,7 +248,7 @@ namespace IgnisMercado.Models.Seeding
                     RolRequerido = "Presentador / conductor", 
                     HorasContratadas = 15, 
                     NivelExperiencia = "Básico", 
-                    Observaciones = "no."
+                    Observaciones = "s/obs."
                 },
                 new Solicitud 
                 {
@@ -231,7 +257,7 @@ namespace IgnisMercado.Models.Seeding
                     RolRequerido = "Sonidista", 
                     HorasContratadas = 8, 
                     NivelExperiencia = "Básico", 
-                    Observaciones = "obs..."
+                    Observaciones = "s/obs."
                 },
                 new Solicitud 
                 {
@@ -240,7 +266,7 @@ namespace IgnisMercado.Models.Seeding
                     RolRequerido = "Redactor creativo", 
                     HorasContratadas = 10, 
                     NivelExperiencia = "Avanzado", 
-                    Observaciones = "no."
+                    Observaciones = "s/obs."
                 },
                 new Solicitud 
                 {
@@ -249,7 +275,7 @@ namespace IgnisMercado.Models.Seeding
                     RolRequerido = "Operador de Cabina 02", 
                     HorasContratadas = 15, 
                     NivelExperiencia = "Básico", 
-                    Observaciones = "no."
+                    Observaciones = "s/obs."
                 },
                 new Solicitud 
                 {
@@ -258,7 +284,7 @@ namespace IgnisMercado.Models.Seeding
                     RolRequerido = "Diseñador gráfico", 
                     HorasContratadas = 8, 
                     NivelExperiencia = "Básico", 
-                    Observaciones = "obs..."
+                    Observaciones = "s/obs."
                 },
                 new Solicitud 
                 {
@@ -267,7 +293,7 @@ namespace IgnisMercado.Models.Seeding
                     RolRequerido = "Cámara y asistente de cámara", 
                     HorasContratadas = 10, 
                     NivelExperiencia = "Avanzado", 
-                    Observaciones = "no."
+                    Observaciones = "s/obs."
                 }
             );
 
@@ -276,18 +302,18 @@ namespace IgnisMercado.Models.Seeding
             
             // Cuando se crea la solicitud en context, queda a costo cero y status inactivo.
             // Actualizo el status y el costo de cada solicitud de acuerdo al precio vigente.
-            var sols = context.Solicitudes;
+            var solicitudes = context.Solicitudes;
 
             ICosto Costo = new Costo();
 
-            foreach(var sol in sols)
+            foreach(var s in solicitudes)
             {
-                sol.costoSolicitud = Costo.CalcularCostoSolicitud(
-                                            sol.ModoDeContrato,
-                                            sol.HorasContratadas,
-                                            sol.NivelExperiencia);
+                s.costoSolicitud = Costo.CalcularCostoSolicitud(
+                                            s.ModoDeContrato,
+                                            s.HorasContratadas,
+                                            s.NivelExperiencia);
 
-                sol.StatusActivo();
+                s.StatusActivo();
             }
 
             // guarda los cambios.
@@ -330,33 +356,6 @@ namespace IgnisMercado.Models.Seeding
                 new Rol {Nivel = "Avanzado", Descripcion = "Presentador / conductor"},
                 new Rol {Nivel = "Avanzado", Descripcion = "Animador / infografista"},
                 new Rol {Nivel = "Avanzado", Descripcion = "Operador de Cabina 01 Estudio de Grabación"}
-            );
-
-            // guarda los cambios.
-            context.SaveChanges();
-        }
-
-        /// <summary>
-        /// Seeding Costos.
-        /// </summary>
-        private static void SeedCostos(ApplicationContext context)
-        {
-            if (context.Costos.Any()) 
-            {
-                return;
-            }
-
-            context.Costos.AddRange(
-                new Costo 
-                {
-                    CostoHoraBasico = 150,
-                    CostoHoraAvanzado = 280,
-                    PrimeraHoraBasico = 380,
-                    PrimeraHoraAvanzado = 520,
-                    JornadaAvanzado=2000,
-                    JornadaBasico=1200,
-                    HoraJornada=6
-                }
             );
 
             // guarda los cambios.
