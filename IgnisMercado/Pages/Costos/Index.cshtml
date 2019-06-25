@@ -1,0 +1,119 @@
+@page
+@model IgnisMercado.Pages.Costos.IndexModel
+
+@{
+    ViewData["Title"] = "Lista de Precios";
+}
+
+<h1>Lista de Precios</h1>
+
+<table class="table1">
+    <thead>
+        <tr>
+            <th>
+                <h4>Cantidad de Horas por Jornada</h4>
+            </th>
+            <hr>
+        </tr>
+        <th></th>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Costo) 
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraJornada)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<br>
+<br>
+<h4>Precios Nivel Básico</h4>
+
+<table class="table2">
+    <thead>
+        <tr>
+            <th>
+                Primer Hora |  
+            </th>
+            <th>
+                Hora Adicionales | 
+            </th>
+            <th>
+                Jornada
+            </th>
+            <th></th>
+        </tr>
+        <hr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Costo) 
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrimeraHoraBasico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CostoHoraBasico)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.JornadaBasico)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<br>
+<br>
+<h4>Precios Nivel Avanzado</h4>
+<hr>
+
+<table class="table3">
+    <thead>
+        <tr>
+            <th>
+                Primer Hora |  
+            </th>
+            <th>
+                Hora Adicionales | 
+            </th>
+            <th>
+                Jornada
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Costo) 
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrimeraHoraAvanzado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CostoHoraAvanzado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JornadaAvanzado)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

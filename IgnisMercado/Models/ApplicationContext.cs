@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 using IgnisMercado.Areas.Identity.Data;
+using IgnisMercado.Models;
 
 namespace IgnisMercado.Models
 {
@@ -19,6 +20,11 @@ namespace IgnisMercado.Models
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
 
+            builder.Entity<Solicitud>().ToTable("Solicitudes");
+            builder.Entity<Proyecto>().ToTable("Proyectos");
+            builder.Entity<Rol>().ToTable("Roles");
+            builder.Entity<Costo>().ToTable("Costos");
+
             builder.Entity<Proyecto>()
                 .HasOne(p => p.Cliente)
                 .WithMany(c => c.ListaProyectos);
@@ -30,7 +36,6 @@ namespace IgnisMercado.Models
             builder.Entity<Solicitud>()
                 .HasOne(s => s.Tecnico)
                 .WithMany(t => t.ListaSolicitudes);
-
         }
 
         public DbSet<IgnisMercado.Models.Administrador> Administradores { get; set; }
@@ -44,5 +49,7 @@ namespace IgnisMercado.Models
         public DbSet<IgnisMercado.Models.Proyecto> Proyectos { get; set; }
 
         public new DbSet<IgnisMercado.Models.Rol> Roles { get; set; }
+
+        public DbSet<IgnisMercado.Models.Costo> Costos { get; set; }
     }
 }

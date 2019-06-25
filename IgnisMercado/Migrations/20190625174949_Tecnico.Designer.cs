@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IgnisMercado.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190624000559_Rol")]
-    partial class Rol
+    [Migration("20190625174949_Tecnico")]
+    partial class Tecnico
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -82,6 +82,30 @@ namespace IgnisMercado.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("IgnisMercado.Models.Costo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CostoHoraAvanzado");
+
+                    b.Property<int>("CostoHoraBasico");
+
+                    b.Property<int>("HoraJornada");
+
+                    b.Property<int>("JornadaAvanzado");
+
+                    b.Property<int>("JornadaBasico");
+
+                    b.Property<int>("PrimeraHoraAvanzado");
+
+                    b.Property<int>("PrimeraHoraBasico");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Costos");
                 });
 
             modelBuilder.Entity("IgnisMercado.Models.Proyecto", b =>
@@ -278,6 +302,8 @@ namespace IgnisMercado.Migrations
             modelBuilder.Entity("IgnisMercado.Models.Tecnico", b =>
                 {
                     b.HasBaseType("IgnisMercado.Areas.Identity.Data.ApplicationUser");
+
+                    b.Property<string>("NivelExperiencia");
 
                     b.HasDiscriminator().HasValue("Tecnico");
                 });

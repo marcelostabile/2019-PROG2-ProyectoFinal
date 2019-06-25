@@ -24,7 +24,10 @@ namespace IgnisMercado.Pages.Usuarios
 
         public async Task OnGetAsync()
         {
-            ApplicationUser = await _context.Users.ToListAsync();
+            ApplicationUser = await _context.Users
+                                .OrderBy(u => u.Name)
+                                .OrderBy(u => u.Role)
+                                .ToListAsync();
         }
 
     }

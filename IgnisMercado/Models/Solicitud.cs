@@ -76,7 +76,7 @@ namespace IgnisMercado.Models
         /// Estado de la solicitud.
         /// </summary>
         [Display(Name = "Status")]
-        public bool Status { get; private set; }
+        public bool Status { get; set; }
 
         /// <summary>
         /// Métodos para cambiar el status.

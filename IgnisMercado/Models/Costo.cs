@@ -1,4 +1,7 @@
-namespace IgnisMercado.Models 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace IgnisMercado.Models
 {   
     public class Costo : ISujetoCosto, ICosto
     { 
@@ -30,7 +33,7 @@ namespace IgnisMercado.Models
         public int HoraJornada 
         {
             get => this.horaJornada;
-            protected set {}
+            set => this.horaJornada = value;
         }
         
         //costo basico
@@ -38,7 +41,7 @@ namespace IgnisMercado.Models
         public int CostoHoraBasico 
         {
             get => this.costoHoraBasico;
-            protected set {}
+            set => this.costoHoraBasico = value;
         }
 
         //costo avanzado
@@ -46,7 +49,7 @@ namespace IgnisMercado.Models
         public int CostoHoraAvanzado 
         {
             get => this.costoHoraAvanzado;
-            protected set {}
+            set => this.costoHoraAvanzado = value;
         }
 
         //primera hora
@@ -54,28 +57,28 @@ namespace IgnisMercado.Models
         public int PrimeraHoraBasico 
         {
             get => this.primeraHoraBasico;
-            protected set {}
+            set => this.primeraHoraBasico = value;
         }
 
         private int primeraHoraAvanzado;
         public int PrimeraHoraAvanzado 
         {
             get => this.primeraHoraAvanzado;
-            protected set {}
+            set => this.primeraHoraAvanzado = value;
         }
 
         private int jornadaBasico;
         public int JornadaBasico
         {
             get => this.jornadaBasico;
-            protected set {}
+            set => this.jornadaBasico = value;
         }
 
         private int jornadaAvanzado;
         public int JornadaAvanzado
         {
             get => this.jornadaAvanzado;
-            protected set {}
+            set => this.jornadaAvanzado = value;
         }
 
         public void ModificarHoraJornada(int nuevoCosto) 
