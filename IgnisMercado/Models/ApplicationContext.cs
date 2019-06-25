@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 using IgnisMercado.Areas.Identity.Data;
+using IgnisMercado.Models;
 
 namespace IgnisMercado.Models
 {
@@ -44,5 +45,7 @@ namespace IgnisMercado.Models
         public DbSet<IgnisMercado.Models.Proyecto> Proyectos { get; set; }
 
         public new DbSet<IgnisMercado.Models.Rol> Roles { get; set; }
+
+        public DbSet<IgnisMercado.Models.Costo> Costos { get; set; }
     }
 }

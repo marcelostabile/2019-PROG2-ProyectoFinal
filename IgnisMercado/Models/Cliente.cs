@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 using IgnisMercado.Areas.Identity.Data;
 
@@ -15,11 +16,24 @@ namespace IgnisMercado.Models
         }
 
         /// <summary>
+        ///  Id del cliente.
+        /// </summary>
+        [Key]
+        [ForeignKey("Cliente")]
+        public string ClienteId 
+        {
+            get 
+            { 
+                return this.Id;
+            }
+        }
+
+        /// <summary>
         ///  Lista de Proyectos del cliente.
         /// 
         /// Relación Cliente:Proyectos (uno-a-muchos)
         /// </summary>
-        public IList<Proyecto> ListaProyectos { get; private set; }
+        public IList<Proyecto> ListaProyectos { get; set; }
 
         /// <summary>
         /// Este método agrega un nuevo proyecto a la lista de proyectos del cliente.

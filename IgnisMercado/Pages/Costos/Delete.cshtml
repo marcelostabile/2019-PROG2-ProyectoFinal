@@ -1,0 +1,64 @@
+@page
+@model IgnisMercado.Pages.Costos.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Costo</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Costo.HoraJornada)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Costo.HoraJornada)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Costo.CostoHoraBasico)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Costo.CostoHoraBasico)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Costo.CostoHoraAvanzado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Costo.CostoHoraAvanzado)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Costo.PrimeraHoraBasico)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Costo.PrimeraHoraBasico)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Costo.PrimeraHoraAvanzado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Costo.PrimeraHoraAvanzado)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Costo.JornadaBasico)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Costo.JornadaBasico)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Costo.JornadaAvanzado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Costo.JornadaAvanzado)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Costo.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

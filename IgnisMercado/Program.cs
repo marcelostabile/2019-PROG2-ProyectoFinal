@@ -3,9 +3,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
 
-using IgnisMercado.Areas.Identity.Data;
 using IgnisMercado.Models;
 using IgnisMercado.Models.Seeding;
 
@@ -45,5 +43,6 @@ namespace IgnisMercado
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
+
     }
 }

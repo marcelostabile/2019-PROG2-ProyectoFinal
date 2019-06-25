@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using IgnisMercado.Models;
 
-namespace IgnisMercado.Pages.Solicitudes
+namespace IgnisMercado.Pages.Costos
 {
     public class IndexModel : PageModel
     {
@@ -18,14 +18,11 @@ namespace IgnisMercado.Pages.Solicitudes
             _context = context;
         }
 
-        public IList<Solicitud> Solicitud { get;set; }
+        public IList<Costo> Costo { get;set; }
 
         public async Task OnGetAsync()
         {
-            Solicitud = await _context.Solicitudes
-                        .OrderBy(s => s.NivelExperiencia)
-                        .OrderBy(s => s.RolRequerido)
-                        .ToListAsync();
+            Costo = await _context.Costos.ToListAsync();
         }
     }
 }

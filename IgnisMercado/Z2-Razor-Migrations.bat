@@ -12,4 +12,6 @@ dotnet ef migrations add Proyecto --context ApplicationContext
 
 dotnet ef migrations add Rol --context ApplicationContext
 
+dotnet ef migrations add Costo --context ApplicationContext
+
 pause
