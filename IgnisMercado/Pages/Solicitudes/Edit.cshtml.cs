@@ -29,7 +29,7 @@ namespace IgnisMercado.Pages.Solicitudes
                 return NotFound();
             }
 
-            Solicitud = await _context.Solicitudes.FirstOrDefaultAsync(m => m.Id == id);
+            Solicitud = await _context.Solicitudes.FirstOrDefaultAsync(m => m.SolicitudId == id);
 
             if (Solicitud == null)
             {
@@ -53,7 +53,7 @@ namespace IgnisMercado.Pages.Solicitudes
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SolicitudExists(Solicitud.Id))
+                if (!SolicitudExists(Solicitud.SolicitudId))
                 {
                     return NotFound();
                 }
@@ -68,7 +68,7 @@ namespace IgnisMercado.Pages.Solicitudes
 
         private bool SolicitudExists(int id)
         {
-            return _context.Solicitudes.Any(e => e.Id == id);
+            return _context.Solicitudes.Any(e => e.SolicitudId == id);
         }
     }
 }

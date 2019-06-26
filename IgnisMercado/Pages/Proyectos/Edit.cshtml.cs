@@ -29,7 +29,7 @@ namespace IgnisMercado.Pages.Proyectos
                 return NotFound();
             }
 
-            Proyecto = await _context.Proyectos.FirstOrDefaultAsync(m => m.Id == id);
+            Proyecto = await _context.Proyectos.FirstOrDefaultAsync(m => m.ProyectoId == id);
 
             if (Proyecto == null)
             {
@@ -53,7 +53,7 @@ namespace IgnisMercado.Pages.Proyectos
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProyectoExists(Proyecto.Id))
+                if (!ProyectoExists(Proyecto.ProyectoId))
                 {
                     return NotFound();
                 }
@@ -68,7 +68,7 @@ namespace IgnisMercado.Pages.Proyectos
 
         private bool ProyectoExists(int id)
         {
-            return _context.Proyectos.Any(e => e.Id == id);
+            return _context.Proyectos.Any(e => e.ProyectoId == id);
         }
     }
 }

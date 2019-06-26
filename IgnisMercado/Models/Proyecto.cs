@@ -3,25 +3,20 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IgnisMercado.Models 
-{   
-    public class Proyecto : IGestionSolicitudes, ICostoProyecto
+{ 
+    public class Proyecto //: IGestionSolicitudes, ICostoProyecto
     { 
         /// <summary>
-        /// Para RazorPages: constructor sin argumentos.
+        /// Constructor sin argumentos para Razorpages.
         /// </summary>
         public Proyecto() 
         {
         }
 
         /// <summary>
-        /// Para RazorPages: atributo PrimaryKey de la tabla.
-        /// </summary>
-        public int Id { get; set; } 
-
-        /// <summary>
-        /// La clase Proyecto define un proyecto y contiene todas las solicitudes asociadas al proyecto.
-        /// Un proyecto puede tener 'ene' solicitudes.
-        /// Cada solicitud corresponde a un rol técnico requerido por el cliente.
+        /// La clase Proyecto contiene todas las solicitudes asociadas al proyecto.
+        /// Un proyecto puede tener 'ene' solicitudes y cada solicitud corresponde 
+        /// a una necesidad de un técnico.
         /// </summary>
         public Proyecto(string nombre, string descripcion, bool status) 
         {
@@ -31,26 +26,32 @@ namespace IgnisMercado.Models
         }
 
         /// <summary>
-        /// Relación Cliente:Proyectos (uno-a-muchos)
+        /// Relación Cliente:Proyectos y Proyecto:Solicitudes.
         /// </summary>
-        public virtual Cliente Cliente { get; set; }
+        [Key]
+        public int ProyectoId { get; set; }
 
         /// <summary>
-        /// Lista de Solicitudes del proyecto.
-        /// 
-        /// Relación Proyecto:Solicitudes (uno-a-muchos)
+        /// Relación Cliente:Proyectos.
         /// </summary>
-        public IList<Solicitud> ListaSolicitudes { get; set; }
+        public IList<RelacionClienteProyecto> RelacionClienteProyecto { get; set; }
+
+        /// <summary>
+        /// Relación Proyecto:Solicitudes.
+        /// </summary>
+        public IList<RelacionProyectoSolicitud> RelacionProyectoSolicitud { get; set; }
 
         /// <summary>
         /// Nombre del proyecto.
         /// </summary>
+        [Required]
         [Display(Name = "Título")]
         public string Nombre { get; set; }
 
         /// <summary>
         /// Descripción del proyecto.
         /// </summary>
+        [Required]
         [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
 
@@ -72,42 +73,11 @@ namespace IgnisMercado.Models
         {
             this.Status = false;
 
-            /// Cuando cerramos el proyecto, se cierran todas sus solicitudes.
-            if (this.ListaSolicitudes.Count > 0) 
-            {
-                foreach (Solicitud solicitud in this.ListaSolicitudes) solicitud.StatusInactivo();
-            }
-        }
-
-        /// <summary>
-        /// Este método agrega una nueva solicitud a la lista de solicitudes del proyecto.
-        /// </summary>
-        public void AgregarSolicitud(Solicitud SolicitudNueva) 
-        {
-            this.ListaSolicitudes.Add(SolicitudNueva);
-        }
-
-        /// <summary>
-        /// Este método elimina una solicitud de la lista.
-        /// </summary>
-        public void EliminarSolicitud(Solicitud EliminarSolicitud) 
-        {
-            this.ListaSolicitudes.Remove(EliminarSolicitud);
-        }
-
-        /// <summary>
-        /// Este método retorna el costo total del proyecto.
-        /// </summary>
-        public int InformarCostoTotalProyecto() 
-        {
-            int CostoTotalProyecto = 0;
-            
-            foreach (Solicitud solicitud in this.ListaSolicitudes) 
-            {
-                CostoTotalProyecto += solicitud.costoSolicitud;
-            }
-            
-            return CostoTotalProyecto;
+            // /// Cuando cerramos el proyecto, se cierran todas sus solicitudes.
+            // if (this.ListaSolicitudes.Count > 0) 
+            // {
+            //     foreach (Solicitud solicitud in this.ListaSolicitudes) solicitud.StatusInactivo();
+            // }
         }
 
     }

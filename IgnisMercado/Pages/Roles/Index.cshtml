@@ -39,8 +39,8 @@
         @if (User.IsInRole("Administrador")) 
         {
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a>
+                <a asp-page="./Edit" asp-route-id="@item.RolId">Editar</a> |
+                <a asp-page="./Delete" asp-route-id="@item.RolId">Borrar</a>
             </td>
         }
 

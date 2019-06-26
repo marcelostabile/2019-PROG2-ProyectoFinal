@@ -1,21 +1,18 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IgnisMercado.Models 
-{
+{ 
     public class Solicitud : IGestionHoras, IObserverCosto
-    {
+    { 
         /// <summary>
-        /// Para RazorPages: constructor sin argumentos.
+        /// Constructor sin argumentos para Razorpages.
         /// </summary>
         public Solicitud() 
         {
         }
-
-        /// <summary>
-        /// Para RazorPages: atributo PrimaryKey de la tabla.
-        /// </summary>
-        public int Id { get; set; } 
 
         public Solicitud(int modoDeContrato, string rolRequerido, int horasContratadas, string nivelExperiencia, string observaciones) 
         {
@@ -26,28 +23,27 @@ namespace IgnisMercado.Models
             this.Observaciones = observaciones;
             this.Status = true;
 
-            // Calcular el costo de la solicitud al crear el objeto.
+            // Cuando instanciamos el objeto, calculamos su costo de acuerdo a los valores ingresados.
             ICosto Costo = new Costo();
+
             this.CostoSolicitud = Costo.CalcularCostoSolicitud(modoDeContrato, horasContratadas, nivelExperiencia);
         }
 
         /// <summary>
-        /// Relación Proyecto:Solicitudes (uno-a-muchos)
+        ///  Clave primaria.
         /// </summary>
-        public Proyecto Proyecto { get; set; }
+        [Key]
+        public int SolicitudId { get; set; }
+
+        public IList<RelacionProyectoSolicitud> RelacionProyectoSolicitud { get; set; }
 
         /// <summary>
-        /// Relación Tecnico:Solicitud (uno-a-uno)
-        /// </summary>
-        public Tecnico Tecnico { get; set; }
-
-        /// <summary>
-        /// Modo de Contratación - 1: horas y 2: Jornada.
+        /// Modo de Contratación (1: horas y 2: Jornada).
         /// </summary>
         [Display(Name = "Modo de Contrato")]
        public int ModoDeContrato { get; set; }
 
-        /// Es el rol que se está necesitando.
+        /// Es el rol que el cliente necesita.
         [Display(Name = "Rol Requerido")]
         public string RolRequerido { get; set; }
 
@@ -55,13 +51,19 @@ namespace IgnisMercado.Models
         [Display(Name = "Horas Contratadas")]
         public int HorasContratadas { get; set; }
 
-        /// Es el nivel de esperiencia que se necesita (Básico, Avanzado).
+        /// Es el nivel de experiencia que se necesita (Básico, Avanzado).
         [Display(Name = "Nivel Experiencia")]
         public string NivelExperiencia { get; set; }
 
-        /// Observaciones de la solicitud (opcional).
+        /// Observaciones de la solicitud.
         [Display(Name = "Observaciones")]
         public string Observaciones { get; set; }
+
+        /// <summary>
+        /// Estado de la solicitud.
+        /// </summary>
+        [Display(Name = "Status")]
+        public bool Status { get; set; }
 
         /// Costo de la solicitud.
         [Display(Name = "Costo Solicitud")]
@@ -70,25 +72,6 @@ namespace IgnisMercado.Models
         {
             get => this.CostoSolicitud;
             set => this.CostoSolicitud = value;
-        }
-
-        /// <summary>
-        /// Estado de la solicitud.
-        /// </summary>
-        [Display(Name = "Status")]
-        public bool Status { get; set; }
-
-        /// <summary>
-        /// Métodos para cambiar el status.
-        /// </summary>
-        public void StatusActivo() 
-        {
-            this.Status = true;
-        }
-
-        public void StatusInactivo() 
-        {
-            this.Status = false;
         }
 
         /// <summary>
@@ -118,9 +101,8 @@ namespace IgnisMercado.Models
             this.ActualizarCostoSolicitudActiva();
         }
 
-       /// <summary>
-        /// Este método actualiza el costo para la solicitud.
-        /// La solicitud debe estar activa para que se realice esta modificación.
+        /// <summary>
+        /// Este método actualiza el costo de la solicitud (debe tener status activo).
         /// Se ejecuta en dos oportunidades: 
         /// - cuando se agregan / restan horas
         /// - cuando se actualizan los precios.
@@ -133,6 +115,19 @@ namespace IgnisMercado.Models
             {
                 this.CostoSolicitud = Costo.CalcularCostoSolicitud(this.ModoDeContrato, this.HorasContratadas, this.NivelExperiencia);
             }
+        }
+
+        /// <summary>
+        /// Métodos para cambiar el status.
+        /// </summary>
+        public void StatusActivo() 
+        {
+            this.Status = true;
+        }
+
+        public void StatusInactivo() 
+        {
+            this.Status = false;
         }
 
     }

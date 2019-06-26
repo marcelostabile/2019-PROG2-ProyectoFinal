@@ -15,4 +15,10 @@ dotnet aspnet-codegenerator razorpage -m Rol -dc ApplicationContext -udl -outDir
 
 dotnet aspnet-codegenerator razorpage -m Costo -dc ApplicationContext -udl -outDir Pages\Costos --referenceScriptLibraries
 
+dotnet aspnet-codegenerator razorpage -m RelacionClienteProyecto -dc ApplicationContext -udl -outDir Pages\RelacionClienteProyectos --referenceScriptLibraries
+
+dotnet aspnet-codegenerator razorpage -m RelacionProyectoSolicitud -dc ApplicationContext -udl -outDir Pages\RelacionProyectoSolicitudes --referenceScriptLibraries
+
+dotnet aspnet-codegenerator razorpage -m RelacionTecnicoRol -dc ApplicationContext -udl -outDir Pages\RelacionTecnicoRoles --referenceScriptLibraries
+
 pause

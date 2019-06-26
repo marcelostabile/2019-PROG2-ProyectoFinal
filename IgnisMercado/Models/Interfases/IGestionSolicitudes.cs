@@ -8,6 +8,5 @@ namespace IgnisMercado.Models
         void AgregarSolicitud(Solicitud SolicitudNueva);
 
         void EliminarSolicitud(Solicitud EliminarSolicitud);
-
     }
 }

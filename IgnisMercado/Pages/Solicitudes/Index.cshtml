@@ -96,9 +96,9 @@
                 @Html.DisplayFor(modelItem => item.costoSolicitud)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.SolicitudId">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.SolicitudId">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.SolicitudId">Delete</a>
             </td>
         }
 
@@ -127,8 +127,8 @@
                 @Html.DisplayFor(modelItem => item.costoSolicitud)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+                <a asp-page="./Edit" asp-route-id="@item.SolicitudId">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.SolicitudId">Detalles</a>
             </td>
         }
         </tr>
