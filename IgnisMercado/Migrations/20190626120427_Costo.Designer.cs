@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IgnisMercado.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190626030936_Costo")]
+    [Migration("20190626120427_Costo")]
     partial class Costo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

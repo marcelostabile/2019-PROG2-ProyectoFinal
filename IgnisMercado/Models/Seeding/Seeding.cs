@@ -184,7 +184,84 @@ namespace IgnisMercado.Models.Seeding
             // guarda los cambios.
             context.SaveChanges();
         }
-    
+
+        /// <summary>
+        /// Seeding RelacionClienteProyectos.
+        /// </summary>
+        private static void RClienteProyectos(ApplicationContext context)
+        {
+            if (context.RelacionClienteProyectos.Any()) 
+            {
+                return;
+            }
+
+            context.RelacionClienteProyectos.AddRange(
+                new RelacionClienteProyecto { ClienteId = "a2098bab-6c99-4128-b5b3-6034591b1e7e", ProyectoId = 1 },
+                new RelacionClienteProyecto { ClienteId = "a2098bab-6c99-4128-b5b3-6034591b1e7e", ProyectoId = 	2 },
+
+                new RelacionClienteProyecto { ClienteId = "48ca5c77-f5bf-4d98-bb5d-a7f7390a8a78", ProyectoId = 	3 },
+                new RelacionClienteProyecto { ClienteId = "48ca5c77-f5bf-4d98-bb5d-a7f7390a8a78", ProyectoId = 	4 },
+
+                new RelacionClienteProyecto { ClienteId = "f2a27645-bd52-455b-b622-212c0b832794", ProyectoId = 	5 },
+                new RelacionClienteProyecto { ClienteId = "f2a27645-bd52-455b-b622-212c0b832794", ProyectoId = 	6 }
+            );
+
+            // guarda los cambios.
+            context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Seeding RelacionProyectoSolicitudes.
+        /// </summary>
+        private static void RProyectoSolicitudes(ApplicationContext context)
+        {
+            if (context.RelacionProyectoSolicitudes.Any()) 
+            {
+                return;
+            }
+
+            context.RelacionProyectoSolicitudes.AddRange(
+                new RelacionProyectoSolicitud {ProyectoId = 1, SolicitudId = 1},
+                new RelacionProyectoSolicitud {ProyectoId = 1, SolicitudId = 2},
+                new RelacionProyectoSolicitud {ProyectoId = 2, SolicitudId = 3},
+                new RelacionProyectoSolicitud {ProyectoId = 2, SolicitudId = 4},
+                new RelacionProyectoSolicitud {ProyectoId = 3, SolicitudId = 5},
+                new RelacionProyectoSolicitud {ProyectoId = 3, SolicitudId = 6},
+                new RelacionProyectoSolicitud {ProyectoId = 4, SolicitudId = 7},
+                new RelacionProyectoSolicitud {ProyectoId = 4, SolicitudId = 8}
+            );
+
+            // guarda los cambios.
+            context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Seeding RelacionTecnicoRoles.
+        /// </summary>
+        private static void RTecnicoRoles(ApplicationContext context)
+        {
+            if (context.RelacionTecnicoRoles.Any()) 
+            {
+                return;
+            }
+
+            context.RelacionTecnicoRoles.AddRange(
+                new RelacionTecnicoRol {TecnicoId = "57bf6b3f-26f0-4eaa-9f66-14b3e6fdfce2", RolId = 11},
+                new RelacionTecnicoRol {TecnicoId = "57bf6b3f-26f0-4eaa-9f66-14b3e6fdfce2", RolId = 18},
+
+                new RelacionTecnicoRol {TecnicoId = "0626bd2e-c394-4f89-bb52-8dcf01b0128c", RolId = 17},
+                new RelacionTecnicoRol {TecnicoId = "0626bd2e-c394-4f89-bb52-8dcf01b0128c", RolId = 19},
+                new RelacionTecnicoRol {TecnicoId = "0626bd2e-c394-4f89-bb52-8dcf01b0128c", RolId = 21},
+
+                new RelacionTecnicoRol {TecnicoId = "cf374546-893e-4b69-8622-a334fb02ade8", RolId = 3},
+                new RelacionTecnicoRol {TecnicoId = "cf374546-893e-4b69-8622-a334fb02ade8", RolId = 6},
+                new RelacionTecnicoRol {TecnicoId = "cf374546-893e-4b69-8622-a334fb02ade8", RolId = 8}
+            );
+
+            // guarda los cambios.
+            context.SaveChanges();
+        }
+
         /// <summary>
         /// Seeding Costos.
         /// </summary>
