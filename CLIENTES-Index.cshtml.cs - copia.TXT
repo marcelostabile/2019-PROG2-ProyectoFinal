@@ -1,0 +1,88 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using IgnisMercado.Models;
+using IgnisMercado.Models.ClienteViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace IgnisMercado.Pages.Clientes
+{
+    public class IndexModel : PageModel
+    {
+        private readonly IgnisMercado.Models.ApplicationContext _context;
+
+        public IndexModel(IgnisMercado.Models.ApplicationContext context)
+        {
+            _context = context;
+        }
+
+        //1
+        public ClienteIndexData ClienteIdxData { get; set; }
+        public int ClienteId { get; set; }
+        public int ProyectoId { get; set; }
+
+        //2
+        [BindProperty(SupportsGet = true)]
+        public string SearchString { get; set; }
+
+        //3
+        public SelectList ClientesSList { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string ClienteProyecto { get; set; }
+
+        //4
+        //public IList<Cliente> Cliente { get;set; }
+
+        public async Task OnGetAsync(int? id, int? ProyectoId)
+        {
+            // Consulta de clientes en el contexto, orden por código.
+            IQueryable<string> ClientesQuery = from c in _context.Clientes
+                                            orderby c.ClienteId
+                                            select c.ClienteId;
+
+            // El SelectList Clientes lo cargo con la consulta.
+            ClientesSList = new SelectList(await ClientesQuery.Distinct().ToListAsync());
+
+            // Instanciamos el ClienteIndexData.
+            ClienteIdxData = new ClienteIndexData();
+
+            // Ahora cargamos los clientes en el Index Data a partir del contexto, 
+            // de acuerdo a lo ingresado por el usuario en el cuadro del front.
+            //
+            // Where1: si el cuadro no está vacío o nulo, se busca el nombre que coincida con el SearchString.
+            // Where2: si el cuadro no está vacío o nulo, se busca el código.
+            ClienteIdxData.Clientes = await _context.Clientes
+                .Where(c => !string.IsNullOrEmpty(SearchString) ? c.Name.Contains(SearchString) : true)
+                .Where(x => !string.IsNullOrEmpty(ClienteProyecto) ? x.ClienteId == ClienteProyecto : true)
+                //.Include(l => l.Location)
+                .Include(c => c.RelacionClienteProyecto)
+                    //.ThenInclude(c => c.)
+                .AsNoTracking()
+                .ToListAsync();
+
+            if (id != null)
+            {
+                ClienteId = id.Value;
+
+                Cliente cliente = ClienteIdxData.Clientes.Where(c => c.Id == id.Value.ToString()).Single();
+                
+                ClienteIdxData.Proyectos = cliente.RelacionClienteProyecto.Select(p => p.Proyecto);
+            }
+
+            if (ProyectoId != null)
+            {
+                ProyectoId = id.Value;
+            }
+        }
+
+        // public async Task OnGetAsync()
+        // {
+        //     Cliente = await _context.Clientes.ToListAsync();
+        // }
+    }
+}
