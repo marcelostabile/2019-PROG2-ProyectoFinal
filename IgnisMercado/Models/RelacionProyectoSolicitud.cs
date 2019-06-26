@@ -9,9 +9,13 @@ namespace IgnisMercado.Models
     /// </summary>
     public class RelacionProyectoSolicitud
     {
+        public int Id { get; set; }
+
+        [ForeignKey("Proyecto")]
         public int ProyectoId { get; set; }
         public Proyecto Proyecto { get; set; }
 
+        [ForeignKey("Solicitud")]
         public int SolicitudId { get; set; }
         public Solicitud Solicitud { get; set; }
     }     

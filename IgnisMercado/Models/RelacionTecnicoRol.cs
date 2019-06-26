@@ -9,9 +9,13 @@ namespace IgnisMercado.Models
     /// </summary>
     public class RelacionTecnicoRol
     {
+        public int Id { get; set; }
+
+        [ForeignKey("Tecnico")]
         public string TecnicoId { get; set; }
         public Tecnico Tecnico { get; set; }
 
+        [ForeignKey("Rol")]
         public int RolId { get; set; }
         public Rol Rol { get; set; }
 

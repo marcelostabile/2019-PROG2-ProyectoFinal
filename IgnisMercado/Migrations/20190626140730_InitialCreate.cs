@@ -230,7 +230,8 @@ namespace IgnisMercado.Migrations
                 columns: table => new
                 {
                     ClienteId = table.Column<string>(nullable: false),
-                    ProyectoId = table.Column<int>(nullable: false)
+                    ProyectoId = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -254,7 +255,8 @@ namespace IgnisMercado.Migrations
                 columns: table => new
                 {
                     TecnicoId = table.Column<string>(nullable: false),
-                    RolId = table.Column<int>(nullable: false)
+                    RolId = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -278,7 +280,8 @@ namespace IgnisMercado.Migrations
                 columns: table => new
                 {
                     ProyectoId = table.Column<int>(nullable: false),
-                    SolicitudId = table.Column<int>(nullable: false)
+                    SolicitudId = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
