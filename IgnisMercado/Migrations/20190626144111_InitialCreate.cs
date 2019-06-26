@@ -230,8 +230,7 @@ namespace IgnisMercado.Migrations
                 columns: table => new
                 {
                     ClienteId = table.Column<string>(nullable: false),
-                    ProyectoId = table.Column<int>(nullable: false),
-                    Id = table.Column<int>(nullable: false)
+                    ProyectoId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -255,12 +254,12 @@ namespace IgnisMercado.Migrations
                 columns: table => new
                 {
                     TecnicoId = table.Column<string>(nullable: false),
-                    RolId = table.Column<int>(nullable: false),
-                    Id = table.Column<int>(nullable: false)
+                    RolId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RelacionTecnicoRoles", x => new { x.TecnicoId, x.RolId });
+                    table.UniqueConstraint("AK_RelacionTecnicoRoles_RolId_TecnicoId", x => new { x.RolId, x.TecnicoId });
                     table.ForeignKey(
                         name: "FK_RelacionTecnicoRoles_Roles_RolId",
                         column: x => x.RolId,
@@ -280,8 +279,7 @@ namespace IgnisMercado.Migrations
                 columns: table => new
                 {
                     ProyectoId = table.Column<int>(nullable: false),
-                    SolicitudId = table.Column<int>(nullable: false),
-                    Id = table.Column<int>(nullable: false)
+                    SolicitudId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -346,11 +344,6 @@ namespace IgnisMercado.Migrations
                 name: "IX_RelacionProyectoSolicitudes_SolicitudId",
                 table: "RelacionProyectoSolicitudes",
                 column: "SolicitudId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RelacionTecnicoRoles_RolId",
-                table: "RelacionTecnicoRoles",
-                column: "RolId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
