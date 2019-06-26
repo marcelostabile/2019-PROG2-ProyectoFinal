@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IgnisMercado.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190625223047_Costo")]
-    partial class Costo
+    [Migration("20190626031003_RelacionProyectoSolicitud")]
+    partial class RelacionProyectoSolicitud
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,10 +110,8 @@ namespace IgnisMercado.Migrations
 
             modelBuilder.Entity("IgnisMercado.Models.Proyecto", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProyectoId")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ClienteId");
 
                     b.Property<string>("Descripcion")
                         .IsRequired();
@@ -123,30 +121,68 @@ namespace IgnisMercado.Migrations
 
                     b.Property<bool>("Status");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClienteId");
+                    b.HasKey("ProyectoId");
 
                     b.ToTable("Proyectos");
                 });
 
+            modelBuilder.Entity("IgnisMercado.Models.RelacionClienteProyecto", b =>
+                {
+                    b.Property<string>("ClienteId");
+
+                    b.Property<int>("ProyectoId");
+
+                    b.HasKey("ClienteId", "ProyectoId");
+
+                    b.HasIndex("ProyectoId");
+
+                    b.ToTable("RelacionClienteProyectos");
+                });
+
+            modelBuilder.Entity("IgnisMercado.Models.RelacionProyectoSolicitud", b =>
+                {
+                    b.Property<int>("ProyectoId");
+
+                    b.Property<int>("SolicitudId");
+
+                    b.HasKey("ProyectoId", "SolicitudId");
+
+                    b.HasIndex("SolicitudId");
+
+                    b.ToTable("RelacionProyectoSolicitudes");
+                });
+
+            modelBuilder.Entity("IgnisMercado.Models.RelacionTecnicoRol", b =>
+                {
+                    b.Property<string>("TecnicoId");
+
+                    b.Property<int>("RolId");
+
+                    b.HasKey("TecnicoId", "RolId");
+
+                    b.HasIndex("RolId");
+
+                    b.ToTable("RelacionTecnicoRoles");
+                });
+
             modelBuilder.Entity("IgnisMercado.Models.Rol", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RolId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Descripcion");
 
-                    b.Property<string>("Nivel");
+                    b.Property<string>("Nivel")
+                        .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("RolId");
 
                     b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("IgnisMercado.Models.Solicitud", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("SolicitudId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("HorasContratadas");
@@ -157,21 +193,13 @@ namespace IgnisMercado.Migrations
 
                     b.Property<string>("Observaciones");
 
-                    b.Property<int?>("ProyectoId");
-
                     b.Property<string>("RolRequerido");
 
                     b.Property<bool>("Status");
 
-                    b.Property<string>("TecnicoId");
-
                     b.Property<int>("costoSolicitud");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProyectoId");
-
-                    b.HasIndex("TecnicoId");
+                    b.HasKey("SolicitudId");
 
                     b.ToTable("Solicitudes");
                 });
@@ -310,22 +338,43 @@ namespace IgnisMercado.Migrations
                     b.HasDiscriminator().HasValue("Tecnico");
                 });
 
-            modelBuilder.Entity("IgnisMercado.Models.Proyecto", b =>
+            modelBuilder.Entity("IgnisMercado.Models.RelacionClienteProyecto", b =>
                 {
                     b.HasOne("IgnisMercado.Models.Cliente", "Cliente")
-                        .WithMany("ListaProyectos")
-                        .HasForeignKey("ClienteId");
+                        .WithMany("RelacionClienteProyecto")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("IgnisMercado.Models.Proyecto", "Proyecto")
+                        .WithMany("RelacionClienteProyecto")
+                        .HasForeignKey("ProyectoId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("IgnisMercado.Models.Solicitud", b =>
+            modelBuilder.Entity("IgnisMercado.Models.RelacionProyectoSolicitud", b =>
                 {
                     b.HasOne("IgnisMercado.Models.Proyecto", "Proyecto")
-                        .WithMany("ListaSolicitudes")
-                        .HasForeignKey("ProyectoId");
+                        .WithMany("RelacionProyectoSolicitud")
+                        .HasForeignKey("ProyectoId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("IgnisMercado.Models.Solicitud", "Solicitud")
+                        .WithMany("RelacionProyectoSolicitud")
+                        .HasForeignKey("SolicitudId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("IgnisMercado.Models.RelacionTecnicoRol", b =>
+                {
+                    b.HasOne("IgnisMercado.Models.Rol", "Rol")
+                        .WithMany("RelacionTecnicoRoles")
+                        .HasForeignKey("RolId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("IgnisMercado.Models.Tecnico", "Tecnico")
-                        .WithMany("ListaSolicitudes")
-                        .HasForeignKey("TecnicoId");
+                        .WithMany("RelacionTecnicoRoles")
+                        .HasForeignKey("TecnicoId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

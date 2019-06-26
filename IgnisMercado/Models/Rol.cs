@@ -1,22 +1,31 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IgnisMercado.Models 
 {
     public class Rol
     {
         /// <summary>
-        /// Para RazorPages: constructor sin argumentos.
+        /// Constructor sin argumentos para Razorpages.
         /// </summary>
         public Rol() 
         {
         }
 
         /// <summary>
-        /// Para RazorPages: atributo PrimaryKey de la tabla.
+        /// Relación Tecnico:Rol.
         /// </summary>
-        public int Id { get; set; } 
+        [Key]
+        public int RolId { get; set; } 
+
+        /// <summary>
+        /// Relación Tecnico:Rol.
+        /// </summary>
+        public IList<RelacionTecnicoRol> RelacionTecnicoRoles { get; set; }
 
         /// Nombre del rol.
+        [Required]
         [Display(Name = "Nivel")]
         public string Nivel { get; set; }
 

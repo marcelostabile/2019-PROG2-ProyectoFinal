@@ -29,7 +29,7 @@ namespace IgnisMercado.Pages.Roles
                 return NotFound();
             }
 
-            Rol = await _context.Roles.FirstOrDefaultAsync(m => m.Id == id);
+            Rol = await _context.Roles.FirstOrDefaultAsync(m => m.RolId == id);
 
             if (Rol == null)
             {
@@ -53,7 +53,7 @@ namespace IgnisMercado.Pages.Roles
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RolExists(Rol.Id))
+                if (!RolExists(Rol.RolId))
                 {
                     return NotFound();
                 }
@@ -68,7 +68,7 @@ namespace IgnisMercado.Pages.Roles
 
         private bool RolExists(int id)
         {
-            return _context.Roles.Any(e => e.Id == id);
+            return _context.Roles.Any(e => e.RolId == id);
         }
     }
 }

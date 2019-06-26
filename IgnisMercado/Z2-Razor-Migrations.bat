@@ -14,4 +14,10 @@ dotnet ef migrations add Rol --context ApplicationContext
 
 dotnet ef migrations add Costo --context ApplicationContext
 
+dotnet ef migrations add RelacionClienteProyecto --context ApplicationContext
+
+dotnet ef migrations add RelacionProyectoSolicitud --context ApplicationContext
+
+dotnet ef migrations add RelacionTecnicoRol --context ApplicationContext
+
 pause

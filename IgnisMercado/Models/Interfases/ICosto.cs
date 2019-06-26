@@ -4,5 +4,4 @@ namespace IgnisMercado.Models
     {
         int CalcularCostoSolicitud(int modoDeContrato, int horasContratadas, string nivelExperiencia);
     }
-    
 }

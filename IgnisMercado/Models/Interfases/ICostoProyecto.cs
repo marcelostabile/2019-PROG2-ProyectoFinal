@@ -6,6 +6,5 @@ namespace IgnisMercado.Models
     public interface ICostoProyecto 
     {
         int InformarCostoTotalProyecto();
-
     }
 }

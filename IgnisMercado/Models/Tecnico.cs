@@ -9,8 +9,7 @@ namespace IgnisMercado.Models
     public class Tecnico : ApplicationUser
     { 
         /// <summary>
-        /// El Técnico es la persona que se registra en la aplicación para ser contratado.
-        /// Puede anotarse hasta en 3 roles (especialidades) y los Administradores lo asignan a Proyectos.
+        /// Constructor sin argumentos para Razorpages.
         /// </summary>
         public Tecnico() 
         {
@@ -20,7 +19,6 @@ namespace IgnisMercado.Models
         ///  Id del técnico.
         /// </summary>
         [Key]
-        [ForeignKey("Tecnico")]
         public string TecnicoId 
         {
             get 
@@ -29,10 +27,15 @@ namespace IgnisMercado.Models
             }
         }
 
+        // /// <summary>
+        // /// Relación Tecnico:Rol.
+        // /// </summary>
+        // public IList<RelacionTecnicoRol> RelacionTecnicoRol { get; set; }
+
         /// <summary>
-        /// Relación Tecnico:Solicitud (uno-a-uno)
+        /// Relación Tecnico:Rol.
         /// </summary>
-        public IList<Solicitud> ListaSolicitudes { get; private set; }
+        public IList<RelacionTecnicoRol> RelacionTecnicoRoles { get; set; }
 
         /// <summary>
         /// Presentación

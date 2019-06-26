@@ -225,7 +225,7 @@ namespace IgnisMercado.Models.Seeding
             context.Solicitudes.AddRange(
                 new Solicitud 
                 {
-                    Id = 1,
+                    SolicitudId = 1,
                     ModoDeContrato = 1, 
                     RolRequerido = "Operador de Cabina 03 y Estudio de Radio", 
                     HorasContratadas = 8, 
@@ -234,7 +234,7 @@ namespace IgnisMercado.Models.Seeding
                 },
                 new Solicitud 
                 {
-                    Id = 2,
+                    SolicitudId = 2,
                     ModoDeContrato = 2, 
                     RolRequerido = "Sonidista", 
                     HorasContratadas = 10, 
@@ -243,7 +243,7 @@ namespace IgnisMercado.Models.Seeding
                 },
                 new Solicitud 
                 {
-                    Id = 3,
+                    SolicitudId = 3,
                     ModoDeContrato = 1, 
                     RolRequerido = "Presentador / conductor", 
                     HorasContratadas = 15, 
@@ -252,7 +252,7 @@ namespace IgnisMercado.Models.Seeding
                 },
                 new Solicitud 
                 {
-                    Id = 4,
+                    SolicitudId = 4,
                     ModoDeContrato = 1, 
                     RolRequerido = "Sonidista", 
                     HorasContratadas = 8, 
@@ -261,7 +261,7 @@ namespace IgnisMercado.Models.Seeding
                 },
                 new Solicitud 
                 {
-                    Id = 5,
+                    SolicitudId = 5,
                     ModoDeContrato = 2, 
                     RolRequerido = "Redactor creativo", 
                     HorasContratadas = 10, 
@@ -270,7 +270,7 @@ namespace IgnisMercado.Models.Seeding
                 },
                 new Solicitud 
                 {
-                    Id = 6,
+                    SolicitudId = 6,
                     ModoDeContrato = 1, 
                     RolRequerido = "Operador de Cabina 02", 
                     HorasContratadas = 15, 
@@ -279,7 +279,7 @@ namespace IgnisMercado.Models.Seeding
                 },
                 new Solicitud 
                 {
-                    Id = 7,
+                    SolicitudId = 7,
                     ModoDeContrato = 1, 
                     RolRequerido = "Diseñador gráfico", 
                     HorasContratadas = 8, 
@@ -288,7 +288,7 @@ namespace IgnisMercado.Models.Seeding
                 },
                 new Solicitud 
                 {
-                    Id = 8,
+                    SolicitudId = 8,
                     ModoDeContrato = 2, 
                     RolRequerido = "Cámara y asistente de cámara", 
                     HorasContratadas = 10, 

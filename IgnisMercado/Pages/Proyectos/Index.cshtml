@@ -67,9 +67,9 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a>
+                <a asp-page="./Edit" asp-route-id="@item.ProyectoId">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.ProyectoId">Detalles</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ProyectoId">Borrar</a>
             </td>
         }
 
@@ -82,8 +82,8 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+                <a asp-page="./Edit" asp-route-id="@item.ProyectoId">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.ProyectoId">Detalles</a>
             </td>
         }
         </tr>

@@ -5,21 +5,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 using IgnisMercado.Areas.Identity.Data;
 
 namespace IgnisMercado.Models
-{   
+{ 
     public class Cliente : ApplicationUser
-    {
+    { 
         /// <summary>
-        /// El cliente es la persona que tiene el proyecto y contrata los servicios del técnico.
+        /// Constructor sin argumentos para Razorpages.
         /// </summary>
         public Cliente() 
         {
         }
 
         /// <summary>
-        ///  Id del cliente.
+        /// Relación Cliente:Proyectos.
         /// </summary>
         [Key]
-        [ForeignKey("Cliente")]
         public string ClienteId 
         {
             get 
@@ -29,19 +28,9 @@ namespace IgnisMercado.Models
         }
 
         /// <summary>
-        ///  Lista de Proyectos del cliente.
-        /// 
-        /// Relación Cliente:Proyectos (uno-a-muchos)
+        /// Relación Cliente:Proyectos.
         /// </summary>
-        public IList<Proyecto> ListaProyectos { get; set; }
-
-        /// <summary>
-        /// Este método agrega un nuevo proyecto a la lista de proyectos del cliente.
-        /// </summary>
-        public void AgregarProyecto(Proyecto ProyectoNuevo) 
-        {
-            this.ListaProyectos.Add(ProyectoNuevo);
-        }
+        public IList<RelacionClienteProyecto> RelacionClienteProyecto { get; set; }
 
     }
 }
