@@ -259,6 +259,7 @@ namespace IgnisMercado.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RelacionTecnicoRoles", x => new { x.TecnicoId, x.RolId });
+                    table.UniqueConstraint("AK_RelacionTecnicoRoles_RolId_TecnicoId", x => new { x.RolId, x.TecnicoId });
                     table.ForeignKey(
                         name: "FK_RelacionTecnicoRoles_Roles_RolId",
                         column: x => x.RolId,
@@ -343,11 +344,6 @@ namespace IgnisMercado.Migrations
                 name: "IX_RelacionProyectoSolicitudes_SolicitudId",
                 table: "RelacionProyectoSolicitudes",
                 column: "SolicitudId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RelacionTecnicoRoles_RolId",
-                table: "RelacionTecnicoRoles",
-                column: "RolId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

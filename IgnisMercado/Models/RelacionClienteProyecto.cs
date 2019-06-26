@@ -8,11 +8,17 @@ namespace IgnisMercado.Models
     /// Relación Cliente:Proyectos.
     /// </summary>
     public class RelacionClienteProyecto
-    {
+    { 
+        [Key]
         public string ClienteId { get; set; }
+
+        [Required]
         public Cliente Cliente { get; set; }
 
+        [Key]
         public int ProyectoId { get; set; }
+
+        [Required]
         public Proyecto Proyecto { get; set; }
 
     }     
