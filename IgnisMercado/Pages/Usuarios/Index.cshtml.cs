@@ -29,8 +29,6 @@ namespace IgnisMercado.Pages.Usuarios
 
         public ClienteIndexData ClienteIdxData  { get; set; }
 
-        //public IList<Proyecto> Proyectos { get; set; }
-
         public async Task OnGetAsync(string id, int? proyectoId)
         { 
             ClienteIdxData = new ClienteIndexData();
@@ -41,7 +39,7 @@ namespace IgnisMercado.Pages.Usuarios
                 .OrderBy(u => u.Role)
                     .ToListAsync();
 
-            // Seleccionar un usuario.
+            // Seleccionar un usuario, mostrar proyectos.
             if (id != null)
             {
                 ClienteIdxData.Proyectos = await _context.Proyectos
@@ -50,12 +48,12 @@ namespace IgnisMercado.Pages.Usuarios
                         .ToListAsync();
             };
 
-            // Seleccionar un proyecto.
+            // Seleccionar un proyecto, mostrar solicitudes.
             if (proyectoId != null)
             {
                 ClienteIdxData.Solicitudes = await _context.Solicitudes
                         //.Include(p => p.RelacionClienteProyecto.Where(r => r.ClienteId == id))
-                                .ToListAsync();
+                    .ToListAsync();
             };
 
         }
