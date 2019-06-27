@@ -33,7 +33,13 @@ namespace IgnisMercado
 
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlite(
-                    Configuration.GetConnectionString("IgnisConn")));
+                    Configuration.GetConnectionString("IgnisConn")
+                    ));
+
+            // services.AddDbContext<ApplicationContext>(options =>
+            //     options.UseSqlite(
+            //         Configuration.GetConnectionString("IgnisConn"), x => x.SuppressForeignKeyEnforcement()
+            //         ));
 
             services.AddMvc(config =>
             {

@@ -2,6 +2,8 @@
 @model IgnisMercado.Pages.Usuarios.IndexModel
 @using Microsoft.AspNetCore.Identity
 @using IgnisMercado.Areas.Identity.Data
+@using IgnisMercado.Models
+@using IgnisMercado.Models.ClienteViewModels
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
@@ -30,44 +32,42 @@
             @if (User.IsInRole("Administrador")) 
             {
                 <th>
-                    @Html.DisplayNameFor(model => model.ApplicationUser[0].Name)
+                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].Role)
                 </th>
                 <th>
-                    Nombre de Usuario
+                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ApplicationUser[0].Role)
+                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].UserName)
                 </th>
                 <th>
-                    Télefono
+                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].PhoneNumber)
                 </th>
             }
 
             @if (User.IsInRole("Cliente") || User.IsInRole("Técnico")) 
             {
                 <th>
-                    @Html.DisplayNameFor(model => model.ApplicationUser[0].Name)
+                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].Role)
                 </th>
                 <th>
-                    Nombre de Usuario
+                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ApplicationUser[0].Role)
+                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].UserName)
                 </th>
                 <th>
-                    Télefono
+                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].PhoneNumber)
                 </th>
             }
-
             <th></th>
         </tr>
     </thead>
 
     <tbody>
-@foreach (var item in Model.ApplicationUser) 
-{
+    @foreach (var item in Model.ClienteIdxData.Usuarios) 
+    {
         <tr>
-
             @if (User.IsInRole("Administrador")) 
             {
                 <td>
@@ -83,6 +83,7 @@
                     @Html.DisplayFor(modelItem => item.PhoneNumber)
                 </td>
                 <td>
+                    <a asp-page="./Index" asp-route-id="@item.Id">Seleccionar</a> | 
                     <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
                     <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> |
                     <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a>
@@ -110,13 +111,53 @@
                     @Html.DisplayFor(modelItem => item.PhoneNumber)
                 </td>
                 <td>
+                    <a asp-page="./Index" asp-route-id="@item.Id">Seleccionar</a> |
                     <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
                     <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
                 </td>
                 }
             }
-
         </tr>
-}
+    }
     </tbody>
 </table>
+
+@if (Model.ClienteIdxData.Proyectos != null)
+{
+
+<h3>Proyectos del Cliente</h3>
+
+<table class="table">
+    <tr>
+        <th></th>
+            <th>Título</th>
+            <th>Descripción</th>
+        </tr>
+
+    @foreach (var item in Model.ClienteIdxData.Proyectos)
+    {
+        string selectedRow = "";
+
+        if (item.ProyectoId == Model.ProyectoId)
+        {
+            selectedRow = "table-success";
+        }
+
+        <tr class="@selectedRow">
+
+        <td>
+            @Html.ActionLink("Select", "OnGetAsync",
+                        new { proyectoId = item.ProyectoId })
+        </td>
+
+        <td>
+            @item.Nombre
+        </td>
+
+        <td>
+            @item.Descripcion
+        </td>
+    </tr>
+    }
+</table>
+}

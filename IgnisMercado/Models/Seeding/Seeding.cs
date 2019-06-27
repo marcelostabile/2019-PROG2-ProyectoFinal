@@ -38,6 +38,13 @@ namespace IgnisMercado.Models.Seeding
                 // Seeding solicitudes.
                 SeedSolicitudes(context);
 
+                // Seeding relaciones.
+                SeedRClienteProyectos(context);
+
+                SeedRProyectoSolicitudes(context);
+
+                SeedRTecnicoRoles(context);
+
                 // Seeding roles.
                 SeedRol(context);
             }
@@ -188,7 +195,7 @@ namespace IgnisMercado.Models.Seeding
         /// <summary>
         /// Seeding RelacionClienteProyectos.
         /// </summary>
-        private static void RClienteProyectos(ApplicationContext context)
+        private static void SeedRClienteProyectos(ApplicationContext context)
         {
             if (context.RelacionClienteProyectos.Any()) 
             {
@@ -197,13 +204,13 @@ namespace IgnisMercado.Models.Seeding
 
             context.RelacionClienteProyectos.AddRange(
                 new RelacionClienteProyecto { ClienteId = "a2098bab-6c99-4128-b5b3-6034591b1e7e", ProyectoId = 1 },
-                new RelacionClienteProyecto { ClienteId = "a2098bab-6c99-4128-b5b3-6034591b1e7e", ProyectoId = 	2 },
+                new RelacionClienteProyecto { ClienteId = "a2098bab-6c99-4128-b5b3-6034591b1e7e", ProyectoId = 2 },
 
-                new RelacionClienteProyecto { ClienteId = "48ca5c77-f5bf-4d98-bb5d-a7f7390a8a78", ProyectoId = 	3 },
-                new RelacionClienteProyecto { ClienteId = "48ca5c77-f5bf-4d98-bb5d-a7f7390a8a78", ProyectoId = 	4 },
+                new RelacionClienteProyecto { ClienteId = "48ca5c77-f5bf-4d98-bb5d-a7f7390a8a78", ProyectoId = 3 },
+                new RelacionClienteProyecto { ClienteId = "48ca5c77-f5bf-4d98-bb5d-a7f7390a8a78", ProyectoId = 4 },
 
-                new RelacionClienteProyecto { ClienteId = "f2a27645-bd52-455b-b622-212c0b832794", ProyectoId = 	5 },
-                new RelacionClienteProyecto { ClienteId = "f2a27645-bd52-455b-b622-212c0b832794", ProyectoId = 	6 }
+                new RelacionClienteProyecto { ClienteId = "f2a27645-bd52-455b-b622-212c0b832794", ProyectoId = 5 },
+                new RelacionClienteProyecto { ClienteId = "f2a27645-bd52-455b-b622-212c0b832794", ProyectoId = 6 }
             );
 
             // guarda los cambios.
@@ -213,7 +220,7 @@ namespace IgnisMercado.Models.Seeding
         /// <summary>
         /// Seeding RelacionProyectoSolicitudes.
         /// </summary>
-        private static void RProyectoSolicitudes(ApplicationContext context)
+        private static void SeedRProyectoSolicitudes(ApplicationContext context)
         {
             if (context.RelacionProyectoSolicitudes.Any()) 
             {
@@ -238,7 +245,7 @@ namespace IgnisMercado.Models.Seeding
         /// <summary>
         /// Seeding RelacionTecnicoRoles.
         /// </summary>
-        private static void RTecnicoRoles(ApplicationContext context)
+        private static void SeedRTecnicoRoles(ApplicationContext context)
         {
             if (context.RelacionTecnicoRoles.Any()) 
             {
@@ -262,7 +269,7 @@ namespace IgnisMercado.Models.Seeding
             context.SaveChanges();
         }
 
-        /// <summary>
+        /// <summary>qq
         /// Seeding Costos.
         /// </summary>
         private static void SeedCostos(ApplicationContext context)
