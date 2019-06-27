@@ -1,9 +1,11 @@
 @page
 @model IgnisMercado.Pages.Usuarios.IndexModel
+
 @using Microsoft.AspNetCore.Identity
 @using IgnisMercado.Areas.Identity.Data
 @using IgnisMercado.Models
 @using IgnisMercado.Models.ClienteViewModels
+
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
@@ -60,14 +62,17 @@
                     Télefono
                 </th>
             }
+
             <th></th>
         </tr>
     </thead>
 
     <tbody>
+
     @foreach (var item in Model.ClienteIdxData.Usuarios) 
     {
         <tr>
+
             @if (User.IsInRole("Administrador")) 
             {
                 <td>
@@ -98,27 +103,29 @@
                 // Filtro los datos del usuario, solo ve sus datos, filtro por Id.
                 @if (um == item.Id)
                 {
-                <td>
-                    @Html.DisplayFor(modelItem => item.Role)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
-                <td>
-                    <a asp-page="./Index" asp-route-id="@item.Id">Seleccionar</a> |
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
-                </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        <a asp-page="./Index" asp-route-id="@item.Id">Seleccionar</a> |
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+                    </td>
                 }
             }
+
         </tr>
     }
+
     </tbody>
 </table>
 
@@ -161,6 +168,7 @@
             </td>
         </tr>
     }
+
 </table>
 }
 
@@ -173,13 +181,11 @@
 
 <table class="table">
     <tr>
-        <th></th>
-        <th>A</th>
-        <th>B</th>
-        <th>C</th>
-        <th>D</th>
-        <th>E</th>
-        <th>F</th>
+        <th>Rol Requerido</th>
+        <th>Nivel Experiencia</th>
+        <th>Modo De Contrato</th>
+        <th>Horas Contratadas</th>
+        <th>Costo de la Solicitud</th>
     </tr>
 
     @foreach (var item in Model.ClienteIdxData.Solicitudes)
@@ -191,17 +197,23 @@
             <td>
                 @item.NivelExperiencia
             </td>
-            <td>
-                @item.ModoDeContrato
-            </td>
+            
+            @if ((item.ModoDeContrato) == 1)
+            {
+                <td>Jornada</td>
+            }
+            else
+            {
+                <td>Hora</td>
+            }
+            
             <td>
                 @item.HorasContratadas
             </td>
             <td>
-                @item.costoSolicitud
+                @Html.Raw(String.Format("{0:C}", item.costoSolicitud))
             </td>
         </tr>
     }
 </table>
 }
-

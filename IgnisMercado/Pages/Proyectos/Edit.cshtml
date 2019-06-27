@@ -1,11 +1,19 @@
 @page
 @model IgnisMercado.Pages.Proyectos.EditModel
 
+@using Microsoft.AspNetCore.Identity
+@using IgnisMercado.Areas.Identity.Data
+@using IgnisMercado.Models
+@using IgnisMercado.Models.ClienteViewModels
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
 <h4>Proyecto</h4>
 <hr />
@@ -24,20 +32,25 @@
                 <input asp-for="Proyecto.Descripcion" class="form-control" />
                 <span asp-validation-for="Proyecto.Descripcion" class="text-danger"></span>
             </div>
+        
+        @if (User.IsInRole("Administrador")) 
+        {
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Proyecto.Status" /> @Html.DisplayNameFor(model => model.Proyecto.Status)
                 </label>
             </div>
+        }
+        
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">Volvar a la lista</a>
 </div>
 
 @section Scripts {

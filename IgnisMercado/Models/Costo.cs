@@ -30,6 +30,8 @@ namespace IgnisMercado.Models
 
         //cantidad de horas por jornada
         private int horaJornada;
+        [Range(1, 24)]
+        [Display(Name = "Cantidad de Horas por Jornada")]
         public int HoraJornada 
         {
             get => this.horaJornada;
@@ -38,6 +40,9 @@ namespace IgnisMercado.Models
         
         //costo basico
         private int costoHoraBasico;
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        [Display(Name = "Hora Adicional")]
         public int CostoHoraBasico 
         {
             get => this.costoHoraBasico;
@@ -46,6 +51,9 @@ namespace IgnisMercado.Models
 
         //costo avanzado
         private int costoHoraAvanzado;
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        [Display(Name = "Hora Adicional")]
         public int CostoHoraAvanzado 
         {
             get => this.costoHoraAvanzado;
@@ -54,6 +62,9 @@ namespace IgnisMercado.Models
 
         //primera hora
         private int primeraHoraBasico;
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        [Display(Name = "Primer Hora")]
         public int PrimeraHoraBasico 
         {
             get => this.primeraHoraBasico;
@@ -61,6 +72,9 @@ namespace IgnisMercado.Models
         }
 
         private int primeraHoraAvanzado;
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        [Display(Name = "Primer Hora")]
         public int PrimeraHoraAvanzado 
         {
             get => this.primeraHoraAvanzado;
@@ -68,6 +82,9 @@ namespace IgnisMercado.Models
         }
 
         private int jornadaBasico;
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        [Display(Name = "Jornada")]
         public int JornadaBasico
         {
             get => this.jornadaBasico;
@@ -75,6 +92,9 @@ namespace IgnisMercado.Models
         }
 
         private int jornadaAvanzado;
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        [Display(Name = "Jornada")]
         public int JornadaAvanzado
         {
             get => this.jornadaAvanzado;

@@ -41,6 +41,7 @@ namespace IgnisMercado.Models
         /// Presentación
         /// El técnico puede incluir un texto para aclarar cosas, describir su forma de trabajo o intéreses.
         /// </summary>
+        [StringLength(300)]
         [Display(Name = "Presentación")]
         private string Presentacion { get; set; }
 

@@ -21,11 +21,11 @@ namespace IgnisMercado.Pages.Usuarios
             _context = context;
         }
 
-        public string ClienteId { get; set; }
+        //public string ClienteId { get; set; }
 
         public int ProyectoId { get; set; }
 
-        public int SolicitudId { get; set; }
+        //public int SolicitudId { get; set; }
 
         public ClienteIndexData ClienteIdxData  { get; set; }
 
@@ -53,7 +53,9 @@ namespace IgnisMercado.Pages.Usuarios
             {
                 ClienteIdxData.Solicitudes = await _context.Solicitudes
                         //.Include(p => p.RelacionClienteProyecto.Where(r => r.ClienteId == id))
-                    .ToListAsync();
+                    .OrderBy(s => s.RolRequerido)
+                    .OrderByDescending(s => s.NivelExperiencia)
+                        .ToListAsync();
             };
 
         }

@@ -1,6 +1,13 @@
 @page
 @model IgnisMercado.Pages.Usuarios.EditModel
 
+@using IgnisMercado.Areas.Identity.Data
+@using IgnisMercado.Models
+@using IgnisMercado.Models.ClienteViewModels
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 @{
     ViewData["Title"] = "Editar";
 }
@@ -47,12 +54,15 @@
                 <span asp-validation-for="ApplicationUser.PhoneNumber" class="text-danger"></span>
             </div>
 
+        @if (User.IsInRole("Administrador")) 
+        {
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="ApplicationUser.Status" /> @Html.DisplayNameFor(model => model.ApplicationUser.Status)
                 </label>
             </div>
-
+        }
+        
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>

@@ -44,6 +44,9 @@ namespace IgnisMercado.Models
        public int ModoDeContrato { get; set; }
 
         /// Es el rol que el cliente necesita.
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+        [Required]
+        [StringLength(45)]
         [Display(Name = "Rol Requerido")]
         public string RolRequerido { get; set; }
 
@@ -57,6 +60,7 @@ namespace IgnisMercado.Models
 
         /// Observaciones de la solicitud.
         [Display(Name = "Observaciones")]
+        [StringLength(300)]
         public string Observaciones { get; set; }
 
         /// <summary>
@@ -66,8 +70,10 @@ namespace IgnisMercado.Models
         public bool Status { get; set; }
 
         /// Costo de la solicitud.
-        [Display(Name = "Costo Solicitud")]
         private int CostoSolicitud { get; set; }
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        [Display(Name = "Costo Solicitud")]
         public int costoSolicitud 
         {
             get => this.CostoSolicitud;
@@ -113,7 +119,7 @@ namespace IgnisMercado.Models
 
             if (this.Status == true) 
             {
-                this.CostoSolicitud = Costo.CalcularCostoSolicitud(this.ModoDeContrato, this.HorasContratadas, this.NivelExperiencia);
+                this.costoSolicitud = Costo.CalcularCostoSolicitud(this.ModoDeContrato, this.HorasContratadas, this.NivelExperiencia);
             }
         }
 

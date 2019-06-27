@@ -30,6 +30,7 @@ namespace IgnisMercado.Models
         public string Nivel { get; set; }
 
         /// Descripción del rol.
+        [StringLength(300)]
         [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
 

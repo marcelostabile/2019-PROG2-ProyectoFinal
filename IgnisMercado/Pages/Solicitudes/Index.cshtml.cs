@@ -25,7 +25,7 @@ namespace IgnisMercado.Pages.Solicitudes
             Solicitud = await _context.Solicitudes
                         .OrderBy(s => s.RolRequerido)
                         .OrderByDescending(s => s.NivelExperiencia)
-                        .ToListAsync();
+                            .ToListAsync();
         }
     }
 }
