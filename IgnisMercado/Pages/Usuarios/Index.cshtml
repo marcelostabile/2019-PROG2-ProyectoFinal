@@ -38,10 +38,10 @@
                     @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].UserName)
+                    Usuario
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].PhoneNumber)
+                    Télefono
                 </th>
             }
 
@@ -54,10 +54,10 @@
                     @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].UserName)
+                    Usuario
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].PhoneNumber)
+                    Télefono
                 </th>
             }
             <th></th>
@@ -122,20 +122,22 @@
     </tbody>
 </table>
 
+<!-- PROYECTOS -->
+
 @if (Model.ClienteIdxData.Proyectos != null)
 {
 
-<h3>Proyectos del Cliente</h3>
+<h3>Proyectos</h3>
 
 <table class="table">
     <tr>
         <th></th>
-            <th>Título</th>
-            <th>Descripción</th>
-        </tr>
+        <th>Título</th>
+        <th>Descripción</th>
+    </tr>
 
     @foreach (var item in Model.ClienteIdxData.Proyectos)
-    {
+    { 
         string selectedRow = "";
 
         if (item.ProyectoId == Model.ProyectoId)
@@ -145,19 +147,61 @@
 
         <tr class="@selectedRow">
 
-        <td>
-            @Html.ActionLink("Select", "OnGetAsync",
-                        new { proyectoId = item.ProyectoId })
-        </td>
+            <td>
+                @Html.ActionLink("Seleccionar", "OnGetAsync", 
+                            new { id = SignInManager.IsSignedIn(User), item.ProyectoId } )
+            </td>
 
-        <td>
-            @item.Nombre
-        </td>
+            <td>
+                @item.Nombre
+            </td>
 
-        <td>
-            @item.Descripcion
-        </td>
-    </tr>
+            <td>
+                @item.Descripcion
+            </td>
+        </tr>
     }
 </table>
 }
+
+<!-- SOLICITUDES -->
+
+@if (Model.ClienteIdxData.Solicitudes != null)
+{
+
+<h3>Solicitudes</h3>
+
+<table class="table">
+    <tr>
+        <th></th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>F</th>
+    </tr>
+
+    @foreach (var item in Model.ClienteIdxData.Solicitudes)
+    { 
+        <tr>
+            <td>
+                @item.RolRequerido
+            </td>
+            <td>
+                @item.NivelExperiencia
+            </td>
+            <td>
+                @item.ModoDeContrato
+            </td>
+            <td>
+                @item.HorasContratadas
+            </td>
+            <td>
+                @item.costoSolicitud
+            </td>
+        </tr>
+    }
+</table>
+}
+

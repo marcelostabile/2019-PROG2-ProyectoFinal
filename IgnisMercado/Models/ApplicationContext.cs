@@ -70,18 +70,6 @@ namespace IgnisMercado.Models
                 .WithMany(s => s.RelacionTecnicoRoles)
                 .HasForeignKey(tr => tr.RolId);
 
-            // builder.Entity<Proyecto>()
-            //     .HasOne(p => p.Cliente)
-            //     .WithMany(c => c.ListaProyectos);
-
-            // builder.Entity<Solicitud>()
-            //     .HasOne(s => s.Proyecto)
-            //     .WithMany(p => p.ListaSolicitudes);
-
-            // builder.Entity<Solicitud>()
-            //     .HasOne(s => s.Tecnico)
-            //     .WithMany(t => t.ListaSolicitudes);
-
         }
 
         public DbSet<IgnisMercado.Models.RelacionClienteProyecto> RelacionClienteProyectos { get; set; }

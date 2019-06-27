@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 using IgnisMercado.Models;
+using IgnisMercado.Areas.Identity.Data;
 using IgnisMercado.Models.ClienteViewModels;
 
 namespace IgnisMercado.Pages.Usuarios
@@ -23,17 +25,11 @@ namespace IgnisMercado.Pages.Usuarios
 
         public int ProyectoId { get; set; }
 
+        public int SolicitudId { get; set; }
+
         public ClienteIndexData ClienteIdxData  { get; set; }
 
-        //private ApplicationUser Usuario { get; set; }
-
-        //public IList<ApplicationUser> Usuarios { get;set; }
-
-        public IList<Proyecto> Proyectos { get; set; }
-
-        public IList<Proyecto> Proyectos2 { get; set; }
-
-        public async Task OnGetAsync(string id)
+        public async Task OnGetAsync(string id, int? proyectoId)
         { 
             ClienteIdxData = new ClienteIndexData();
 
@@ -43,13 +39,21 @@ namespace IgnisMercado.Pages.Usuarios
                 .OrderBy(u => u.Role)
                     .ToListAsync();
 
-            // Seleccinar un usuario.
+            // Seleccionar un usuario, mostrar proyectos.
             if (id != null)
             {
                 ClienteIdxData.Proyectos = await _context.Proyectos
+                //.Include(p => p.RelacionClienteProyecto.Where(r => r.ClienteId == id))
+                    .OrderBy(p => p.Nombre)
+                        .ToListAsync();
+            };
+
+            // Seleccionar un proyecto, mostrar solicitudes.
+            if (proyectoId != null)
+            {
+                ClienteIdxData.Solicitudes = await _context.Solicitudes
                         //.Include(p => p.RelacionClienteProyecto.Where(r => r.ClienteId == id))
-                            .OrderBy(p => p.Nombre)
-                                .ToListAsync();
+                    .ToListAsync();
             };
 
         }
