@@ -62,8 +62,7 @@
         {
             <tr>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a>
                 </td>
             </tr>
         }
@@ -119,8 +118,7 @@
             {
                 <tr>
                     <td>
-                        <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                        <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a>
                     </td>
                 </tr>
             }
@@ -129,40 +127,34 @@
 </table>
 
 <table class="table1">
+
     <thead>
-        <table>
-            <br>
-            <br>
+        <br>
+        <br>
 
-            <h4>Cantidad de Horas por Jornada</h4>
-
-        </table>
+        <h5>Cantidad de Horas por Jornada</h5>
     </thead>
-    
-    <table>
-    <hr/>
 
-        <tbody>
-            @foreach (var item in Model.Costo) 
+    <tbody>
+    <hr>
+        @foreach (var item in Model.Costo) 
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoraJornada)
+                </td>
+            </tr>
+
+            @if (User.IsInRole("Administrador")) 
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.HoraJornada)
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a>
                     </td>
                 </tr>
-
-                @if (User.IsInRole("Administrador")) 
-                {
-                    <tr>
-                        <td>
-                            <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                            <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
-                        </td>
-                    </tr>
-                }
             }
-        </tbody>
-        <br>
+        }
+    </tbody>
+    <br>
 
-    </table>
 </table>

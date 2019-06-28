@@ -59,12 +59,12 @@ namespace IgnisMercado.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     HoraJornada = table.Column<int>(nullable: false),
-                    CostoHoraBasico = table.Column<int>(nullable: false),
-                    CostoHoraAvanzado = table.Column<int>(nullable: false),
-                    PrimeraHoraBasico = table.Column<int>(nullable: false),
-                    PrimeraHoraAvanzado = table.Column<int>(nullable: false),
-                    JornadaBasico = table.Column<int>(nullable: false),
-                    JornadaAvanzado = table.Column<int>(nullable: false)
+                    CostoHoraBasico = table.Column<int>(type: "integer(18)", nullable: false),
+                    CostoHoraAvanzado = table.Column<int>(type: "decimal(18, 2)", nullable: false),
+                    PrimeraHoraBasico = table.Column<int>(type: "decimal(18, 2)", nullable: false),
+                    PrimeraHoraAvanzado = table.Column<int>(type: "decimal(18, 2)", nullable: false),
+                    JornadaBasico = table.Column<int>(type: "decimal(18, 2)", nullable: false),
+                    JornadaAvanzado = table.Column<int>(type: "decimal(18, 2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -93,7 +93,7 @@ namespace IgnisMercado.Migrations
                     RolId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Nivel = table.Column<string>(nullable: false),
-                    Descripcion = table.Column<string>(nullable: true)
+                    Descripcion = table.Column<string>(maxLength: 300, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -107,12 +107,12 @@ namespace IgnisMercado.Migrations
                     SolicitudId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ModoDeContrato = table.Column<int>(nullable: false),
-                    RolRequerido = table.Column<string>(nullable: true),
+                    RolRequerido = table.Column<string>(maxLength: 45, nullable: false),
                     HorasContratadas = table.Column<int>(nullable: false),
                     NivelExperiencia = table.Column<string>(nullable: true),
-                    Observaciones = table.Column<string>(nullable: true),
+                    Observaciones = table.Column<string>(maxLength: 300, nullable: true),
                     Status = table.Column<bool>(nullable: false),
-                    costoSolicitud = table.Column<int>(nullable: false)
+                    costoSolicitud = table.Column<int>(type: "decimal(18, 2)", nullable: false)
                 },
                 constraints: table =>
                 {

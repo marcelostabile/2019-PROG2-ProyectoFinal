@@ -144,38 +144,38 @@ namespace IgnisMercado.Models.Seeding
             context.Proyectos.AddRange(
                 new Proyecto 
                 { 
-                    Nombre = "Proyecto 1", 
-                    Descripcion = "Descripción 1", 
+                    Nombre = "Ataque de pánico", 
+                    Descripcion = "Cortometraje ciencia ficción.", 
                     Status = true
                 },
                 new Proyecto 
                 {
-                    Nombre = "Proyecto 2",
-                    Descripcion = "Descripción 2",
+                    Nombre = "El vendedor de humo",
+                    Descripcion = "Cortometraje animación.",
                     Status = true
                 },
                 new Proyecto 
                 { 
-                    Nombre = "Corto - Hulk Aplasta!!!", 
-                    Descripcion = "El héroe verde regresa... más enojado que nunca!",
+                    Nombre = "It´s a bird thing", 
+                    Descripcion = "Cortometraje animación.",
                     Status = true
                 },
                 new Proyecto 
                 {
-                    Nombre = "Docu-mental",
-                    Descripcion = "Investigación.",
+                    Nombre = "La cabeza me da vueltas",
+                    Descripcion = "	Cortometraje documental.",
                     Status = true
                 },
                 new Proyecto 
                 {
-                    Nombre = "Documental Parque de Juegos",
-                    Descripcion = "Documental sobre el Parque Rodó",
+                    Nombre = "La luna",
+                    Descripcion = "Cortometraje aventura.",
                     Status = true
                 },
                 new Proyecto 
                 {
-                    Nombre = "Video Musical",
-                    Descripcion = "Video musical de banda universitaria.",
+                    Nombre = "Mi peluquera ideal",
+                    Descripcion = "Cortometraje comedia.",
                     Status = true
                 }
             );

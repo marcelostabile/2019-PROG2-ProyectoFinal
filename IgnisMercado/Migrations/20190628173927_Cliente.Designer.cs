@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IgnisMercado.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190626144225_Costo")]
-    partial class Costo
+    [Migration("20190628173927_Cliente")]
+    partial class Cliente
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -89,19 +89,25 @@ namespace IgnisMercado.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CostoHoraAvanzado");
+                    b.Property<int>("CostoHoraAvanzado")
+                        .HasColumnType("decimal(18, 2)");
 
-                    b.Property<int>("CostoHoraBasico");
+                    b.Property<int>("CostoHoraBasico")
+                        .HasColumnType("integer(18)");
 
                     b.Property<int>("HoraJornada");
 
-                    b.Property<int>("JornadaAvanzado");
+                    b.Property<int>("JornadaAvanzado")
+                        .HasColumnType("decimal(18, 2)");
 
-                    b.Property<int>("JornadaBasico");
+                    b.Property<int>("JornadaBasico")
+                        .HasColumnType("decimal(18, 2)");
 
-                    b.Property<int>("PrimeraHoraAvanzado");
+                    b.Property<int>("PrimeraHoraAvanzado")
+                        .HasColumnType("decimal(18, 2)");
 
-                    b.Property<int>("PrimeraHoraBasico");
+                    b.Property<int>("PrimeraHoraBasico")
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 
@@ -170,7 +176,8 @@ namespace IgnisMercado.Migrations
                     b.Property<int>("RolId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Descripcion");
+                    b.Property<string>("Descripcion")
+                        .HasMaxLength(300);
 
                     b.Property<string>("Nivel")
                         .IsRequired();
@@ -191,13 +198,17 @@ namespace IgnisMercado.Migrations
 
                     b.Property<string>("NivelExperiencia");
 
-                    b.Property<string>("Observaciones");
+                    b.Property<string>("Observaciones")
+                        .HasMaxLength(300);
 
-                    b.Property<string>("RolRequerido");
+                    b.Property<string>("RolRequerido")
+                        .IsRequired()
+                        .HasMaxLength(45);
 
                     b.Property<bool>("Status");
 
-                    b.Property<int>("costoSolicitud");
+                    b.Property<int>("costoSolicitud")
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("SolicitudId");
 

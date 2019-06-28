@@ -3,8 +3,6 @@
 
 @using Microsoft.AspNetCore.Identity
 @using IgnisMercado.Areas.Identity.Data
-@using IgnisMercado.Models
-@using IgnisMercado.Models.ClienteViewModels
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -138,9 +136,9 @@
 
 <table class="table">
     <tr>
-        <th></th>
         <th>Título</th>
         <th>Descripción</th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model.ClienteIdxData.Proyectos)
@@ -153,18 +151,17 @@
         }
 
         <tr class="@selectedRow">
-
-            <td>
-                @Html.ActionLink("Seleccionar", "OnGetAsync", 
-                            new { id = SignInManager.IsSignedIn(User), item.ProyectoId } )
-            </td>
-
             <td>
                 @item.Nombre
             </td>
 
             <td>
                 @item.Descripcion
+            </td>
+
+            <td>
+                @Html.ActionLink("Seleccionar", "OnGetAsync", 
+                            new { id = SignInManager.IsSignedIn(User), item.ProyectoId } )
             </td>
         </tr>
     }
