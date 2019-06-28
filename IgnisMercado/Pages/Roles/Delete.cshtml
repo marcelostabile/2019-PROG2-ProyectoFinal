@@ -2,12 +2,12 @@
 @model IgnisMercado.Pages.Roles.DeleteModel
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar";
 }
 
-<h1>Delete</h1>
+<h1>Eliminar</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Está seguro que desea eliminar definitivamente este rol?</h3>
 <div>
     <h4>Rol</h4>
     <hr />
@@ -28,7 +28,7 @@
     
     <form method="post">
         <input type="hidden" asp-for="Rol.RolId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-page="./Index">Volver a la lista</a>
     </form>
 </div>

@@ -9,14 +9,14 @@
 <hr>   
 
 <br>
-<h5>Precios Nivel Básico</h5>
+<h4>Precios para Nivel Básico</h4>
 
 <table class="table2">
 <hr>            
     <thead>
         <tr>
             <th>
-                Primer Hora |  
+                Primera Hora |  
             </th>
             <th>
                 Hora Adicional | 
@@ -37,10 +37,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CostoHoraBasico)
             </td>
-
             <td>
                 @Html.DisplayFor(modelItem => item.JornadaBasico)
             </td>
+            <td></td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
@@ -52,14 +52,14 @@
 
 <br>
 <br>
-<h5>Precios Nivel Avanzado</h5>
+<h4>Precios para Nivel Avanzado</h4>
 
 <table class="table3">
 <hr>
     <thead>
         <tr>
             <th>
-                Primer Hora |  
+                Primera Hora |  
             </th>
             <th>
                 Hora Adicional | 
@@ -83,6 +83,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.JornadaAvanzado)
             </td>
+            <td></td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
@@ -97,10 +98,11 @@
     <thead>
         <tr>
             <th>
-                <h5>Cantidad de Horas por Jornada</h5>
+                <h4>Cantidad de Horas por Jornada</h4>
             </th>
         </tr>
-        <th></th>
+            <th> </th>
+            <th> </th>
     </thead>
     <tbody>
     @foreach (var item in Model.Costo) 

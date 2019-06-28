@@ -2,10 +2,10 @@
 @model IgnisMercado.Pages.Roles.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
 <h4>Rol</h4>
 <hr />
@@ -15,7 +15,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Rol.RolId" />
             <div class="form-group">
-                <label asp-for="Rol.Nivel" class="control-label"></label>
+                <label asp-for="Rol.Nivel" class="control-label">Nivel de Experiencia</label>
                 <input asp-for="Rol.Nivel" class="form-control" />
                 <span asp-validation-for="Rol.Nivel" class="text-danger"></span>
             </div>
@@ -25,14 +25,14 @@
                 <span asp-validation-for="Rol.Descripcion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">Volver a la lista</a>
 </div>
 
 @section Scripts {

@@ -41,7 +41,7 @@ namespace IgnisMercado.Models
         //costo basico
         private int costoHoraBasico;
         [DataType(DataType.Currency)]
-        [Column(TypeName = "decimal(18, 2)")]
+        [Column(TypeName = "integer(18)")]
         [Display(Name = "Hora Adicional")]
         public int CostoHoraBasico 
         {

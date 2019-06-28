@@ -10,14 +10,14 @@
 {
     ViewData["Title"] = "Proyectos";
 
-<h1>Proyectos</h1>
+    <h1>Proyectos</h1>
 }
 
 @if (User.IsInRole("Cliente") || User.IsInRole("Técnico")) 
 {
     ViewData["Title"] = "Mis Proyectos";
 
-<h1>Mis Proyectos</h1>
+    <h1>Mis Proyectos</h1>
 }
 
 @if (User.IsInRole("Administrador") || User.IsInRole("Cliente")) 
@@ -34,20 +34,20 @@
         @if (User.IsInRole("Administrador")) 
         {
             <th>
-                @Html.DisplayNameFor(model => model.Proyecto[0].Nombre)
+                @Html.DisplayNameFor(model => model.ClienteIdxData.Proyectos[0].Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Proyecto[0].Descripcion)
+                @Html.DisplayNameFor(model => model.ClienteIdxData.Proyectos[0].Descripcion)
             </th>
         }
 
         @if (User.IsInRole("Cliente") || User.IsInRole("Técnico")) 
         {
             <th>
-                @Html.DisplayNameFor(model => model.Proyecto[0].Nombre)
+                @Html.DisplayNameFor(model => model.ClienteIdxData.Proyectos[0].Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Proyecto[0].Descripcion)
+                @Html.DisplayNameFor(model => model.ClienteIdxData.Proyectos[0].Descripcion)
             </th>
         }
             <th></th>
@@ -55,7 +55,8 @@
     </thead>
     
     <tbody>
-@foreach (var item in Model.Proyecto) {
+    @foreach (var item in Model.ClienteIdxData.Proyectos) 
+    {
         <tr>
 
         @if (User.IsInRole("Administrador")) 
@@ -67,8 +68,9 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ProyectoId">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.ProyectoId">Detalles</a> |
+                <a asp-page="./Index" asp-route-id="@item.ProyectoId">Seleccionar</a> | 
+                <a asp-page="./Edit" asp-route-id="@item.ProyectoId">Editar</a> | 
+                <a asp-page="./Details" asp-route-id="@item.ProyectoId">Detalles</a> | 
                 <a asp-page="./Delete" asp-route-id="@item.ProyectoId">Borrar</a>
             </td>
         }
@@ -82,11 +84,58 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
+                <a asp-page="./Index" asp-route-id="@item.ProyectoId">Seleccionar</a> | 
                 <a asp-page="./Edit" asp-route-id="@item.ProyectoId">Editar</a> |
                 <a asp-page="./Details" asp-route-id="@item.ProyectoId">Detalles</a>
             </td>
         }
         </tr>
-}
+    }
     </tbody>
 </table>
+
+<!-- SOLICITUDES -->
+
+@if (Model.ClienteIdxData.Solicitudes != null)
+{
+
+<h3>Solicitudes</h3>
+
+<table class="table">
+    <tr>
+        <th>Rol Requerido</th>
+        <th>Nivel Experiencia</th>
+        <th>Modo De Contrato</th>
+        <th>Horas Contratadas</th>
+        <th>Costo de la Solicitud</th>
+    </tr>
+
+    @foreach (var item in Model.ClienteIdxData.Solicitudes)
+    { 
+        <tr>
+            <td>
+                @item.RolRequerido
+            </td>
+            <td>
+                @item.NivelExperiencia
+            </td>
+            
+            @if ((item.ModoDeContrato) == 1)
+            {
+                <td>Jornada</td>
+            }
+            else
+            {
+                <td>Hora</td>
+            }
+            
+            <td>
+                @item.HorasContratadas
+            </td>
+            <td>
+                @Html.Raw(String.Format("{0:C}", item.costoSolicitud))
+            </td>
+        </tr>
+    }
+</table>
+}
