@@ -1,32 +1,44 @@
 @page
 @model IgnisMercado.Pages.Costos.IndexModel
 
+@using IgnisMercado.Areas.Identity.Data
+@using IgnisMercado.Models
+@using IgnisMercado.Models.ClienteViewModels
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 @{
     ViewData["Title"] = "Lista de Precios";
 }
 
 <h1>Lista de Precios</h1>
 <hr>   
-
 <br>
+
 <h4>Precios para Nivel Básico</h4>
 
 <table class="table2">
 <hr>            
+
     <thead>
         <tr>
             <th>
                 Primera Hora |  
             </th>
+
             <th>
                 Hora Adicional | 
             </th>
+
             <th>
                 Jornada
             </th>
+
             <th></th>
         </tr>
     </thead>
+
     <tbody>
     @foreach (var item in Model.Costo) 
     {
@@ -34,89 +46,123 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PrimeraHoraBasico)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.CostoHoraBasico)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.JornadaBasico)
             </td>
+
             <td></td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
-            </td>
         </tr>
+
+        @if (User.IsInRole("Administrador")) 
+        {
+            <tr>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+                </td>
+            </tr>
+        }
     }
     </tbody>
 </table>
+<br>
+<br>
 
-<br>
-<br>
 <h4>Precios para Nivel Avanzado</h4>
 
 <table class="table3">
 <hr>
+
     <thead>
         <tr>
             <th>
                 Primera Hora |  
             </th>
+
             <th>
                 Hora Adicional | 
             </th>
+
             <th>
                 Jornada
             </th>
+
             <th></th>
         </tr>
     </thead>
+
     <tbody>
-    @foreach (var item in Model.Costo) 
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrimeraHoraAvanzado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CostoHoraAvanzado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.JornadaAvanzado)
-            </td>
-            <td></td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model.Costo) 
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrimeraHoraAvanzado)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostoHoraAvanzado)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.JornadaAvanzado)
+                </td>
+
+                <td></td>
+            </tr>
+
+            @if (User.IsInRole("Administrador")) 
+            {
+                <tr>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+                    </td>
+                </tr>
+            }
+        }
     </tbody>
 </table>
 
 <table class="table1">
-<hr>
     <thead>
-        <tr>
-            <th>
-                <h4>Cantidad de Horas por Jornada</h4>
-            </th>
-        </tr>
-            <th> </th>
-            <th> </th>
+        <table>
+            <br>
+            <br>
+
+            <h4>Cantidad de Horas por Jornada</h4>
+
+        </table>
     </thead>
-    <tbody>
-    @foreach (var item in Model.Costo) 
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoraJornada)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-<br>
+    
+    <table>
+    <hr/>
+
+        <tbody>
+            @foreach (var item in Model.Costo) 
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoraJornada)
+                    </td>
+                </tr>
+
+                @if (User.IsInRole("Administrador")) 
+                {
+                    <tr>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                            <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <br>
+
+    </table>
 </table>

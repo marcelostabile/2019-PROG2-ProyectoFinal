@@ -50,6 +50,16 @@ namespace IgnisMercado.Pages.Solicitudes
             try
             {
                 await _context.SaveChangesAsync();
+
+                // Se actualiza el costo en todas las solicitudes activas.
+                foreach (Solicitud sol in _context.Solicitudes)
+                {
+                    sol.ActualizarCostoSolicitudActiva();
+                }
+
+                // Se guarda la actualizacion de precios en las solicitudes.
+                await _context.SaveChangesAsync();
+
             }
             catch (DbUpdateConcurrencyException)
             {
