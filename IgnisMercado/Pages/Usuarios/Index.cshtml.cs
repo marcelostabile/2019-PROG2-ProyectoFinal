@@ -25,41 +25,64 @@ namespace IgnisMercado.Pages.Usuarios
             _userManager = userManager;
         }
 
-        public int ProyectoId { get; set; }
+        public string ClienteId { get; set; }
 
-        public ClienteIndexData ClienteIdxData  { get; set; }
+        public int? ProyectoId { get; set; }
 
-        
+        public ClienteIndexData ClienteIdxData = new ClienteIndexData();
 
-        public async Task OnGetAsync(string id, int? proyectoId)
+        public async Task OnGetAsync(string id, int proyId)
         { 
-            ClienteIdxData = new ClienteIndexData();
-
-            // Mostrar los usuarios.
-            ClienteIdxData.Usuarios = await _context.Users
-                .OrderBy(u => u.Name)
-                .OrderBy(u => u.Role)
-                    .ToListAsync();
-
-            // Seleccionar un usuario, mostrar proyectos.
-            if (id != null)
+            
+            if (id == null)
             {
-                ClienteIdxData.Proyectos = await _context.Proyectos
-                //.Include(p => p.RelacionClienteProyecto.Where(r => r.ClienteId == id))
-                    .OrderBy(p => p.Nombre)
-                        .ToListAsync();
-            };
-
-            // Seleccionar un proyecto, mostrar solicitudes.
-            if (proyectoId != null)
+                // Mostramos en pantalla la lista de todos los usuarios.
+                ClienteIdxData.Usuarios = await _context.Users
+                    .Include(u => u.RelacionClienteProyecto)
+                        .ThenInclude(rcp => rcp.Proyecto)
+                            .OrderBy(u => u.Name)
+                            .OrderBy(u => u.Role)
+                            .AsNoTracking()
+                            .ToListAsync();
+            }
+            else 
             {
-                ClienteIdxData.Solicitudes = await _context.Solicitudes
-                        //.Include(p => p.RelacionClienteProyecto.Where(r => r.ClienteId == id))
-                    .OrderBy(s => s.RolRequerido)
-                    .OrderByDescending(s => s.NivelExperiencia)
-                        .ToListAsync();
-            };
+                // El usuario selecciona en pantalla a un usuario (id != null).
+                ClienteId = id;
 
+                // Mostramos en pantalla solo el usuario seleccionado.
+                // Decidimos redefinir aquí el viewmodel Usuarios mediante una condición where
+                // para evitar agregar en la vista parte de la lógica de filtrado.
+                // Toda la lógica de seleccionar el usuario queda en el controlador.
+                ClienteIdxData.Usuarios = await _context.Users
+                    .Where(u => u.Id == id)
+                    .Include(u => u.RelacionClienteProyecto)
+                        .ThenInclude(rcp => rcp.Proyecto)
+                            .ThenInclude(p => p.RelacionProyectoSolicitud)  
+                                .ThenInclude(rps => rps.Solicitud)
+                                    .AsNoTracking()
+                                    .ToListAsync();
+
+                ApplicationUser usuario = ClienteIdxData.Usuarios
+                                            .Where(u => u.Id == id).Single();
+
+                ClienteIdxData.Proyectos = usuario.RelacionClienteProyecto 
+                                            .Select(r => r.Proyecto).ToList();
+
+                // Solicitudes.
+                if (proyId != 0) 
+                { 
+                    // El usuario selecciona un proyecto del cliente.
+                    ProyectoId = proyId;
+
+                    Proyecto proyecto = ClienteIdxData.Proyectos
+                                            .Where(p => p.ProyectoId == proyId).Single();
+
+                    ClienteIdxData.Solicitudes = proyecto.RelacionProyectoSolicitud
+                                                    .Select(rps => rps.Solicitud).ToList();
+
+                };
+            };
         }
     }
 }

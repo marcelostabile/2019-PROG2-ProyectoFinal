@@ -3,7 +3,8 @@
 
 @using Microsoft.AspNetCore.Identity
 @using IgnisMercado.Areas.Identity.Data
-@using IgnisMercado.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
 @if (User.IsInRole("Administrador"))
@@ -55,42 +56,59 @@
     </thead>
     
     <tbody>
-    @foreach (var item in Model.ClienteIdxData.Proyectos) 
-    {
-        <tr>
+        <tr>    
+            @foreach (var item in Model.ClienteIdxData.Proyectos) 
+            {
+                @if (User.IsInRole("Administrador")) 
+                { 
+                    string selectedRow = "";
 
-        @if (User.IsInRole("Administrador")) 
-        {
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                <a asp-page="./Index" asp-route-id="@item.ProyectoId">Seleccionar</a> | 
-                <a asp-page="./Edit" asp-route-id="@item.ProyectoId">Editar</a> | 
-                <a asp-page="./Details" asp-route-id="@item.ProyectoId">Detalles</a> | 
-                <a asp-page="./Delete" asp-route-id="@item.ProyectoId">Borrar</a>
-            </td>
-        }
+                    if (item.ProyectoId == Model.ProyectoId)
+                    {
+                        selectedRow = "table-success";
+                    }
 
-        @if (User.IsInRole("Cliente") || User.IsInRole("Técnico")) 
-        {
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                <a asp-page="./Index" asp-route-id="@item.ProyectoId">Seleccionar</a> | 
-                <a asp-page="./Edit" asp-route-id="@item.ProyectoId">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.ProyectoId">Detalles</a>
-            </td>
-        }
+                    <tr class="@selectedRow">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descripcion)
+                        </td>
+                        <td>
+                            <a asp-page="./Index" asp-route-id="@item.ProyectoId">Seleccionar</a> | 
+                            <a asp-page="./Edit" asp-route-id="@item.ProyectoId">Editar</a> | 
+                            <a asp-page="./Details" asp-route-id="@item.ProyectoId">Detalles</a> | 
+                            <a asp-page="./Delete" asp-route-id="@item.ProyectoId">Borrar</a>
+                        </td>
+                    </tr>
+                }
+
+                @if (User.IsInRole("Cliente") || User.IsInRole("Técnico")) 
+                {
+                    string selectedRow = "";
+
+                    if (item.ProyectoId == Model.ProyectoId)
+                    {
+                        selectedRow = "table-success";
+                    }
+
+                    <tr class="@selectedRow">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descripcion)
+                        </td>
+                        <td>
+                            <a asp-page="./Index" asp-route-id="@item.ProyectoId">Seleccionar</a> | 
+                            <a asp-page="./Edit" asp-route-id="@item.ProyectoId">Editar</a> |
+                            <a asp-page="./Details" asp-route-id="@item.ProyectoId">Detalles</a>
+                        </td>
+                    </tr>
+                }
+            }
         </tr>
-    }
     </tbody>
 </table>
 
@@ -105,7 +123,7 @@
     <tr>
         <th>Rol Requerido</th>
         <th>Nivel Experiencia</th>
-        <th>Modo De Contrato</th>
+        <th>Modo de Contrato</th>
         <th>Horas Contratadas</th>
         <th>Costo de la Solicitud</th>
     </tr>

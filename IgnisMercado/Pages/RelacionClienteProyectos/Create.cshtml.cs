@@ -20,7 +20,7 @@ namespace IgnisMercado.Pages.RelacionClienteProyectos
 
         public IActionResult OnGet()
         {
-        ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Id");
+        ViewData["ClienteId"] = new SelectList(_context.Users, "Id", "Id");
         ViewData["ProyectoId"] = new SelectList(_context.Proyectos, "ProyectoId", "Descripcion");
             return Page();
         }

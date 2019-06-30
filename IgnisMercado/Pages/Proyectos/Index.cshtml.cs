@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -16,42 +18,50 @@ namespace IgnisMercado.Pages.Proyectos
     {
         private readonly IgnisMercado.Models.ApplicationContext _context;
 
-        public IndexModel(IgnisMercado.Models.ApplicationContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public IndexModel(IgnisMercado.Models.ApplicationContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+
+            _userManager = userManager;
         }
 
-        public ClienteIndexData ClienteIdxData  { get; set; }
+        public int? ProyectoId { get; set; }
 
-        //public IList<Cliente> Cliente { get;set; }
+        public ClienteIndexData ClienteIdxData = new ClienteIndexData();
 
-        public async Task OnGetAsync(string id)
+        public async Task OnGetAsync(int? id)
         {
-            ClienteIdxData = new ClienteIndexData();
+            // Mostramos en pantalla la lista de todos los proyectos.
+            ClienteIdxData.Proyectos = await _context.Proyectos 
+                .Include(p=>p.RelacionProyectoSolicitud)
+                    .ThenInclude(r=>r.Solicitud)
+                        .OrderBy(p => p.Nombre)
+                            .AsNoTracking()
+                            .ToListAsync();
 
-            // Seleccionar un usuario, mostrar proyectos.
-            ClienteIdxData.Proyectos = await _context.Proyectos
-                .OrderBy(p => p.Nombre)
-                    .ToListAsync();
+                // Solicitudes.
+                if (id != null) 
+                { 
+                    // El usuario selecciona un proyecto del cliente.
+                    ProyectoId = id;
 
-            // Seleccionar un proyecto, mostrar solicitudes.
-            if (id != null)
-            {
-                ClienteIdxData.Solicitudes = await _context.Solicitudes
-                        //.Include(p => p.RelacionClienteProyecto.Where(r => r.ClienteId == id))
-                    .OrderBy(s => s.RolRequerido)
-                    .OrderByDescending(s => s.NivelExperiencia)
-                        .ToListAsync();
-            };
+                    ClienteIdxData.Proyectos = await _context.Proyectos 
+                        .Where(p=>p.ProyectoId == id)
+                        .Include(p=>p.RelacionProyectoSolicitud)
+                            .ThenInclude(r=>r.Solicitud)
+                                .OrderBy(p => p.Nombre)
+                                    .AsNoTracking()
+                                    .ToListAsync();
 
-            // ClienteIdxData.Usuarios = await _context.Users
-            //     .OrderBy(u => u.Name)
-            //     .OrderBy(u => u.Role)
-            //         .ToListAsync();
+                    Proyecto proyecto = ClienteIdxData.Proyectos
+                                            .Where(p => p.ProyectoId == id).Single();
 
-            // var Cli = from c in ClienteIdxData.Usuarios 
-            //     select c;
+                    ClienteIdxData.Solicitudes = proyecto.RelacionProyectoSolicitud
+                                                    .Select(rps => rps.Solicitud).ToList();
 
+                };
         }
     }
 }

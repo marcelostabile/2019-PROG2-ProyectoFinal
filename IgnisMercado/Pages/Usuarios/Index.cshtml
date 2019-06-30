@@ -1,4 +1,4 @@
-@page
+@page 
 @model IgnisMercado.Pages.Usuarios.IndexModel
 
 @using Microsoft.AspNetCore.Identity
@@ -28,7 +28,6 @@
 <table class="table">
     <thead>
         <tr>
-
             @if (User.IsInRole("Administrador")) 
             {
                 <th>
@@ -66,64 +65,78 @@
     </thead>
 
     <tbody>
-
-    @foreach (var item in Model.ClienteIdxData.Usuarios) 
-    {
         <tr>
-
-            @if (User.IsInRole("Administrador")) 
+            @foreach (var item in Model.ClienteIdxData.Usuarios)
             {
-                <td>
-                    @Html.DisplayFor(modelItem => item.Role)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
-                <td>
-                    <a asp-page="./Index" asp-route-id="@item.Id">Seleccionar</a> | 
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a>
-                </td>
-            }
-
-            @if (User.IsInRole("Cliente") || User.IsInRole("Técnico"))
-            {
-                // Determinar el usuario logueado, saber su Id.
-                var um = UserManager.GetUserId(User);
-
-                // Filtro los datos del usuario, solo ve sus datos, filtro por Id.
-                @if (um == item.Id)
+                @if (User.IsInRole("Administrador")) 
                 {
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Role)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumber)
-                    </td>
-                    <td>
-                        <a asp-page="./Index" asp-route-id="@item.Id">Seleccionar</a> |
-                        <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
-                        <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
-                    </td>
+                    string selectedRow = "";
+
+                    if (item.Id == Model.ClienteId)
+                    {
+                        selectedRow = "table-success";
+                    }
+
+                    <tr class="@selectedRow">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Role)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            <a asp-page="./Index" asp-route-id="@item.Id">Seleccionar</a> | 
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                            <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a>
+                        </td>
+                    </tr>
+                }
+
+                @if (User.IsInRole("Cliente") || User.IsInRole("Técnico"))
+                {
+                    // Determinar el usuario logueado, saber su Id.
+                    var um = UserManager.GetUserId(User);
+
+                    // Filtro los datos del usuario, solo ve sus datos, filtro por Id.
+                    @if (um == item.Id)
+                    {
+                        string selectedRow = "";
+
+                        if (item.Id == Model.ClienteId)
+                        {
+                            selectedRow = "table-success";
+                        }
+
+                        <tr class="@selectedRow">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Role)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                <a asp-page="./Index" asp-route-id="@item.Id">Seleccionar</a> |
+                                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+                            </td>
+                        </tr>
+                    }
                 }
             }
-
         </tr>
-    }
-
     </tbody>
 </table>
 
@@ -161,11 +174,10 @@
 
             <td>
                 @Html.ActionLink("Seleccionar", "OnGetAsync", 
-                            new { id = SignInManager.IsSignedIn(User), item.ProyectoId } )
+                            new { id = Model.ClienteId, proyId = item.ProyectoId })
             </td>
         </tr>
     }
-
 </table>
 }
 
@@ -180,7 +192,7 @@
     <tr>
         <th>Rol Requerido</th>
         <th>Nivel Experiencia</th>
-        <th>Modo De Contrato</th>
+        <th>Modo de Contrato</th>
         <th>Horas Contratadas</th>
         <th>Costo de la Solicitud</th>
     </tr>

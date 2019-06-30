@@ -32,9 +32,7 @@ namespace IgnisMercado.Models.Seeding
                 // Seeding costos.
                 SeedCostos(context);
 
-                // Seeding roles.
-                SeedRol(context);
-                                // Seeding proyectos.
+                // Seeding proyectos.
                 SeedProyectos(context);
 
                 // Seeding solicitudes.
@@ -46,6 +44,9 @@ namespace IgnisMercado.Models.Seeding
                 SeedRProyectoSolicitudes(context);
 
                 SeedRTecnicoRoles(context);
+
+                // Seeding roles.
+                SeedRol(context);
             }
         }
 
@@ -202,37 +203,14 @@ namespace IgnisMercado.Models.Seeding
             }
 
             context.RelacionClienteProyectos.AddRange(
-            
-                new RelacionClienteProyecto 
-                { 
-                    ProyectoId = context.Proyectos.Single(p => p.Nombre == "El vendedor de humo").ProyectoId, 
-                    ClienteId = context.Users.Single(p => p.UserName == "cliente@correo.com").Id  
-                },
-                new RelacionClienteProyecto 
-                { 
-                    ProyectoId = context.Proyectos.Single(p => p.Nombre == "Mi peluquera ideal").ProyectoId, 
-                    ClienteId = context.Users.Single(p => p.UserName == "cliente@correo.com").Id  
-                },
-                new RelacionClienteProyecto 
-                { 
-                    ProyectoId = context.Proyectos.Single(p => p.Nombre == "Ataque de pánico").ProyectoId, 
-                    ClienteId = context.Users.Single(p => p.UserName == "marcelo@correo.com").Id  
-                },
-                new RelacionClienteProyecto 
-                { 
-                    ProyectoId = context.Proyectos.Single(p => p.Nombre == "La luna").ProyectoId, 
-                    ClienteId = context.Users.Single(p => p.UserName == "marcelo@correo.com").Id  
-                },
-                new RelacionClienteProyecto 
-                { 
-                    ProyectoId = context.Proyectos.Single(p => p.Nombre == "La cabeza me da vueltas").ProyectoId, 
-                    ClienteId = context.Users.Single(p => p.UserName == "lucas@correo.com").Id  
-                },
-                new RelacionClienteProyecto 
-                { 
-                    ProyectoId = context.Proyectos.Single(p => p.Nombre == "It´s a bird thing").ProyectoId, 
-                    ClienteId = context.Users.Single(p => p.UserName == "lucas@correo.com").Id  
-                }
+                new RelacionClienteProyecto { ClienteId = "a2098bab-6c99-4128-b5b3-6034591b1e7e", ProyectoId = 1 },
+                new RelacionClienteProyecto { ClienteId = "a2098bab-6c99-4128-b5b3-6034591b1e7e", ProyectoId = 2 },
+
+                new RelacionClienteProyecto { ClienteId = "48ca5c77-f5bf-4d98-bb5d-a7f7390a8a78", ProyectoId = 3 },
+                new RelacionClienteProyecto { ClienteId = "48ca5c77-f5bf-4d98-bb5d-a7f7390a8a78", ProyectoId = 4 },
+
+                new RelacionClienteProyecto { ClienteId = "f2a27645-bd52-455b-b622-212c0b832794", ProyectoId = 5 },
+                new RelacionClienteProyecto { ClienteId = "f2a27645-bd52-455b-b622-212c0b832794", ProyectoId = 6 }
             );
 
             // guarda los cambios.
@@ -275,47 +253,16 @@ namespace IgnisMercado.Models.Seeding
             }
 
             context.RelacionTecnicoRoles.AddRange(
-            
-                new RelacionTecnicoRol 
-                { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "pablo@correo.com").Id, 
-                    RolId = context.Roles.Single(p => p.RolId == 11).RolId
-                },
-                new RelacionTecnicoRol 
-                { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "pablo@correo.com").Id, 
-                    RolId = context.Roles.Single(p => p.RolId == 18).RolId
-                },
-                new RelacionTecnicoRol 
-                { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "tecnico@correo.com").Id, 
-                    RolId = context.Roles.Single(p => p.RolId == 17).RolId
-                },
-                new RelacionTecnicoRol 
-                { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "tecnico@correo.com").Id, 
-                    RolId = context.Roles.Single(p => p.RolId == 19).RolId
-                },
-                new RelacionTecnicoRol 
-                { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "tecnico@correo.com").Id, 
-                    RolId = context.Roles.Single(p => p.RolId == 21).RolId
-                },
-                new RelacionTecnicoRol 
-                { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "juan@correo.com").Id, 
-                    RolId = context.Roles.Single(p => p.RolId == 3).RolId
-                },
-                new RelacionTecnicoRol 
-                { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "juan@correo.com").Id, 
-                    RolId = context.Roles.Single(p => p.RolId == 6).RolId
-                },
-                new RelacionTecnicoRol 
-                { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "juan@correo.com").Id, 
-                    RolId = context.Roles.Single(p => p.RolId == 8).RolId
-                }
+                new RelacionTecnicoRol {TecnicoId = "57bf6b3f-26f0-4eaa-9f66-14b3e6fdfce2", RolId = 11},
+                new RelacionTecnicoRol {TecnicoId = "57bf6b3f-26f0-4eaa-9f66-14b3e6fdfce2", RolId = 18},
+
+                new RelacionTecnicoRol {TecnicoId = "0626bd2e-c394-4f89-bb52-8dcf01b0128c", RolId = 17},
+                new RelacionTecnicoRol {TecnicoId = "0626bd2e-c394-4f89-bb52-8dcf01b0128c", RolId = 19},
+                new RelacionTecnicoRol {TecnicoId = "0626bd2e-c394-4f89-bb52-8dcf01b0128c", RolId = 21},
+
+                new RelacionTecnicoRol {TecnicoId = "cf374546-893e-4b69-8622-a334fb02ade8", RolId = 3},
+                new RelacionTecnicoRol {TecnicoId = "cf374546-893e-4b69-8622-a334fb02ade8", RolId = 6},
+                new RelacionTecnicoRol {TecnicoId = "cf374546-893e-4b69-8622-a334fb02ade8", RolId = 8}
             );
 
             // guarda los cambios.

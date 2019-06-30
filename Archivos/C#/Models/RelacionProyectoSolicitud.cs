@@ -2,26 +2,23 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-using IgnisMercado.Areas.Identity.Data;
-
 namespace IgnisMercado.Models
 {
     /// <summary>
-    /// Relación Cliente:Proyectos.
+    /// Relación Proyecto:Solicitudes.
     /// </summary>
-    public class RelacionClienteProyecto
-    { 
-        [Key]
-        public string ClienteId { get; set; }
-
-        [Required]
-        public ApplicationUser Cliente { get; set; }
-
+    public class RelacionProyectoSolicitud
+    {
         [Key]
         public int ProyectoId { get; set; }
 
         [Required]
         public Proyecto Proyecto { get; set; }
 
+        [Key]
+        public int SolicitudId { get; set; }
+        
+        [Required]
+        public Solicitud Solicitud { get; set; }
     }     
 }
