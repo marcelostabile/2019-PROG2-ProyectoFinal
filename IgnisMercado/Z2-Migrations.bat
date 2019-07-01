@@ -20,4 +20,6 @@ dotnet ef migrations add RelacionProyectoSolicitud --context ApplicationContext
 
 dotnet ef migrations add RelacionTecnicoRol --context ApplicationContext
 
+dotnet ef migrations add RelacionTecnicoSolicitud --context ApplicationContext
+
 pause

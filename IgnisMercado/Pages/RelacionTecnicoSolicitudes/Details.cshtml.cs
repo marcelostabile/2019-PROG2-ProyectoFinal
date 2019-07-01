@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using IgnisMercado.Models;
 
-namespace IgnisMercado.Pages.Administradores
+namespace IgnisMercado.Pages.RelacionTecnicoSolicitudes
 {
     public class DetailsModel : PageModel
     {
@@ -18,7 +18,7 @@ namespace IgnisMercado.Pages.Administradores
             _context = context;
         }
 
-        public Administrador Administrador { get; set; }
+        public RelacionTecnicoSolicitud RelacionTecnicoSolicitud { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -27,9 +27,11 @@ namespace IgnisMercado.Pages.Administradores
                 return NotFound();
             }
 
-            Administrador = await _context.Administradores.FirstOrDefaultAsync(m => m.Id == id);
+            RelacionTecnicoSolicitud = await _context.RelacionTecnicoSolicitudes
+                .Include(r => r.Solicitud)
+                .Include(r => r.Tecnico).FirstOrDefaultAsync(m => m.TecnicoId == id);
 
-            if (Administrador == null)
+            if (RelacionTecnicoSolicitud == null)
             {
                 return NotFound();
             }

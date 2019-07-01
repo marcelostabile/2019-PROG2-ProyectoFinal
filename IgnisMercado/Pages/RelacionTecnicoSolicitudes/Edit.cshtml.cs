@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using IgnisMercado.Models;
 
-namespace IgnisMercado.Pages.Administradores
+namespace IgnisMercado.Pages.RelacionTecnicoSolicitudes
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace IgnisMercado.Pages.Administradores
         }
 
         [BindProperty]
-        public Administrador Administrador { get; set; }
+        public RelacionTecnicoSolicitud RelacionTecnicoSolicitud { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -29,12 +29,16 @@ namespace IgnisMercado.Pages.Administradores
                 return NotFound();
             }
 
-            Administrador = await _context.Administradores.FirstOrDefaultAsync(m => m.Id == id);
+            RelacionTecnicoSolicitud = await _context.RelacionTecnicoSolicitudes
+                .Include(r => r.Solicitud)
+                .Include(r => r.Tecnico).FirstOrDefaultAsync(m => m.TecnicoId == id);
 
-            if (Administrador == null)
+            if (RelacionTecnicoSolicitud == null)
             {
                 return NotFound();
             }
+           ViewData["SolicitudId"] = new SelectList(_context.Solicitudes, "SolicitudId", "RolRequerido");
+           ViewData["TecnicoId"] = new SelectList(_context.Users, "Id", "Id");
             return Page();
         }
 
@@ -45,7 +49,7 @@ namespace IgnisMercado.Pages.Administradores
                 return Page();
             }
 
-            _context.Attach(Administrador).State = EntityState.Modified;
+            _context.Attach(RelacionTecnicoSolicitud).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +57,7 @@ namespace IgnisMercado.Pages.Administradores
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AdministradorExists(Administrador.Id))
+                if (!RelacionTecnicoSolicitudExists(RelacionTecnicoSolicitud.TecnicoId))
                 {
                     return NotFound();
                 }
@@ -66,9 +70,9 @@ namespace IgnisMercado.Pages.Administradores
             return RedirectToPage("./Index");
         }
 
-        private bool AdministradorExists(string id)
+        private bool RelacionTecnicoSolicitudExists(string id)
         {
-            return _context.Administradores.Any(e => e.Id == id);
+            return _context.RelacionTecnicoSolicitudes.Any(e => e.TecnicoId == id);
         }
     }
 }

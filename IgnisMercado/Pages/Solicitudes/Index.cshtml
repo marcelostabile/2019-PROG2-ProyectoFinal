@@ -29,38 +29,44 @@
         @if (User.IsInRole("Administrador"))
         {
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].RolRequerido)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].RolRequerido)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].NivelExperiencia)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].NivelExperiencia)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].ModoDeContrato)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].ModoDeContrato)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].HorasContratadas)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].HorasContratadas)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].costoSolicitud)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].costoSolicitud)
+            </th>
+            <th>
+                Técnico Asociado
             </th>
         }
 
         @if (User.IsInRole("Cliente") || User.IsInRole("Técnico"))
         {
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].RolRequerido)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].RolRequerido)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].NivelExperiencia)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].NivelExperiencia)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].ModoDeContrato)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].ModoDeContrato)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].HorasContratadas)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].HorasContratadas)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].costoSolicitud)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].costoSolicitud)
+            </th>
+            <th>
+                Técnico Asociado
             </th>
         }
             <th></th>
@@ -68,7 +74,7 @@
     </thead>
 
     <tbody>
-@foreach (var item in Model.Solicitud) 
+@foreach (var item in Model.SolicitudIdx.Solicitudes) 
 {
         <tr>
         @if (User.IsInRole("Administrador"))
@@ -94,6 +100,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.costoSolicitud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RelacionTecnicoSolicitud)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.SolicitudId">Editar</a> |
@@ -125,6 +134,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.costoSolicitud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SolicitudId)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.SolicitudId">Editar</a> |

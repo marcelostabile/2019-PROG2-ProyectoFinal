@@ -28,14 +28,14 @@ namespace IgnisMercado.Models
         }
 
         // /// <summary>
+        // /// Relación Tecnico:Solicitud.
+        // /// </summary>
+        // public IList<RelacionTecnicoSolicitud> RelacionTecnicoSolicitudes { get; set; }
+
+        // /// <summary>
         // /// Relación Tecnico:Rol.
         // /// </summary>
-        // public IList<RelacionTecnicoRol> RelacionTecnicoRol { get; set; }
-
-        /// <summary>
-        /// Relación Tecnico:Rol.
-        /// </summary>
-        public IList<RelacionTecnicoRol> RelacionTecnicoRoles { get; set; }
+        // public IList<RelacionTecnicoRol> RelacionTecnicoRoles { get; set; }
 
         /// <summary>
         /// Presentación

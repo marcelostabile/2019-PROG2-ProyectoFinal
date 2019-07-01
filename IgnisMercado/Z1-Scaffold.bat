@@ -21,4 +21,6 @@ xxxdotnet aspnet-codegenerator razorpage -m RelacionProyectoSolicitud -dc Applic
 
 xxxdotnet aspnet-codegenerator razorpage -m RelacionTecnicoRol -dc ApplicationContext -udl -outDir Pages\RelacionTecnicoRoles --referenceScriptLibraries
 
+xxxdotnet aspnet-codegenerator razorpage -m RelacionTecnicoSolicitud -dc ApplicationContext -udl -outDir Pages\RelacionTecnicoSolicitudes --referenceScriptLibraries
+
 pause

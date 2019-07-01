@@ -29,12 +29,14 @@ namespace IgnisMercado.Models.Seeding
                 serviceProvider.GetRequiredService<
                     DbContextOptions<ApplicationContext>>()))
             {
+                // Seeding roles.
+                SeedRol(context);
+                
                 // Seeding costos.
                 SeedCostos(context);
 
-                // Seeding roles.
-                SeedRol(context);
-                                // Seeding proyectos.
+
+                // Seeding proyectos.
                 SeedProyectos(context);
 
                 // Seeding solicitudes.
@@ -46,6 +48,8 @@ namespace IgnisMercado.Models.Seeding
                 SeedRProyectoSolicitudes(context);
 
                 SeedRTecnicoRoles(context);
+
+                SeedRTecnicoSolicitudes(context);
             }
         }
 
@@ -206,32 +210,32 @@ namespace IgnisMercado.Models.Seeding
                 new RelacionClienteProyecto 
                 { 
                     ProyectoId = context.Proyectos.Single(p => p.Nombre == "El vendedor de humo").ProyectoId, 
-                    ClienteId = context.Users.Single(p => p.UserName == "cliente@correo.com").Id  
+                    ClienteId = context.Users.Single(p => p.NormalizedUserName == "CLIENTE@CORREO.COM").Id  
                 },
                 new RelacionClienteProyecto 
                 { 
                     ProyectoId = context.Proyectos.Single(p => p.Nombre == "Mi peluquera ideal").ProyectoId, 
-                    ClienteId = context.Users.Single(p => p.UserName == "cliente@correo.com").Id  
+                    ClienteId = context.Users.Single(p => p.NormalizedUserName == "CLIENTE@CORREO.COM").Id  
                 },
                 new RelacionClienteProyecto 
                 { 
                     ProyectoId = context.Proyectos.Single(p => p.Nombre == "Ataque de pánico").ProyectoId, 
-                    ClienteId = context.Users.Single(p => p.UserName == "marcelo@correo.com").Id  
+                    ClienteId = context.Users.Single(p => p.NormalizedUserName == "MARCELO@CORREO.COM").Id  
                 },
                 new RelacionClienteProyecto 
                 { 
                     ProyectoId = context.Proyectos.Single(p => p.Nombre == "La luna").ProyectoId, 
-                    ClienteId = context.Users.Single(p => p.UserName == "marcelo@correo.com").Id  
+                    ClienteId = context.Users.Single(p => p.NormalizedUserName == "MARCELO@CORREO.COM").Id  
                 },
                 new RelacionClienteProyecto 
                 { 
                     ProyectoId = context.Proyectos.Single(p => p.Nombre == "La cabeza me da vueltas").ProyectoId, 
-                    ClienteId = context.Users.Single(p => p.UserName == "lucas@correo.com").Id  
+                    ClienteId = context.Users.Single(p => p.NormalizedUserName == "JUAN@CORREO.COM").Id  
                 },
                 new RelacionClienteProyecto 
                 { 
                     ProyectoId = context.Proyectos.Single(p => p.Nombre == "It´s a bird thing").ProyectoId, 
-                    ClienteId = context.Users.Single(p => p.UserName == "lucas@correo.com").Id  
+                    ClienteId = context.Users.Single(p => p.NormalizedUserName == "LUCAS@CORREO.COM").Id
                 }
             );
 
@@ -278,42 +282,42 @@ namespace IgnisMercado.Models.Seeding
             
                 new RelacionTecnicoRol 
                 { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "pablo@correo.com").Id, 
+                    TecnicoId = context.Users.Single(p => p.NormalizedUserName == "PABLO@CORREO.COM").Id, 
                     RolId = context.Roles.Single(p => p.RolId == 11).RolId
                 },
                 new RelacionTecnicoRol 
                 { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "pablo@correo.com").Id, 
+                    TecnicoId = context.Users.Single(p => p.NormalizedUserName == "PABLO@CORREO.COM").Id, 
                     RolId = context.Roles.Single(p => p.RolId == 18).RolId
                 },
                 new RelacionTecnicoRol 
                 { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "tecnico@correo.com").Id, 
+                    TecnicoId = context.Users.Single(p => p.NormalizedUserName == "TECNICO@CORREO.COM").Id, 
                     RolId = context.Roles.Single(p => p.RolId == 17).RolId
                 },
                 new RelacionTecnicoRol 
                 { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "tecnico@correo.com").Id, 
+                    TecnicoId = context.Users.Single(p => p.NormalizedUserName == "TECNICO@CORREO.COM").Id, 
                     RolId = context.Roles.Single(p => p.RolId == 19).RolId
                 },
                 new RelacionTecnicoRol 
                 { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "tecnico@correo.com").Id, 
+                    TecnicoId = context.Users.Single(p => p.NormalizedUserName == "TECNICO@CORREO.COM").Id, 
                     RolId = context.Roles.Single(p => p.RolId == 21).RolId
                 },
                 new RelacionTecnicoRol 
                 { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "juan@correo.com").Id, 
+                    TecnicoId = context.Users.Single(p => p.NormalizedUserName == "JUAN@CORREO.COM").Id, 
                     RolId = context.Roles.Single(p => p.RolId == 3).RolId
                 },
                 new RelacionTecnicoRol 
                 { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "juan@correo.com").Id, 
+                    TecnicoId = context.Users.Single(p => p.NormalizedUserName == "JUAN@CORREO.COM").Id, 
                     RolId = context.Roles.Single(p => p.RolId == 6).RolId
                 },
                 new RelacionTecnicoRol 
                 { 
-                    TecnicoId = context.Users.Single(p => p.UserName == "juan@correo.com").Id, 
+                    TecnicoId = context.Users.Single(p => p.NormalizedUserName == "JUAN@CORREO.COM").Id, 
                     RolId = context.Roles.Single(p => p.RolId == 8).RolId
                 }
             );
@@ -493,6 +497,49 @@ namespace IgnisMercado.Models.Seeding
                 new Rol {Nivel = "Avanzado", Descripcion = "Presentador / conductor"},
                 new Rol {Nivel = "Avanzado", Descripcion = "Animador / infografista"},
                 new Rol {Nivel = "Avanzado", Descripcion = "Operador de Cabina 01 Estudio de Grabación"}
+            );
+
+            // guarda los cambios.
+            context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Seeding RelacionTecnicoSolicitudes.
+        /// </summary>
+        private static void SeedRTecnicoSolicitudes(ApplicationContext context)
+        {
+            if (context.RelacionTecnicoSolicitudes.Any()) 
+            {
+                return;
+            }
+
+            context.RelacionTecnicoSolicitudes.AddRange(
+            
+                new RelacionTecnicoSolicitud 
+                { 
+                    TecnicoId = context.Users.Single(p => p.NormalizedUserName == "TECNICO@CORREO.COM").Id, 
+                    SolicitudId = context.Solicitudes.Single(p => p.SolicitudId == 1).SolicitudId
+                },
+                new RelacionTecnicoSolicitud 
+                { 
+                    TecnicoId = context.Users.Single(p => p.NormalizedUserName == "TECNICO@CORREO.COM").Id, 
+                    SolicitudId = context.Solicitudes.Single(p => p.SolicitudId == 2).SolicitudId
+                },
+                new RelacionTecnicoSolicitud 
+                { 
+                    TecnicoId = context.Users.Single(p => p.NormalizedUserName == "PABLO@CORREO.COM").Id, 
+                    SolicitudId = context.Solicitudes.Single(p => p.SolicitudId == 4).SolicitudId
+                },
+                new RelacionTecnicoSolicitud 
+                { 
+                    TecnicoId = context.Users.Single(p => p.NormalizedUserName == "PABLO@CORREO.COM").Id, 
+                    SolicitudId = context.Solicitudes.Single(p => p.SolicitudId == 5).SolicitudId
+                },
+                new RelacionTecnicoSolicitud 
+                { 
+                    TecnicoId = context.Users.Single(p => p.NormalizedUserName == "JUAN@CORREO.COM").Id, 
+                    SolicitudId = context.Solicitudes.Single(p => p.SolicitudId == 8).SolicitudId
+                }
             );
 
             // guarda los cambios.
