@@ -41,7 +41,6 @@ namespace RazorPagesMovie.Pages.Movies
             IQueryable<string> genreQuery = from m in _context.Movies
                                             orderby m.Genre
                                             select m.Genre;
-
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
 
             Movie = new MovieIndexData();
@@ -58,7 +57,6 @@ namespace RazorPagesMovie.Pages.Movies
             {
                 MovieID = id.Value;
                 Movie movie = Movie.Movies.Where(m => m.ID == id.Value).Single();
-                
                 Movie.Actors = movie.Appeareances.Select(a => a.Actor);
             }
 
