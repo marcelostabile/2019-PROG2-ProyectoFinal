@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+
+using IgnisMercado.Areas.Identity.Data;
 using IgnisMercado.Models;
 using IgnisMercado.Models.ViewModels;
 
@@ -24,6 +26,10 @@ namespace IgnisMercado.Pages.Solicitudes
         public string TecnicoId { get;set; }
 
         public SolicitudIndexData SolicitudIdx = new SolicitudIndexData();
+
+        public IEnumerable<ApplicationUser> TecnicosAsignados { get; set; }
+
+        public IEnumerable<ApplicationUser> TecnicosDisponibles { get; set; }
 
         public async Task OnGetAsync(int? id)
         { 
