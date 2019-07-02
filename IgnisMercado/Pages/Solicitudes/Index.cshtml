@@ -24,7 +24,6 @@
                 <a asp-page="Create">Crear nuevo</a>
             </td>
             <td width=50% style="text-align:center">
-                <a asp-page="./Asignacion"><h5>Administración de Técnicos</h5></a>
             </td>
         </tr>
     </table>
@@ -112,8 +111,7 @@
                     @Html.DisplayFor(modelItem => item.costoSolicitud)
                 </td>
                 <td>
-                    <a asp-page="./Index" asp-route-id="@item.SolicitudId">Técnicos</a> |
-                    <a asp-page="./Edit" asp-route-id="@item.SolicitudId">Editar</a> | 
+                    <a asp-page="./Index" asp-route-id="@item.SolicitudId">Técnicos</a> | 
                     <a asp-page="./Delete" asp-route-id="@item.SolicitudId">Eliminar</a>
                 </td>
             </tr>
@@ -152,56 +150,100 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.costoSolicitud)
                     </td>
-                    <td>
-                        <a asp-page="./Edit" asp-route-id="@item.SolicitudId">Editar</a>
-                    </td>
                 </tr>  
             }
-            
         }
     }
     </tbody>
 </table>
 
-<!-- Tecnicos Asignados -->
+<!-- Técnicos Asignados -->
 
-@if (Model.SolicitudIdx.Tecnicos != null)
-{
+<div class="row">
 
-<h3>Técnicos Asignados</h3>
+    <div class="col-md-8">
 
-<table class="table">
-    <tr>
-        <th>Nombre</th>
-        <th>Usuario</th>
-        <th>...</th>
-        <th><a href="javascript:void(0);" onclick="history.go(-1);">Volver a Menú Solicitudes</a></th>
-    </tr>
-
-    @foreach (var item in Model.SolicitudIdx.Tecnicos)
-    { 
-        string selectedRow = "";
-
-        if (item.Id == Model.TecnicoId)
+        @if (Model.SolicitudIdx.Tecnicos != null)
         {
-            selectedRow = "table-success";
+            <h3>Técnicos Asignados</h3>
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th>Nombre</th>
+                    <th>Usuario</th>
+                </tr>
+
+                @foreach (var item in Model.SolicitudIdx.Tecnicos)
+                { 
+                    string TecnicoDesasignarId = item.Id.ToString();
+
+                    <tr>
+                        <td>
+                            <form method="post" asp-page-handler="DesasignarTecnico"
+                                asp-route-id="@Model.TecnicoId" asp-route-TecnicoDesasignarId="@TecnicoDesasignarId">
+                                <button class="btn btn-dark">Desasignar</button>
+                            </form>
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                    </tr>
+                }
+            </table>
         }
+    </div>
+</div>
 
-        <tr class="@selectedRow">
-            <td>
-                @item.Name
-            </td>
+<!-- Técnicos Disponibles -->
 
-            <td>
-                @item.Email
-            </td>
+<div class="row">
 
-            <td>
-                @Html.ActionLink("Seleccionar", "OnGetAsync", 
-                            new { id = Model.TecnicoId })
-            </td>
-        </tr>
-    }
-</table>
-}
+    <div class="col-md-8">
+
+        @if (Model.TecnicosDisponibles != null)
+        {
+            <h4>Técnicos Disponibles</h4>
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th>Nombre</th>
+                    <th>Usuario</th>
+                </tr>
+
+                @foreach (var item in Model.TecnicosDisponibles)
+                {
+                    string TecnicoAsignarId = item.Id.ToString();
+
+                    <tr>
+                        <td>
+                            <form method="post" asp-page-handler="AsignarTecnico"
+                                asp-route-id="@Model.TecnicoId" asp-route-TecnicoDesasignarId="@TecnicoAsignarId">
+                                <button class="btn btn-success">Asignar</button>
+                            </form>
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Volver a la lista</a>
+</div>
 

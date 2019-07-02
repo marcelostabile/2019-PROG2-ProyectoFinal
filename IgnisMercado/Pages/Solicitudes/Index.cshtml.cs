@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+
 
 using IgnisMercado.Areas.Identity.Data;
 using IgnisMercado.Models;
@@ -24,6 +24,8 @@ namespace IgnisMercado.Pages.Solicitudes
         public int? SolicitudId { get;set; }
 
         public string TecnicoId { get;set; }
+        
+        public Solicitud Solicitud { get; set; }
 
         public SolicitudIndexData SolicitudIdx = new SolicitudIndexData();
 
@@ -63,6 +65,13 @@ namespace IgnisMercado.Pages.Solicitudes
 
                 SolicitudIdx.Tecnicos = solicitud.RelacionTecnicoSolicitud 
                                         .Select(r => r.Tecnico).ToList();
+
+                this.TecnicosAsignados = Solicitud.RelacionTecnicoSolicitud
+                                            .Select(s => s.Tecnico);
+                                            
+                this.TecnicosDisponibles = _context.Solicitudes
+                                            .Where(a => !TecnicosAsignados.Contains(a))
+                                            .ToListAsync();
 
             }
         }
