@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using IgnisMercado.Models;
 
-namespace IgnisMercado.Pages.Administradores
+namespace IgnisMercado.Pages.RelacionTecnicoSolicitudes
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace IgnisMercado.Pages.Administradores
         }
 
         [BindProperty]
-        public Administrador Administrador { get; set; }
+        public RelacionTecnicoSolicitud RelacionTecnicoSolicitud { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -28,9 +28,11 @@ namespace IgnisMercado.Pages.Administradores
                 return NotFound();
             }
 
-            Administrador = await _context.Administradores.FirstOrDefaultAsync(m => m.Id == id);
+            RelacionTecnicoSolicitud = await _context.RelacionTecnicoSolicitudes
+                .Include(r => r.Solicitud)
+                .Include(r => r.Tecnico).FirstOrDefaultAsync(m => m.TecnicoId == id);
 
-            if (Administrador == null)
+            if (RelacionTecnicoSolicitud == null)
             {
                 return NotFound();
             }
@@ -44,11 +46,11 @@ namespace IgnisMercado.Pages.Administradores
                 return NotFound();
             }
 
-            Administrador = await _context.Administradores.FindAsync(id);
+            RelacionTecnicoSolicitud = await _context.RelacionTecnicoSolicitudes.FindAsync(id);
 
-            if (Administrador != null)
+            if (RelacionTecnicoSolicitud != null)
             {
-                _context.Administradores.Remove(Administrador);
+                _context.RelacionTecnicoSolicitudes.Remove(RelacionTecnicoSolicitud);
                 await _context.SaveChangesAsync();
             }
 

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 using IgnisMercado.Models;
 using IgnisMercado.Areas.Identity.Data;
-using IgnisMercado.Models.ClienteViewModels;
+using IgnisMercado.Models.ViewModels;
 
 namespace IgnisMercado.Pages.Proyectos
 {

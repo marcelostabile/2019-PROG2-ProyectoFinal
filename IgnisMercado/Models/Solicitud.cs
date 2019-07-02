@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using IgnisMercado.Areas.Identity.Data;
+
 namespace IgnisMercado.Models 
 { 
     public class Solicitud : IGestionHoras, IObserverCosto
@@ -36,6 +38,15 @@ namespace IgnisMercado.Models
         public int SolicitudId { get; set; }
 
         public IList<RelacionProyectoSolicitud> RelacionProyectoSolicitud { get; set; }
+
+        /// <summary>
+        /// Relación Tecnico:Solicitud.
+        /// </summary>
+        public IList<RelacionTecnicoSolicitud> RelacionTecnicoSolicitud { get; set; }
+
+        // /// Técnico Asociado.
+        // [Display(Name = "Técnico Asociado")]
+        // public string TecnicoAsociado { get; set; }
 
         /// <summary>
         /// Modo de Contratación (1: horas y 2: Jornada).

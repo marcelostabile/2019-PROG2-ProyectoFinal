@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using IgnisMercado.Areas.Identity.Data;
 
-namespace IgnisMercado.Models.ClienteViewModels
+namespace IgnisMercado.Models.ViewModels
 {
     public class ClienteIndexData
     {

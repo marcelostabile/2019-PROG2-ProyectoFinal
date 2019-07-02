@@ -30,7 +30,17 @@ namespace IgnisMercado.Areas.Identity.Data
         /// Relación Cliente:Proyectos.
         /// </summary>
         public IList<RelacionClienteProyecto> RelacionClienteProyecto { get; set; }
-        
+
+        /// <summary>
+        /// Relación Tecnico:Solicitud.
+        /// </summary>
+        public IList<RelacionTecnicoSolicitud> RelacionTecnicoSolicitud { get; set; }
+
+        /// <summary>
+        /// Relación Tecnico:Roles.
+        /// </summary>
+        public IList<RelacionTecnicoRol> RelacionTecnicoRol { get; set; }
+
         /// <summary>
         /// Asigna rol al usuario.
         /// </summary>

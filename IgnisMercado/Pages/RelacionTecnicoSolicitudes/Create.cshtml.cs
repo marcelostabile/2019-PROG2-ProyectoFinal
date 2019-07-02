@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using IgnisMercado.Models;
 
-namespace IgnisMercado.Pages.Administradores
+namespace IgnisMercado.Pages.RelacionTecnicoSolicitudes
 {
     public class CreateModel : PageModel
     {
@@ -20,11 +20,13 @@ namespace IgnisMercado.Pages.Administradores
 
         public IActionResult OnGet()
         {
+        ViewData["SolicitudId"] = new SelectList(_context.Solicitudes, "SolicitudId", "RolRequerido");
+        ViewData["TecnicoId"] = new SelectList(_context.Users, "Id", "Id");
             return Page();
         }
 
         [BindProperty]
-        public Administrador Administrador { get; set; }
+        public RelacionTecnicoSolicitud RelacionTecnicoSolicitud { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -33,7 +35,7 @@ namespace IgnisMercado.Pages.Administradores
                 return Page();
             }
 
-            _context.Administradores.Add(Administrador);
+            _context.RelacionTecnicoSolicitudes.Add(RelacionTecnicoSolicitud);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

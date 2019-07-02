@@ -22,7 +22,7 @@ namespace IgnisMercado.Models
         /// <summary>
         /// Relación Tecnico:Rol.
         /// </summary>
-        public IList<RelacionTecnicoRol> RelacionTecnicoRoles { get; set; }
+        public IList<RelacionTecnicoRol> RelacionTecnicoRol { get; set; }
 
         /// Nombre del rol.
         [Required]

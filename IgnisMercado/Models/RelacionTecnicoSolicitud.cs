@@ -7,9 +7,9 @@ using IgnisMercado.Areas.Identity.Data;
 namespace IgnisMercado.Models
 {
     /// <summary>
-    /// Relación Tecnico:Rol.
+    /// Relación Tecnico:Solicitud.
     /// </summary>
-    public class RelacionTecnicoRol
+    public class RelacionTecnicoSolicitud
     { 
         [Key]
         public string TecnicoId { get; set; }
@@ -18,10 +18,10 @@ namespace IgnisMercado.Models
         public ApplicationUser Tecnico { get; set; }
 
         [Key]
-        public int RolId { get; set; }
+        public int SolicitudId { get; set; }
         
         [Required]
-        public Rol Rol { get; set; }
+        public Solicitud Solicitud { get; set; }
 
     }     
 }

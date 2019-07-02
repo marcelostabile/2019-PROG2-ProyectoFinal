@@ -18,7 +18,16 @@
 @if (User.IsInRole("Administrador") || User.IsInRole("Cliente")) 
 {
 <p>
-    <a asp-page="Create">Crear nuevo</a>
+    <table style="width:100%">
+        <tr>
+            <td width=50%>
+                <a asp-page="Create">Crear nuevo</a>
+            </td>
+            <td width=50% style="text-align:center">
+                <a asp-page="./Asignacion"><h5>Administración de Técnicos</h5></a>
+            </td>
+        </tr>
+    </table>
 </p>
 }
 
@@ -29,38 +38,38 @@
         @if (User.IsInRole("Administrador"))
         {
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].RolRequerido)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].RolRequerido)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].NivelExperiencia)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].NivelExperiencia)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].ModoDeContrato)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].ModoDeContrato)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].HorasContratadas)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].HorasContratadas)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].costoSolicitud)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].costoSolicitud)
             </th>
         }
 
         @if (User.IsInRole("Cliente") || User.IsInRole("Técnico"))
         {
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].RolRequerido)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].RolRequerido)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].NivelExperiencia)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].NivelExperiencia)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].ModoDeContrato)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].ModoDeContrato)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].HorasContratadas)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].HorasContratadas)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Solicitud[0].costoSolicitud)
+                @Html.DisplayNameFor(model => model.SolicitudIdx.Solicitudes[0].costoSolicitud)
             </th>
         }
             <th></th>
@@ -68,70 +77,131 @@
     </thead>
 
     <tbody>
-@foreach (var item in Model.Solicitud) 
-{
-        <tr>
+    @foreach (var item in Model.SolicitudIdx.Solicitudes) 
+    {
         @if (User.IsInRole("Administrador"))
         {
-            <td>
-                @Html.DisplayFor(modelItem => item.RolRequerido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NivelExperiencia)
-            </td>
+            string selectedRow = "";
 
-            @if ((item.ModoDeContrato) == 1)
+            if (item.SolicitudId == Model.SolicitudId)
             {
-                <td>Jornada</td>
-            }
-            else
-            {
-                <td>Hora</td>
+                selectedRow = "table-success";
             }
 
-            <td>
-                @Html.DisplayFor(modelItem => item.HorasContratadas)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.costoSolicitud)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.SolicitudId">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.SolicitudId">Detalles</a> |
-                <a asp-page="./Delete" asp-route-id="@item.SolicitudId">Eliminar</a>
-            </td>
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.RolRequerido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NivelExperiencia)
+                </td>
+
+                @if ((item.ModoDeContrato) == 1)
+                {
+                    <td>Jornada</td>
+                }
+                else
+                {
+                    <td>Hora</td>
+                }
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.HorasContratadas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.costoSolicitud)
+                </td>
+                <td>
+                    <a asp-page="./Index" asp-route-id="@item.SolicitudId">Técnicos</a> |
+                    <a asp-page="./Edit" asp-route-id="@item.SolicitudId">Editar</a> | 
+                    <a asp-page="./Delete" asp-route-id="@item.SolicitudId">Eliminar</a>
+                </td>
+            </tr>
         }
 
         @if (User.IsInRole("Cliente") || User.IsInRole("Técnico"))
         {
-            <td>
-                @Html.DisplayFor(modelItem => item.RolRequerido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NivelExperiencia)
-            </td>
-
-            @if ((item.ModoDeContrato) == 1)
             {
-                <td>Jornada</td>
-            }
-            else
-            {
-                <td>Hora</td>
-            }
+                string selectedRow = "";
 
-            <td>
-                @Html.DisplayFor(modelItem => item.HorasContratadas)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.costoSolicitud)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.SolicitudId">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.SolicitudId">Detalles</a>
-            </td>
+                if (item.SolicitudId == Model.SolicitudId)
+                {
+                    selectedRow = "table-success";
+                }
+
+                <tr class="@selectedRow">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RolRequerido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NivelExperiencia)
+                    </td>
+
+                    @if ((item.ModoDeContrato) == 1)
+                    {
+                        <td>Jornada</td>
+                    }
+                    else
+                    {
+                        <td>Hora</td>
+                    }
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HorasContratadas)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.costoSolicitud)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.SolicitudId">Editar</a>
+                    </td>
+                </tr>  
+            }
+            
         }
-        </tr>
-}
+    }
     </tbody>
 </table>
+
+<!-- Tecnicos Asignados -->
+
+@if (Model.SolicitudIdx.Tecnicos != null)
+{
+
+<h3>Técnicos Asignados</h3>
+
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Usuario</th>
+        <th>Usuario</th>
+        <th><a href="javascript:void(0);" onclick="history.go(-1);">Volver a Menú Solicitudes</a></th>
+    </tr>
+
+    @foreach (var item in Model.SolicitudIdx.Tecnicos)
+    { 
+        string selectedRow = "";
+
+        if (item.Id == Model.TecnicoId)
+        {
+            selectedRow = "table-success";
+        }
+
+        <tr class="@selectedRow">
+            <td>
+                @item.Name
+            </td>
+
+            <td>
+                @item.Email
+            </td>
+
+            <td>
+                @Html.ActionLink("Seleccionar", "OnGetAsync", 
+                            new { id = Model.TecnicoId })
+            </td>
+        </tr>
+    }
+</table>
+}
+

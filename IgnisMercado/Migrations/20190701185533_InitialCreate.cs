@@ -106,6 +106,7 @@ namespace IgnisMercado.Migrations
                 {
                     SolicitudId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    TecnicoAsociado = table.Column<string>(nullable: true),
                     ModoDeContrato = table.Column<int>(nullable: false),
                     RolRequerido = table.Column<string>(maxLength: 45, nullable: false),
                     HorasContratadas = table.Column<int>(nullable: false),
@@ -298,6 +299,31 @@ namespace IgnisMercado.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RelacionTecnicoSolicitudes",
+                columns: table => new
+                {
+                    TecnicoId = table.Column<string>(nullable: false),
+                    SolicitudId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RelacionTecnicoSolicitudes", x => new { x.TecnicoId, x.SolicitudId });
+                    table.UniqueConstraint("AK_RelacionTecnicoSolicitudes_SolicitudId_TecnicoId", x => new { x.SolicitudId, x.TecnicoId });
+                    table.ForeignKey(
+                        name: "FK_RelacionTecnicoSolicitudes_Solicitudes_SolicitudId",
+                        column: x => x.SolicitudId,
+                        principalTable: "Solicitudes",
+                        principalColumn: "SolicitudId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RelacionTecnicoSolicitudes_AspNetUsers_TecnicoId",
+                        column: x => x.TecnicoId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -376,16 +402,19 @@ namespace IgnisMercado.Migrations
                 name: "RelacionTecnicoRoles");
 
             migrationBuilder.DropTable(
+                name: "RelacionTecnicoSolicitudes");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Proyectos");
 
             migrationBuilder.DropTable(
-                name: "Solicitudes");
+                name: "Roles");
 
             migrationBuilder.DropTable(
-                name: "Roles");
+                name: "Solicitudes");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

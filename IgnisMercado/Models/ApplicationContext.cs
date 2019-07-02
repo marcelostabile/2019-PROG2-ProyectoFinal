@@ -22,6 +22,7 @@ namespace IgnisMercado.Models
 
             builder.Entity<RelacionClienteProyecto>().ToTable("RelacionClienteProyectos");
             builder.Entity<RelacionProyectoSolicitud>().ToTable("RelacionProyectoSolicitudes");
+            builder.Entity<RelacionTecnicoSolicitud>().ToTable("RelacionTecnicoSolicitudes");
             builder.Entity<RelacionTecnicoRol>().ToTable("RelacionTecnicoRoles");
             builder.Entity<Solicitud>().ToTable("Solicitudes");
             builder.Entity<Proyecto>().ToTable("Proyectos");
@@ -63,14 +64,28 @@ namespace IgnisMercado.Models
 
             builder.Entity<RelacionTecnicoRol>()
                 .HasOne(tr => tr.Tecnico)
-                .WithMany(p => p.RelacionTecnicoRoles)
+                .WithMany(p => p.RelacionTecnicoRol)
                 .HasForeignKey(tr => tr.TecnicoId);
 
             builder.Entity<RelacionTecnicoRol>()
                 .HasOne(tr => tr.Rol)
-                .WithMany(s => s.RelacionTecnicoRoles)
+                .WithMany(s => s.RelacionTecnicoRol)
                 .HasForeignKey(tr => tr.RolId);
 
+            // Relación Tecnico:Solicitud
+            builder.Entity<RelacionTecnicoSolicitud>()
+                .HasKey(r => new { r.TecnicoId, r.SolicitudId });
+
+            builder.Entity<RelacionTecnicoSolicitud>()
+                .HasOne(r => r.Tecnico)
+                .WithMany(t => t.RelacionTecnicoSolicitud)
+                .HasForeignKey(r => r.TecnicoId);
+
+            builder.Entity<RelacionTecnicoSolicitud>()
+                .HasOne(r => r.Solicitud)
+                .WithMany(s => s.RelacionTecnicoSolicitud)
+                .HasForeignKey(r => r.SolicitudId);
+                
         }
 
         public DbSet<IgnisMercado.Models.RelacionClienteProyecto> RelacionClienteProyectos { get; set; }
@@ -79,7 +94,7 @@ namespace IgnisMercado.Models
 
         public DbSet<IgnisMercado.Models.RelacionTecnicoRol> RelacionTecnicoRoles { get; set; }
 
-        public DbSet<IgnisMercado.Models.Administrador> Administradores { get; set; }
+        public DbSet<IgnisMercado.Models.RelacionTecnicoSolicitud> RelacionTecnicoSolicitudes { get; set; }
 
         public DbSet<IgnisMercado.Models.Tecnico> Tecnicos { get; set; }
 
