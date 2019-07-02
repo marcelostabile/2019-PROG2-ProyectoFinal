@@ -36,6 +36,7 @@ namespace IgnisMercado.Pages.Solicitudes
                             .OrderByDescending(s => s.NivelExperiencia)
                                 .AsNoTracking()
                                 .ToListAsync();
+
             }
             else
             {
@@ -56,6 +57,7 @@ namespace IgnisMercado.Pages.Solicitudes
 
                 SolicitudIdx.Tecnicos = solicitud.RelacionTecnicoSolicitud 
                                         .Select(r => r.Tecnico).ToList();
+
             }
         }
     }
