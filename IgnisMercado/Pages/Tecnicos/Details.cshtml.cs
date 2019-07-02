@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using IgnisMercado.Models;
 
+using IgnisMercado.Areas.Identity.Data;
+
 namespace IgnisMercado.Pages.Tecnicos
 {
     public class DetailsModel : PageModel
@@ -18,7 +20,7 @@ namespace IgnisMercado.Pages.Tecnicos
             _context = context;
         }
 
-        public Tecnico Tecnico { get; set; }
+        public ApplicationUser Tecnico { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {

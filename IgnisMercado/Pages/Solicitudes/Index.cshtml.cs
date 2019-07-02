@@ -21,11 +21,11 @@ namespace IgnisMercado.Pages.Solicitudes
             _context = context;
         }
 
+        public Solicitud Solicitud { get; set; }
+
         public int? SolicitudId { get;set; }
 
         public string TecnicoId { get;set; }
-        
-        public Solicitud Solicitud { get; set; }
 
         public SolicitudIndexData SolicitudIdx = new SolicitudIndexData();
 
@@ -46,7 +46,7 @@ namespace IgnisMercado.Pages.Solicitudes
                                 .ToListAsync();
 
             }
-            else
+            else    
             {
                 SolicitudId = id;
 
@@ -63,17 +63,144 @@ namespace IgnisMercado.Pages.Solicitudes
                 Solicitud solicitud = SolicitudIdx.Solicitudes 
                                         .Where(s => s.SolicitudId == id).Single();
 
-                SolicitudIdx.Tecnicos = solicitud.RelacionTecnicoSolicitud 
-                                        .Select(r => r.Tecnico).ToList();
-
-                this.TecnicosAsignados = Solicitud.RelacionTecnicoSolicitud
-                                            .Select(s => s.Tecnico);
+                this.TecnicosAsignados = solicitud.RelacionTecnicoSolicitud 
+                                            .Select(r => r.Tecnico);
                                             
-                this.TecnicosDisponibles = _context.Solicitudes
-                                            .Where(a => !TecnicosAsignados.Contains(a))
-                                            .ToListAsync();
-
+                this.TecnicosDisponibles = await _context.Tecnicos
+                                                .Where(t => !TecnicosAsignados.Contains(t))
+                                                .ToListAsync();
             }
         }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+
+        //     if (!ModelState.IsValid)
+        //     {
+        //         return Page();
+        //     }
+
+            var solicitudActualizar = await _context.Movies
+                .Include(l => l.Location)
+                .Include(a => a.Appeareances)
+                    .ThenInclude(a => a.Actor)
+                .FirstOrDefaultAsync(m => m.ID == id);
+
+ 
+        //     if (await TryUpdateModelAsync<Movie>(
+        //         movieToUpdate,
+        //         "Movie",
+        //         i => i.Title, i => i.ReleaseDate,
+        //         i => i.Price, i => i.Genre,
+        //         i => i.Location))
+        //     {
+        //         if (String.IsNullOrWhiteSpace(movieToUpdate.Location?.Name))
+        //         {
+        //             movieToUpdate.Location = null;
+        //         }
+
+        //         try
+        //         {
+        //             await _context.SaveChangesAsync();
+        //         }
+        //         catch (DbUpdateConcurrencyException)
+        //         {
+        //             if (!MovieExists(Movie.ID))
+        //             {
+        //                 return NotFound();
+        //             }
+        //             else
+        //             {
+        //                 throw;
+        //             }
+        //         }
+        //     }
+        //     return RedirectToPage("./Index");
+        // }
+
+        // public async Task<IActionResult> OnPostDeleteActorAsync(int id, int actorToDeleteID)
+        // {
+        //     Movie movieToUpdate = await _context.Movies
+        //         .Include(l => l.Location)
+        //         .Include(a => a.Appeareances)
+        //             .ThenInclude(a => a.Actor)
+        //         .FirstOrDefaultAsync(m => m.ID == id);
+
+        //     await TryUpdateModelAsync<Movie>(movieToUpdate);
+
+        //     var actorToDelete = movieToUpdate.Appeareances.Where(a => a.ActorID == actorToDeleteID).FirstOrDefault();
+        //     if (actorToDelete != null)
+        //     {
+        //         movieToUpdate.Appeareances.Remove(actorToDelete);
+        //     }
+
+        //     try
+        //     {
+        //         await _context.SaveChangesAsync();
+        //     }
+        //     catch (DbUpdateConcurrencyException)
+        //     {
+        //         if (!MovieExists(Movie.ID))
+        //         {
+        //             return NotFound();
+        //         }
+        //         else
+        //         {
+        //             throw;
+        //         }
+        //     }
+
+        //     return Redirect(Request.Path + $"?id={id}");
+        // }
+
+        // public async Task<IActionResult> OnPostAddActorAsync(int? id, int? actorToAddID)
+        // {
+        //     Movie movieToUpdate = await _context.Movies
+        //         .Include(a => a.Appeareances)
+        //             .ThenInclude(a => a.Actor)
+        //         .FirstOrDefaultAsync(m => m.ID == Movie.ID);
+
+        //     await TryUpdateModelAsync<Movie>(movieToUpdate);
+
+
+        //     if (actorToAddID != null)
+        //     {
+        //         Actor actorToAdd = await _context.Actors.Where(a => a.ID == actorToAddID).FirstOrDefaultAsync();
+        //         if (actorToAdd != null)
+        //         {
+        //             var appereanceToAdd = new Appereance() {
+        //                 ActorID = actorToAddID.Value,
+        //                 Actor = actorToAdd,
+        //                 MovieID = movieToUpdate.ID,
+        //                 Movie = movieToUpdate };
+        //             movieToUpdate.Appeareances.Add(appereanceToAdd);
+        //         }
+        //     }
+
+        //     try
+        //     {
+        //         await _context.SaveChangesAsync();
+        //     }
+        //     catch (DbUpdateConcurrencyException)
+        //     {
+        //         if (!MovieExists(Movie.ID))
+        //         {
+        //             return NotFound();
+        //         }
+        //         else
+        //         {
+        //             throw;
+        //         }
+        //     }
+
+        //     return Redirect(Request.Path + $"?id={id}");
+        // }
+
+        // private bool MovieExists(int id)
+        // {
+        //     return _context.Movies.Any(e => e.ID == id);
+        // }
+
+        }
     }
-}
+

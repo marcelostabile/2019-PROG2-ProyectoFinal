@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using IgnisMercado.Models;
 
+using IgnisMercado.Areas.Identity.Data;
 namespace IgnisMercado.Pages.Tecnicos
 {
     public class EditModel : PageModel
@@ -20,7 +21,7 @@ namespace IgnisMercado.Pages.Tecnicos
         }
 
         [BindProperty]
-        public Tecnico Tecnico { get; set; }
+        public ApplicationUser Tecnico { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {

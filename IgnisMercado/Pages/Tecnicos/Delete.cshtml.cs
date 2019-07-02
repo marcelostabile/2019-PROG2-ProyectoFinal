@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using IgnisMercado.Models;
+using IgnisMercado.Areas.Identity.Data;
 
 namespace IgnisMercado.Pages.Tecnicos
 {
@@ -19,7 +19,7 @@ namespace IgnisMercado.Pages.Tecnicos
         }
 
         [BindProperty]
-        public Tecnico Tecnico { get; set; }
+        public ApplicationUser Tecnico { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {

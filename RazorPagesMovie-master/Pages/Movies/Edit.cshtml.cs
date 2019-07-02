@@ -38,8 +38,10 @@ namespace RazorPagesMovie.Pages.Movies
 
             // Retrieve the first movie with ID equal to received id. Include the appeareances of actors in that
             // movie. Then include the actors in the appearences of the movie.
+
+            // OBJETO MOVIE : PELICULA SELECCIONADA
             Movie = await _context.Movies
-                .Where(m => m.ID == id)
+                .Where(m => m.ID == id) 
                 .Include(l => l.Location)
                 .Include(c => c.Appeareances)
                     .ThenInclude(a => a.Actor)
@@ -51,6 +53,7 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
+            // LISTA DE TECNICOS EN VIEWMODEL, ACTORES DE LA POVIE
             // Populate the list of actors in the viewmodel with the actors of the movie.
             this.Actors = Movie.Appeareances
                 .Select(a => a.Actor);

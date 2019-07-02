@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using IgnisMercado.Models;
+using IgnisMercado.Areas.Identity.Data;
 
 namespace IgnisMercado.Pages.Tecnicos
 {
@@ -18,7 +19,7 @@ namespace IgnisMercado.Pages.Tecnicos
             _context = context;
         }
 
-        public IList<Tecnico> Tecnico { get;set; }
+        public IList<ApplicationUser> Tecnico { get;set; }
 
         public async Task OnGetAsync()
         {

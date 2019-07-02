@@ -96,7 +96,7 @@ namespace IgnisMercado.Models
 
         public DbSet<IgnisMercado.Models.RelacionTecnicoSolicitud> RelacionTecnicoSolicitudes { get; set; }
 
-        public DbSet<IgnisMercado.Models.Tecnico> Tecnicos { get; set; }
+        public DbSet<IgnisMercado.Areas.Identity.Data.ApplicationUser> Tecnicos { get; set; }
 
         public DbSet<IgnisMercado.Models.Solicitud> Solicitudes { get; set; }
 
