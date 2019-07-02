@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-
 
 using IgnisMercado.Areas.Identity.Data;
 using IgnisMercado.Models;
@@ -44,7 +44,6 @@ namespace IgnisMercado.Pages.Solicitudes
                             .OrderByDescending(s => s.NivelExperiencia)
                                 .AsNoTracking()
                                 .ToListAsync();
-
             }
             else    
             {
@@ -72,135 +71,66 @@ namespace IgnisMercado.Pages.Solicitudes
             }
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostDesasignarTecnicoAsync(int id, string TecnicoIdDesasignado) 
         {
+            // Selecciono la solicitud para actualizar.
+            Solicitud solicitudActualizada = await _context.Solicitudes 
+                .Include(s => s.RelacionTecnicoSolicitud)
+                    .ThenInclude(r => r.Tecnico)
+                .FirstOrDefaultAsync(m => m.SolicitudId == id);
 
-        //     if (!ModelState.IsValid)
-        //     {
-        //         return Page();
-        //     }
+            // await TryUpdateModelAsync<Solicitud>(solicitudActualizada);
 
-            var solicitudActualizar = await _context.Movies
-                .Include(l => l.Location)
-                .Include(a => a.Appeareances)
-                    .ThenInclude(a => a.Actor)
-                .FirstOrDefaultAsync(m => m.ID == id);
+            // Selecciono el técnico especifico a partir de la solicitud involucrada.
+            var TecnicoDesasignado = solicitudActualizada.RelacionTecnicoSolicitud
+                                        .Where(a => a.TecnicoId == TecnicoIdDesasignado).FirstOrDefault();
 
- 
-        //     if (await TryUpdateModelAsync<Movie>(
-        //         movieToUpdate,
-        //         "Movie",
-        //         i => i.Title, i => i.ReleaseDate,
-        //         i => i.Price, i => i.Genre,
-        //         i => i.Location))
-        //     {
-        //         if (String.IsNullOrWhiteSpace(movieToUpdate.Location?.Name))
-        //         {
-        //             movieToUpdate.Location = null;
-        //         }
+            // Sí tiene un técnico, lo elimino de la solicitud.
+            if (TecnicoDesasignado != null)
+            {
+                solicitudActualizada.RelacionTecnicoSolicitud.Remove(TecnicoDesasignado);
+            }
 
-        //         try
-        //         {
-        //             await _context.SaveChangesAsync();
-        //         }
-        //         catch (DbUpdateConcurrencyException)
-        //         {
-        //             if (!MovieExists(Movie.ID))
-        //             {
-        //                 return NotFound();
-        //             }
-        //             else
-        //             {
-        //                 throw;
-        //             }
-        //         }
-        //     }
-        //     return RedirectToPage("./Index");
-        // }
+            // Guardar los cambios
+            await _context.SaveChangesAsync();
 
-        // public async Task<IActionResult> OnPostDeleteActorAsync(int id, int actorToDeleteID)
-        // {
-        //     Movie movieToUpdate = await _context.Movies
-        //         .Include(l => l.Location)
-        //         .Include(a => a.Appeareances)
-        //             .ThenInclude(a => a.Actor)
-        //         .FirstOrDefaultAsync(m => m.ID == id);
+            // Recargar la página al index.
+            return RedirectToPage("./Index");
+        }
 
-        //     await TryUpdateModelAsync<Movie>(movieToUpdate);
+        public async Task<IActionResult> OnPostAsignarTecnicoAsync(int? id, string TecnicoIdAsignado) 
+        {
+            // Selecciono la solicitud para actualizar.
+            Solicitud solicitudActualizada = await _context.Solicitudes 
+                .Include(s => s.RelacionTecnicoSolicitud)
+                    .ThenInclude(r => r.Tecnico)
+                .FirstOrDefaultAsync(m => m.SolicitudId == id);
 
-        //     var actorToDelete = movieToUpdate.Appeareances.Where(a => a.ActorID == actorToDeleteID).FirstOrDefault();
-        //     if (actorToDelete != null)
-        //     {
-        //         movieToUpdate.Appeareances.Remove(actorToDelete);
-        //     }
+            //await TryUpdateModelAsync<Solicitud>(solicitudActualizada);
 
-        //     try
-        //     {
-        //         await _context.SaveChangesAsync();
-        //     }
-        //     catch (DbUpdateConcurrencyException)
-        //     {
-        //         if (!MovieExists(Movie.ID))
-        //         {
-        //             return NotFound();
-        //         }
-        //         else
-        //         {
-        //             throw;
-        //         }
-        //     }
+            // Sí tiene un técnico, lo elimino de la solicitud.
+            if (TecnicoIdAsignado != null)
+            {
+                // Seleccionar técnico.
+                ApplicationUser TecnicoAsignado = await _context.Users
+                    .Where(u => u.Id == TecnicoIdAsignado).FirstOrDefaultAsync();                
 
-        //     return Redirect(Request.Path + $"?id={id}");
-        // }
+                if (TecnicoAsignado != null) 
+                { 
+                    // Definir la relación que tengo que crear.
+                    var RTecnicoSolicitudNueva = new RelacionTecnicoSolicitud() {
+                        TecnicoId = TecnicoIdAsignado, 
+                        Tecnico = TecnicoAsignado, 
+                        SolicitudId = solicitudActualizada.SolicitudId, 
+                        Solicitud = solicitudActualizada };
+                }
+            }
 
-        // public async Task<IActionResult> OnPostAddActorAsync(int? id, int? actorToAddID)
-        // {
-        //     Movie movieToUpdate = await _context.Movies
-        //         .Include(a => a.Appeareances)
-        //             .ThenInclude(a => a.Actor)
-        //         .FirstOrDefaultAsync(m => m.ID == Movie.ID);
+            // Guardar los cambios
+            await _context.SaveChangesAsync();
 
-        //     await TryUpdateModelAsync<Movie>(movieToUpdate);
-
-
-        //     if (actorToAddID != null)
-        //     {
-        //         Actor actorToAdd = await _context.Actors.Where(a => a.ID == actorToAddID).FirstOrDefaultAsync();
-        //         if (actorToAdd != null)
-        //         {
-        //             var appereanceToAdd = new Appereance() {
-        //                 ActorID = actorToAddID.Value,
-        //                 Actor = actorToAdd,
-        //                 MovieID = movieToUpdate.ID,
-        //                 Movie = movieToUpdate };
-        //             movieToUpdate.Appeareances.Add(appereanceToAdd);
-        //         }
-        //     }
-
-        //     try
-        //     {
-        //         await _context.SaveChangesAsync();
-        //     }
-        //     catch (DbUpdateConcurrencyException)
-        //     {
-        //         if (!MovieExists(Movie.ID))
-        //         {
-        //             return NotFound();
-        //         }
-        //         else
-        //         {
-        //             throw;
-        //         }
-        //     }
-
-        //     return Redirect(Request.Path + $"?id={id}");
-        // }
-
-        // private bool MovieExists(int id)
-        // {
-        //     return _context.Movies.Any(e => e.ID == id);
-        // }
-
+            // Recargar la página al index.
+            return RedirectToPage("./Index");
         }
     }
-
+}

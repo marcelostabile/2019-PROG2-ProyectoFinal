@@ -174,6 +174,7 @@ namespace RazorPagesMovie.Pages.Movies
                         Actor = actorToAdd,
                         MovieID = movieToUpdate.ID,
                         Movie = movieToUpdate };
+                        
                     movieToUpdate.Appeareances.Add(appereanceToAdd);
                 }
             }
