@@ -106,11 +106,13 @@ namespace IgnisMercado.Pages.Solicitudes
                     .ThenInclude(r => r.Tecnico)
                 .FirstOrDefaultAsync(m => m.SolicitudId == id);
 
-            //await TryUpdateModelAsync<Solicitud>(solicitudActualizada);
+            
 
             // Sí tiene un técnico, lo elimino de la solicitud.
             if (TecnicoIdAsignado != null)
             {
+                await TryUpdateModelAsync<Solicitud>(solicitudActualizada);
+
                 // Seleccionar técnico.
                 ApplicationUser TecnicoAsignado = await _context.Users
                     .Where(u => u.Id == TecnicoIdAsignado).FirstOrDefaultAsync();                
@@ -123,6 +125,8 @@ namespace IgnisMercado.Pages.Solicitudes
                         Tecnico = TecnicoAsignado, 
                         SolicitudId = solicitudActualizada.SolicitudId, 
                         Solicitud = solicitudActualizada };
+
+                    solicitudActualizada.RelacionTecnicoSolicitud.Add(RTecnicoSolicitudNueva);
                 }
             }
 

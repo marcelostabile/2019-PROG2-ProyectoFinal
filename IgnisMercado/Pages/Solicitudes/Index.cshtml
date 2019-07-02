@@ -176,12 +176,12 @@
 
                 @foreach (var item in Model.TecnicosAsignados)
                 { 
-                    string TecnicoDesasignarId = item.Id.ToString();
+                    string TecnicoIdDesasignado = item.Id.ToString();
 
                     <tr>
                         <td>
                             <form method="post" asp-page-handler="DesasignarTecnico"
-                                asp-route-id="@Model.TecnicoId" asp-route-TecnicoDesasignarId="@TecnicoDesasignarId">
+                                asp-route-id="@Model.SolicitudId" asp-route-TecnicoIdDesasignado="@TecnicoIdDesasignado">
                                 <button class="btn btn-dark">Desasignar</button>
                             </form>
                         </td>
@@ -219,12 +219,12 @@
 
                 @foreach (var item in Model.TecnicosDisponibles)
                 {
-                    string TecnicoAsignarId = item.Id.ToString();
+                    string TecnicoIdAsignado = item.Id.ToString();
 
                     <tr>
                         <td>
                             <form method="post" asp-page-handler="AsignarTecnico"
-                                asp-route-id="@Model.TecnicoId" asp-route-TecnicoDesasignarId="@TecnicoAsignarId">
+                                asp-route-id="@Model.SolicitudId" asp-route-TecnicoIdAsignado="@TecnicoIdAsignado">
                                 <button class="btn btn-success">Asignar</button>
                             </form>
                         </td>
