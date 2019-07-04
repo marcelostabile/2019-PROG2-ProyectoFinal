@@ -127,6 +127,8 @@ namespace IgnisMercado.Models
                                         this.ModoDeContrato, 
                                         this.HorasContratadas, 
                                         this.NivelExperiencia);
+
+                
             }
         }
 
