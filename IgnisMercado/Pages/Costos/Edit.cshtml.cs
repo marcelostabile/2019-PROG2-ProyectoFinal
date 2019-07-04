@@ -21,16 +21,13 @@ namespace IgnisMercado.Pages.Costos
             _context = context;
         }
 
-        public EditModel()
-        {
-        }
-
-        CostoViewModel CostoView { get; set; }
+        public CostoViewModel CostoView = new CostoViewModel();
 
         [BindProperty]
         public Costo Costo { get; set; }
-
-        Costo costoInstancia = Costo.obtenerInstancia();
+        
+        // [BindProperty]
+        public Costo costoInstancia = Costo.obtenerInstancia();
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -49,20 +46,34 @@ namespace IgnisMercado.Pages.Costos
         }
 
         public async Task<IActionResult> OnPostAsync()
-        {            
-            Costo costoInstancia = Costo.obtenerInstancia();
+        { 
+            //Costo costoInstancia = Costo.obtenerInstancia();
 
-            costoInstancia.ModificarPrimeraHoraBasico(CostoView.PrimeraHoraBasico);
-            costoInstancia.ModificarCostoHoraBasico(CostoView.CostoHoraBasico);
-            costoInstancia.ModificarJornadaBasico(CostoView.JornadaBasico);
+            _context.Attach(CostoView).State = EntityState.Modified;
 
-            costoInstancia.ModificarPrimeraHoraAvanzado(CostoView.PrimeraHoraAvanzado);
-            costoInstancia.ModificarCostoHoraAvanzado(CostoView.CostoHoraAvanzado);
-            costoInstancia.ModificarJornadaAvanzado(CostoView.JornadaAvanzado);
+            costoInstancia.ModificarPrimeraHoraBasico(Costo.PrimeraHoraBasico);
+            costoInstancia.ModificarCostoHoraBasico(Costo.CostoHoraBasico);
+            costoInstancia.ModificarJornadaBasico(Costo.JornadaBasico);
 
-            costoInstancia.ModificarHoraJornada(CostoView.HoraJornada);
+            costoInstancia.ModificarPrimeraHoraAvanzado(Costo.PrimeraHoraAvanzado);
+            costoInstancia.ModificarCostoHoraAvanzado(Costo.CostoHoraAvanzado);
+            costoInstancia.ModificarJornadaAvanzado(Costo.JornadaAvanzado);
+
+            costoInstancia.ModificarHoraJornada(Costo.HoraJornada);
 
             costoInstancia.Notificar();
+
+            // costoInstancia.ModificarPrimeraHoraBasico(Costo.PrimeraHoraBasico);
+            // costoInstancia.ModificarCostoHoraBasico(Costo.CostoHoraBasico);
+            // costoInstancia.ModificarJornadaBasico(Costo.JornadaBasico);
+
+            // costoInstancia.ModificarPrimeraHoraAvanzado(Costo.PrimeraHoraAvanzado);
+            // costoInstancia.ModificarCostoHoraAvanzado(Costo.CostoHoraAvanzado);
+            // costoInstancia.ModificarJornadaAvanzado(Costo.JornadaAvanzado);
+
+            // costoInstancia.ModificarHoraJornada(Costo.HoraJornada);
+
+            // costoInstancia.Notificar();
 
             // foreach (Solicitud sol in _context.Solicitudes)
             // {

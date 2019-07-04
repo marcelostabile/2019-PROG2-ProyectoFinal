@@ -12,28 +12,31 @@ namespace IgnisMercado.Models.ViewModels
 {
     public class CostoViewModel
     {
-        [BindProperty]
+        public CostoViewModel()
+        {
+            this.PrimeraHoraBasico=0;
+            this.CostoHoraBasico=0;
+            this.JornadaBasico=0;
+            this.PrimeraHoraAvanzado=0;
+            this.CostoHoraAvanzado=0;
+            this.JornadaAvanzado=0;
+            this.HoraJornada=0;
+        }
+        
         public int Id { get; set; }
 
-        [BindProperty]
         public int PrimeraHoraBasico { get; set; }
 
-        [BindProperty]
         public int CostoHoraBasico { get; set; }
 
-        [BindProperty]
         public int JornadaBasico { get; set; }
 
-        [BindProperty]
         public int PrimeraHoraAvanzado { get; set; }
 
-        [BindProperty]
         public int CostoHoraAvanzado { get; set; }
         
-        [BindProperty]
         public int JornadaAvanzado { get; set; }
 
-        [BindProperty]
         public int HoraJornada { get; set; }
     }
 }
