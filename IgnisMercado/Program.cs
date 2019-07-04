@@ -24,8 +24,6 @@ namespace IgnisMercado
                     var context=services.
                         GetRequiredService<ApplicationContext>();
 
-                    //context.Database.Migrate();
-
                     // Seeding de datos.
                     Seeding.Initialize(services);
 

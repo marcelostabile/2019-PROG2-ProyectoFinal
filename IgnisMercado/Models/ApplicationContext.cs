@@ -16,6 +16,7 @@ namespace IgnisMercado.Models
         {
             base.OnModelCreating(builder);
 
+            // Relación Entidad:Tabla.
             builder.Entity<RelacionClienteProyecto>().ToTable("RelacionClienteProyectos");
             builder.Entity<RelacionProyectoSolicitud>().ToTable("RelacionProyectoSolicitudes");
             builder.Entity<RelacionTecnicoSolicitud>().ToTable("RelacionTecnicoSolicitudes");

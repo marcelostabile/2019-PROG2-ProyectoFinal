@@ -80,8 +80,6 @@ namespace IgnisMercado.Pages.Solicitudes
                     .ThenInclude(r => r.Tecnico)
                 .FirstOrDefaultAsync(m => m.SolicitudId == id);
 
-            // await TryUpdateModelAsync<Solicitud>(solicitudActualizada);
-
             // Selecciono el técnico especifico a partir de la solicitud involucrada.
             var TecnicoDesasignado = solicitudActualizada.RelacionTecnicoSolicitud
                                         .Where(a => a.TecnicoId == TecnicoIdDesasignado).FirstOrDefault();
@@ -106,8 +104,6 @@ namespace IgnisMercado.Pages.Solicitudes
                 .Include(s => s.RelacionTecnicoSolicitud)
                     .ThenInclude(r => r.Tecnico)
                 .FirstOrDefaultAsync(m => m.SolicitudId == id);
-
-            
 
             // Sí tiene un técnico, lo elimino de la solicitud.
             if (TecnicoIdAsignado != null)

@@ -10,7 +10,7 @@ using IgnisMercado.Models;
 namespace IgnisMercado.Models.Seeding 
 {
     /// <summary>
-    /// Inicializa la base de datos.
+    /// Esta clase tiene la responsabilidad de hacer el seeding de la aplicación.
     /// </summary>
     public class Seeding
     {
@@ -31,31 +31,30 @@ namespace IgnisMercado.Models.Seeding
             {
                 Initialize(context);
             }
-            
         }
 
         public static void Initialize(ApplicationContext context)
         {
             // Seeding roles.
-                SeedRol(context);
-                
-                // Seeding costos.
-                SeedCostos(context);
+            SeedRol(context);
+            
+            // Seeding costos.
+            SeedCostos(context);
 
-                // Seeding proyectos.
-                SeedProyectos(context);
- 
-                // Seeding solicitudes.
-                SeedSolicitudes(context);
+            // Seeding proyectos.
+            SeedProyectos(context);
 
-                // Seeding relaciones.
-                SeedRClienteProyectos(context);
+            // Seeding solicitudes.
+            SeedSolicitudes(context);
 
-                SeedRProyectoSolicitudes(context);
+            // Seeding relaciones.
+            SeedRClienteProyectos(context);
 
-                SeedRTecnicoRoles(context);
+            SeedRProyectoSolicitudes(context);
 
-                SeedRTecnicoSolicitudes(context);
+            SeedRTecnicoRoles(context);
+
+            SeedRTecnicoSolicitudes(context);
         }
 
         // Seeding usuarios.

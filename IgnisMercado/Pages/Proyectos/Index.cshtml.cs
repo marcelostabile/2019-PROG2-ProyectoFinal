@@ -1,4 +1,3 @@
-// revisado
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,10 +26,6 @@ namespace IgnisMercado.Pages.Proyectos
 
         public int? ProyectoId { get; set; }
 
-        // public string ClienteId { get; set; }
-
-        // public ApplicationUser Cliente { get; set; }
-
         // Instanciamos el viewmodel.
         public ClienteIndexData ClienteIdxData = new ClienteIndexData();
 
@@ -47,27 +42,26 @@ namespace IgnisMercado.Pages.Proyectos
                             .AsNoTracking()
                             .ToListAsync();
 
-                // Solicitudes.
-                if (id != null) 
-                { 
-                    // El usuario selecciona un proyecto del cliente.
-                    ProyectoId = id;
+            // Solicitudes.
+            if (id != null) 
+            { 
+                // El usuario selecciona un proyecto del cliente.
+                ProyectoId = id;
 
-                    ClienteIdxData.Proyectos = await _context.Proyectos 
-                        .Where(p=>p.ProyectoId == id)
-                        .Include(p=>p.RelacionProyectoSolicitud)
-                            .ThenInclude(r=>r.Solicitud)
-                                .OrderBy(p => p.Nombre)
-                                    .AsNoTracking()
-                                    .ToListAsync();
+                ClienteIdxData.Proyectos = await _context.Proyectos 
+                    .Where(p=>p.ProyectoId == id)
+                    .Include(p=>p.RelacionProyectoSolicitud)
+                        .ThenInclude(r=>r.Solicitud)
+                            .OrderBy(p => p.Nombre)
+                                .AsNoTracking()
+                                .ToListAsync();
 
-                    Proyecto proyecto = ClienteIdxData.Proyectos
-                                            .Where(p => p.ProyectoId == id).Single();
+                Proyecto proyecto = ClienteIdxData.Proyectos
+                                        .Where(p => p.ProyectoId == id).Single();
 
-                    ClienteIdxData.Solicitudes = proyecto.RelacionProyectoSolicitud
-                                                    .Select(rps => rps.Solicitud).ToList();
-
-                };
+                ClienteIdxData.Solicitudes = proyecto.RelacionProyectoSolicitud
+                                                .Select(rps => rps.Solicitud).ToList();
+            };
         }
     }
 }

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IgnisMercado.Models 
 { 
@@ -72,12 +71,6 @@ namespace IgnisMercado.Models
         public void StatusInactivo() 
         {
             this.Status = false;
-
-            // /// Cuando cerramos el proyecto, se cierran todas sus solicitudes.
-            // if (this.ListaSolicitudes.Count > 0) 
-            // {
-            //     foreach (Solicitud solicitud in this.ListaSolicitudes) solicitud.StatusInactivo();
-            // }
         }
 
     }

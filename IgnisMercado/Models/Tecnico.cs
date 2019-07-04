@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 using IgnisMercado.Areas.Identity.Data;
 
@@ -26,16 +24,6 @@ namespace IgnisMercado.Models
                 return this.Id;
             }
         }
-
-        // /// <summary>
-        // /// Relación Tecnico:Solicitud.
-        // /// </summary>
-        // public IList<RelacionTecnicoSolicitud> RelacionTecnicoSolicitudes { get; set; }
-
-        // /// <summary>
-        // /// Relación Tecnico:Rol.
-        // /// </summary>
-        // public IList<RelacionTecnicoRol> RelacionTecnicoRoles { get; set; }
 
         /// <summary>
         /// Presentación
@@ -67,6 +55,5 @@ namespace IgnisMercado.Models
         {
             this.NivelExperiencia = "Avanzado";
         }
-
     }
 }

@@ -31,11 +31,6 @@ namespace IgnisMercado
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            // services.AddDbContext<ApplicationContext>(options =>
-            //     options.UseSqlite(
-            //         Configuration.GetConnectionString("IgnisConn")
-            //         ));
-
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("IgnisConn"), x => x.SuppressForeignKeyEnforcement()

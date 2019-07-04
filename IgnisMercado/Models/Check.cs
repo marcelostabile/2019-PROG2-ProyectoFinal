@@ -64,6 +64,5 @@ namespace IgnisMercado.Models
                 throw new InvarianteExcepcion(Mensaje);
             }
         }
-
     }
 }

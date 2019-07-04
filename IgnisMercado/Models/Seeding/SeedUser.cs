@@ -3,6 +3,9 @@ using IgnisMercado.Models;
 
 namespace IgnisMercado.Models.Seeding 
 {
+    /// <summary>
+    /// Esta clase define los atributos de un usuario durante el seeding que realiza la clase Seeding.
+    /// </summary>
     public class SeedUser 
     {
         public string UserName { get; set; }
