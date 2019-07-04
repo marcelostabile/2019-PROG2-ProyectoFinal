@@ -6,9 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-
 using IgnisMercado.Models;
-using IgnisMercado.Models.ViewModels;
 
 namespace IgnisMercado.Pages.Costos
 {
@@ -21,13 +19,8 @@ namespace IgnisMercado.Pages.Costos
             _context = context;
         }
 
-        public CostoViewModel CostoView = new CostoViewModel();
-
         [BindProperty]
         public Costo Costo { get; set; }
-        
-        // [BindProperty]
-        public Costo costoInstancia = Costo.obtenerInstancia();
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -46,44 +39,47 @@ namespace IgnisMercado.Pages.Costos
         }
 
         public async Task<IActionResult> OnPostAsync()
-        { 
-            //Costo costoInstancia = Costo.obtenerInstancia();
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
-            _context.Attach(CostoView).State = EntityState.Modified;
+            _context.Attach(Costo).State = EntityState.Modified;
 
-            costoInstancia.ModificarPrimeraHoraBasico(Costo.PrimeraHoraBasico);
-            costoInstancia.ModificarCostoHoraBasico(Costo.CostoHoraBasico);
-            costoInstancia.ModificarJornadaBasico(Costo.JornadaBasico);
+            try
+            {
+                // Se guardan los cambios.
+                await _context.SaveChangesAsync();
 
-            costoInstancia.ModificarPrimeraHoraAvanzado(Costo.PrimeraHoraAvanzado);
-            costoInstancia.ModificarCostoHoraAvanzado(Costo.CostoHoraAvanzado);
-            costoInstancia.ModificarJornadaAvanzado(Costo.JornadaAvanzado);
+                // Se actualiza el costo en todas las solicitudes activas.
+                foreach (Solicitud sol in _context.Solicitudes)
+                {
+                    sol.ActualizarCostoSolicitudActiva();
+                }
 
-            costoInstancia.ModificarHoraJornada(Costo.HoraJornada);
+                // Se guarda la actualizacion de precios en las solicitudes.
+                await _context.SaveChangesAsync();
 
-            costoInstancia.Notificar();
-
-            // costoInstancia.ModificarPrimeraHoraBasico(Costo.PrimeraHoraBasico);
-            // costoInstancia.ModificarCostoHoraBasico(Costo.CostoHoraBasico);
-            // costoInstancia.ModificarJornadaBasico(Costo.JornadaBasico);
-
-            // costoInstancia.ModificarPrimeraHoraAvanzado(Costo.PrimeraHoraAvanzado);
-            // costoInstancia.ModificarCostoHoraAvanzado(Costo.CostoHoraAvanzado);
-            // costoInstancia.ModificarJornadaAvanzado(Costo.JornadaAvanzado);
-
-            // costoInstancia.ModificarHoraJornada(Costo.HoraJornada);
-
-            // costoInstancia.Notificar();
-
-            // foreach (Solicitud sol in _context.Solicitudes)
-            // {
-            //     sol.ActualizarCostoSolicitudActiva();
-            // }
-
-            // Se guarda la actualizacion de precios en las solicitu des.
-            await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CostoExists(Costo.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
             return RedirectToPage("./Index");
+        }
+
+        private bool CostoExists(int id)
+        {
+            return _context.Costos.Any(e => e.Id == id);
         }
     }
 }
