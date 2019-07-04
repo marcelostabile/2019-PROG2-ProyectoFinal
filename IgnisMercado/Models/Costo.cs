@@ -39,13 +39,13 @@ namespace IgnisMercado.Models
             _context.Costos.AddRange(
                 new Costo 
                 {
-                    CostoHoraBasico = 150,
-                    CostoHoraAvanzado = 280,
-                    PrimeraHoraBasico = 380,
-                    PrimeraHoraAvanzado = 520,
-                    JornadaAvanzado = 2000,
-                    JornadaBasico = 1200,
-                    HoraJornada = 6
+                    CostoHoraBasico = 4,
+                    CostoHoraAvanzado = 4,
+                    PrimeraHoraBasico = 4,
+                    PrimeraHoraAvanzado = 4,
+                    JornadaAvanzado = 4,
+                    JornadaBasico = 4,
+                    HoraJornada = 4
                 }
             );
 

@@ -446,12 +446,16 @@ namespace IgnisMercado.Models.Seeding
 
             foreach(var s in solicitudes)
             {
+                // actualización de precios.
                 s.costoSolicitud = CostoInstancia.CalcularCostoSolicitud(
                                             s.ModoDeContrato,
                                             s.HorasContratadas,
                                             s.NivelExperiencia);
-
+                // status activo.
                 s.StatusActivo();
+
+                // se agrega la solicitud como observador.
+                CostoInstancia.Agregar(s);
             }
 
             // guarda los cambios.

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+
 using IgnisMercado.Models;
 
 namespace IgnisMercado.Pages.Costos
@@ -18,11 +19,13 @@ namespace IgnisMercado.Pages.Costos
             _context = context;
         }
 
-        public IList<Costo> Costo { get;set; }
+        [BindProperty]
+        public IList<Costo> Costos { get; set; }
 
         public async Task OnGetAsync()
         {
-            Costo = await _context.Costos.ToListAsync();
+            Costos = await _context.Costos.ToListAsync();
         }
+
     }
 }
