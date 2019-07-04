@@ -24,11 +24,6 @@ namespace IgnisMercado.Pages.Costos
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            // if (id == null)
-            // {
-            //     return NotFound();
-            // }
-
             Costo = await _context.Costos.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Costo == null)
@@ -40,16 +35,8 @@ namespace IgnisMercado.Pages.Costos
 
         public async Task<IActionResult> OnPostAsync()
         {
-            // if (!ModelState.IsValid)
-            // {
-            //     return Page();
-            // }
-
             _context.Attach(Costo).State = EntityState.Modified;
 
-            // try
-            // {
-            // Se guardan los cambios.
             await _context.SaveChangesAsync();
 
             // Se actualiza el costo en todas las solicitudes activas.
@@ -61,25 +48,7 @@ namespace IgnisMercado.Pages.Costos
             // Se guarda la actualizacion de precios en las solicitudes.
             await _context.SaveChangesAsync();
 
-            // }
-            // catch (DbUpdateConcurrencyException)
-            // {
-            //     if (!CostoExists(Costo.Id))
-            //     {
-            //         return NotFound();
-            //     }
-            //     else
-            //     {
-            //         throw;
-            //     }
-            // }
-
             return RedirectToPage("./Index");
         }
-
-        // private bool CostoExists(int id)
-        // {
-        //     return _context.Costos.Any(e => e.Id == id);
-        // }
     }
 }

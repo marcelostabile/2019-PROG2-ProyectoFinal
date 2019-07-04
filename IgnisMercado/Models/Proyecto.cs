@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace IgnisMercado.Models 
 { 
-    public class Proyecto //: IGestionSolicitudes, ICostoProyecto
+    public class Proyecto
     { 
         /// <summary>
         /// Constructor sin argumentos para Razorpages.
