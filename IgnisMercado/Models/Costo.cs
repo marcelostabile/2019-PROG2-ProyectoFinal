@@ -13,13 +13,13 @@ namespace IgnisMercado.Models
         {
             this.primeraHoraBasico = 380;
             this.costoHoraBasico = 150;
-            this.jornadaBasico=1200;
+            this.jornadaBasico = 1200;
 
             this.primeraHoraAvanzado = 520;
             this.costoHoraAvanzado = 280;
-            this.jornadaAvanzado=2000;
+            this.jornadaAvanzado = 2000;
 
-            this.horaJornada=6;
+            this.horaJornada = 6;
         }
 
         // Para patrón Singleton: método obtener instancia.
