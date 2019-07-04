@@ -1,0 +1,64 @@
+@page
+@model IgnisMercado.Pages.Costos.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Costo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Costo.HoraJornada" class="control-label"></label>
+                <input asp-for="Costo.HoraJornada" class="form-control" />
+                <span asp-validation-for="Costo.HoraJornada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Costo.CostoHoraBasico" class="control-label"></label>
+                <input asp-for="Costo.CostoHoraBasico" class="form-control" />
+                <span asp-validation-for="Costo.CostoHoraBasico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Costo.CostoHoraAvanzado" class="control-label"></label>
+                <input asp-for="Costo.CostoHoraAvanzado" class="form-control" />
+                <span asp-validation-for="Costo.CostoHoraAvanzado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Costo.PrimeraHoraBasico" class="control-label"></label>
+                <input asp-for="Costo.PrimeraHoraBasico" class="form-control" />
+                <span asp-validation-for="Costo.PrimeraHoraBasico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Costo.PrimeraHoraAvanzado" class="control-label"></label>
+                <input asp-for="Costo.PrimeraHoraAvanzado" class="form-control" />
+                <span asp-validation-for="Costo.PrimeraHoraAvanzado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Costo.JornadaBasico" class="control-label"></label>
+                <input asp-for="Costo.JornadaBasico" class="form-control" />
+                <span asp-validation-for="Costo.JornadaBasico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Costo.JornadaAvanzado" class="control-label"></label>
+                <input asp-for="Costo.JornadaAvanzado" class="form-control" />
+                <span asp-validation-for="Costo.JornadaAvanzado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

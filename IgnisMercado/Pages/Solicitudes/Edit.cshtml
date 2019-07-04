@@ -1,0 +1,60 @@
+@page
+@model IgnisMercado.Pages.Solicitudes.EditModel
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h1>Editar</h1>
+
+<h4>Solicitud</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Solicitud.SolicitudId" />
+            <div class="form-group">
+                <label asp-for="Solicitud.ModoDeContrato" class="control-label"></label>
+                <input asp-for="Solicitud.ModoDeContrato" class="form-control" />
+                <span asp-validation-for="Solicitud.ModoDeContrato" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Solicitud.RolRequerido" class="control-label"></label>
+                <input asp-for="Solicitud.RolRequerido" class="form-control" />
+                <span asp-validation-for="Solicitud.RolRequerido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Solicitud.HorasContratadas" class="control-label"></label>
+                <input asp-for="Solicitud.HorasContratadas" class="form-control" />
+                <span asp-validation-for="Solicitud.HorasContratadas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Solicitud.NivelExperiencia" class="control-label"></label>
+                <input asp-for="Solicitud.NivelExperiencia" class="form-control" />
+                <span asp-validation-for="Solicitud.NivelExperiencia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Solicitud.Observaciones" class="control-label"></label>
+                <input asp-for="Solicitud.Observaciones" class="form-control" />
+                <span asp-validation-for="Solicitud.Observaciones" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Solicitud.Status" /> @Html.DisplayNameFor(model => model.Solicitud.Status)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

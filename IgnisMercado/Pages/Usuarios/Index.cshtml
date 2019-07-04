@@ -1,0 +1,232 @@
+@page 
+<!-- revisado -->
+
+@model IgnisMercado.Pages.Usuarios.IndexModel
+
+@using Microsoft.AspNetCore.Identity
+@using IgnisMercado.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (User.IsInRole("Administrador")) 
+{
+    ViewData["Title"] = "Usuarios";
+
+    <h1>Usuarios</h1>
+
+    <p>
+        <a asp-page="Create">Crear nuevo</a>
+    </p>
+}
+
+@if (User.IsInRole("Cliente") || User.IsInRole("Técnico")) 
+{
+    ViewData["Title"] = "Mis Datos";
+
+    <h1>Mis Datos</h1>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+
+            @if (User.IsInRole("Administrador")) 
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].Role)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].Name)
+                </th>
+                <th>
+                    Usuario
+                </th>
+                <th>
+                    Télefono
+                </th>
+            }
+
+            @if (User.IsInRole("Cliente") || User.IsInRole("Técnico")) 
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].Role)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClienteIdxData.Usuarios[0].Name)
+                </th>
+                <th>
+                    Usuario
+                </th>
+                <th>
+                    Télefono
+                </th>
+            }
+
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            @foreach (var item in Model.ClienteIdxData.Usuarios)
+            {
+                @if (User.IsInRole("Administrador")) 
+                {
+                    string selectedRow = "";
+
+                    if (item.Id == Model.ClienteId)
+                    {
+                        selectedRow = "table-success";
+                    }
+
+                    <tr class="@selectedRow">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Role)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            <a asp-page="./Index" asp-route-id="@item.Id">Seleccionar</a> | 
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                            <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.Id">Borrar</a>
+                        </td>
+                    </tr>
+                }
+
+                @if (User.IsInRole("Cliente") || User.IsInRole("Técnico"))
+                {
+                    <!-- Determinar el usuario logueado para saber su Id. -->
+                    var um = UserManager.GetUserId(User);
+
+                    <!-- El usuario solo ve sus datos, filtro por Id. -->
+                    @if (um == item.Id)
+                    {
+                        string selectedRow = "";
+
+                        if (item.Id == Model.ClienteId)
+                        {
+                            selectedRow = "table-success";
+                        }
+
+                        <tr class="@selectedRow">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Role)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                <a asp-page="./Index" asp-route-id="@item.Id">Seleccionar</a> |
+                                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tr>
+    </tbody>
+</table>
+
+<!-- PROYECTOS -->
+
+@if (Model.ClienteIdxData.Proyectos != null)
+{
+
+<h3>Proyectos</h3>
+
+<table class="table">
+    <tr>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th><a asp-page="./Index">Volver a Menú Usuarios</a></th>
+    </tr>
+
+    @foreach (var item in Model.ClienteIdxData.Proyectos)
+    { 
+        string selectedRow = "";
+
+        if (item.ProyectoId == Model.ProyectoId)
+        {
+            selectedRow = "table-success";
+        }
+
+        <tr class="@selectedRow">
+            <td>
+                @item.Nombre
+            </td>
+
+            <td>
+                @item.Descripcion
+            </td>
+
+            <td>
+                @Html.ActionLink("Seleccionar", "OnGetAsync", 
+                            new { id = Model.ClienteId, proyId = item.ProyectoId })
+            </td>
+        </tr>
+    }
+</table>
+}
+
+<!-- SOLICITUDES -->
+
+@if (Model.ClienteIdxData.Solicitudes != null)
+{
+
+<h3>Solicitudes</h3>
+
+<table class="table">
+    <tr>
+        <th>Rol Requerido</th>
+        <th>Nivel Experiencia</th>
+        <th>Modo de Contrato</th>
+        <th>Horas Contratadas</th>
+        <th>Costo de la Solicitud</th>
+        <th><a asp-page="./Index">Volver a Menú Usuarios</a></th>
+    </tr>
+
+    @foreach (var item in Model.ClienteIdxData.Solicitudes)
+    { 
+        <tr>
+            <td>
+                @item.RolRequerido
+            </td>
+            <td>
+                @item.NivelExperiencia
+            </td>
+            
+            @if ((item.ModoDeContrato) == 1)
+            {
+                <td>Jornada</td>
+            }
+            else
+            {
+                <td>Hora</td>
+            }
+            
+            <td>
+                @item.HorasContratadas
+            </td>
+            <td>
+                @Html.Raw(String.Format("{0:C}", item.costoSolicitud))
+            </td>
+        </tr>
+    }
+</table>
+}

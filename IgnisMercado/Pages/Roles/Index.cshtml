@@ -1,0 +1,50 @@
+@page
+@model IgnisMercado.Pages.Roles.IndexModel
+
+@{
+    ViewData["Title"] = "Rol";
+}
+
+<h1>Rol</h1>
+
+@if (User.IsInRole("Administrador")) 
+{
+<p>
+    <a asp-page="Create">Crear nuevo</a>
+</p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Rol[0].Nivel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rol[0].Descripcion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Rol) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nivel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+
+        @if (User.IsInRole("Administrador")) 
+        {
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.RolId">Editar</a> |
+                <a asp-page="./Delete" asp-route-id="@item.RolId">Borrar</a>
+            </td>
+        }
+
+        </tr>
+}
+    </tbody>
+</table>
