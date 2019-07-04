@@ -8,6 +8,5 @@ namespace IgnisMercado.Models.ViewModels
         public IList<Solicitud> Solicitudes { get; set; }
 
         public IList<ApplicationUser> Tecnicos { get; set; }
-
     }
 }
