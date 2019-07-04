@@ -340,12 +340,19 @@ namespace IgnisMercado.Models.Seeding
                 return;
             }
 
-            Costo CostoInstancia = Costo.obtenerInstancia();
-            
-            // Seeding en el contexto actual utilizando Singleton.
-            CostoInstancia.SeedCostoSingleton(context);
+            context.Costos.AddRange(
+                new Costo 
+                {
+                    CostoHoraBasico = 150,
+                    CostoHoraAvanzado = 280,
+                    PrimeraHoraBasico = 380,
+                    PrimeraHoraAvanzado = 520,
+                    JornadaAvanzado = 2000,
+                    JornadaBasico = 1200,
+                    HoraJornada = 6
+                }
+            );
 
-            // guarda los cambios.
             context.SaveChanges();
         }
 
@@ -441,12 +448,12 @@ namespace IgnisMercado.Models.Seeding
             // Actualizo el status y el costo de cada solicitud de acuerdo al precio vigente.
             var solicitudes = context.Solicitudes;
 
-            Costo CostoInstancia = Costo.obtenerInstancia();
+            Costo Costos = new Costo();
 
             foreach(var s in solicitudes)
             {
                 // actualización de precios.
-                s.costoSolicitud = CostoInstancia.CalcularCostoSolicitud(
+                s.costoSolicitud = Costos.CalcularCostoSolicitud(
                                             s.ModoDeContrato,
                                             s.HorasContratadas,
                                             s.NivelExperiencia);
@@ -454,7 +461,7 @@ namespace IgnisMercado.Models.Seeding
                 s.StatusActivo();
 
                 // se agrega la solicitud como observador.
-                CostoInstancia.Agregar(s);
+                Costos.Agregar(s);
             }
 
             // guarda los cambios.

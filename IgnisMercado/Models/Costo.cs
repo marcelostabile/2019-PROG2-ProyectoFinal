@@ -7,20 +7,14 @@ namespace IgnisMercado.Models
     /// Esta clase tiene la responsabiliad de conocer los precios definidos por el centro.
     /// Decimos que cumple con EXPERT, porque es la unica clase que conoce esta informacion y 
     /// por lo tanto su única razon de cambio.
-    /// 
-    /// Patrón Singleton: durante la ejecusión surgió el problema que se creaban muchas instancias de esta clase 
-    /// (por distintas razones), lo que implica que existen muchos objetos que contienen los precios. 
-    /// Esto no es deseable porque cualquier cambio de precios implica modificarlos a todos, no podemos tener múltiples listas de precios 
-    /// coexistiendo. Para solucionar este problema aplicamos Singleton con el objetivo de tener una única instancia de esta clase 
-    /// durante la ejecusión del programa. Esto nos asegura que los precios solo existen en un único objeto en toda la aplicación.
     /// </summary>
     public class Costo : ISujetoCosto, ICosto
     { 
         // Para patrón Singleton: declaración static.
-        private static Costo costoInstancia;
+        //private static Costo costoInstancia;
 
         // Para patrón Singleton: private.
-        private Costo() 
+        public Costo() 
         {
             this.primeraHoraBasico = 380;
             this.costoHoraBasico = 150;
@@ -34,35 +28,35 @@ namespace IgnisMercado.Models
         }
 
         // Para patrón Singleton: método obtener instancia.
-        public static Costo obtenerInstancia() 
-        {
-            if (costoInstancia == null)
-            {
-                costoInstancia = new Costo();
-            }
+        // public static Costo obtenerInstancia() 
+        // {
+        //     if (costoInstancia == null)
+        //     {
+        //         costoInstancia = new Costo();
+        //     }
 
-            return costoInstancia;
-        }
+        //     return costoInstancia;
+        // }
 
         // Para patrón Singleton: seeding en el contexto.
         // Se define este método para uso del contexto y el patrón Singleton.
-        public void SeedCostoSingleton(ApplicationContext _context)
-        {
-            _context.Costos.AddRange(
-                new Costo 
-                {
-                    CostoHoraBasico = 150,
-                    CostoHoraAvanzado = 280,
-                    PrimeraHoraBasico = 380,
-                    PrimeraHoraAvanzado = 520,
-                    JornadaAvanzado = 2000,
-                    JornadaBasico = 1200,
-                    HoraJornada = 6
-                }
-            );
+        // public void SeedCostoSingleton(ApplicationContext _context)
+        // {
+        //     _context.Costos.AddRange(
+        //         new Costo 
+        //         {
+        //             CostoHoraBasico = 150,
+        //             CostoHoraAvanzado = 280,
+        //             PrimeraHoraBasico = 380,
+        //             PrimeraHoraAvanzado = 520,
+        //             JornadaAvanzado = 2000,
+        //             JornadaBasico = 1200,
+        //             HoraJornada = 6
+        //         }
+        //     );
 
-            _context.SaveChanges();
-        }
+        //     _context.SaveChanges();
+        // }
 
         //public static Costo CostoInstancia { get => costoInstancia; set => costoInstancia = value; }
 

@@ -34,9 +34,9 @@ namespace IgnisMercado.Pages.Solicitudes
             await _context.SaveChangesAsync();
 
             // se agrega la solicitud como observador.
-            Costo CostoInstancia = Costo.obtenerInstancia();
+            Costo costo = new Costo();
 
-            CostoInstancia.Agregar(Solicitud);
+            costo.Agregar(Solicitud);
 
             return RedirectToPage("./Index");
         }

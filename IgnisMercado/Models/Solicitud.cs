@@ -24,9 +24,9 @@ namespace IgnisMercado.Models
             this.Status = true;
 
             // Cuando instanciamos el objeto, calculamos su costo de acuerdo a los valores ingresados.
-            Costo CostoInstancia = Costo.obtenerInstancia();
+            Costo costo = new Costo();
 
-            this.CostoSolicitud = CostoInstancia.CalcularCostoSolicitud(modoDeContrato, horasContratadas, nivelExperiencia);
+            this.CostoSolicitud = costo.CalcularCostoSolicitud(modoDeContrato, horasContratadas, nivelExperiencia);
         }
 
         /// <summary>
@@ -119,11 +119,11 @@ namespace IgnisMercado.Models
         /// </summary>
         public void ActualizarCostoSolicitudActiva() 
         {
-            Costo CostoInstancia = Costo.obtenerInstancia();
+            Costo costo = new Costo();
 
             if (this.Status == true) 
             {
-                this.CostoSolicitud = CostoInstancia.CalcularCostoSolicitud(
+                this.CostoSolicitud = costo.CalcularCostoSolicitud(
                                         this.ModoDeContrato, 
                                         this.HorasContratadas, 
                                         this.NivelExperiencia);
